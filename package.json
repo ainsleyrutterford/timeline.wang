@@ -1,0 +1,25 @@
+{
+  "name": "site",
+  "version": "1.0.0",
+  "description": "This is the coursework for the third year Computer Science unit 'Web Technologies' at the University of Bristol.",
+  "main": "create.js",
+  "dependencies": {
+    "sqlite": "^3.0.3",
+    "vnu-jar": "^18.11.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ainsleyrutterford/Web-Technologies.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ainsleyrutterford/Web-Technologies/issues"
+  },
+  "homepage": "https://github.com/ainsleyrutterford/Web-Technologies#readme"
+}
