@@ -10,28 +10,37 @@ body {
   font-family: 'Open Sans', sans-serif; /* Using Open Sans for the entire page. */
 }
 
-/* This is for the central column of content. */
+/* This is for the central column of content */
 .container {
-  width: 62rem;
+  max-width: 65rem; /* Allows the column to be resizable */
   margin: 0 auto;
   padding-top: 2rem;
 }
 
 h1 {
   color: #000000; /* Black. */
-  padding: 1rem 1rem 1rem 0rem; /* top, right, bottom, left */
+  padding: 1rem 1rem 1rem 1rem; /* top, right, bottom, left */
 }
 
 p {
   color: #3A3A3A; /* A nice dark grey. */
-  padding: 0.5rem 1rem 0.5rem 0rem; /* top, right, bottom, left */
+  padding: 0.5rem 1rem 0.5rem 1rem; /* top, right, bottom, left */
 }
 
 code {
-  background-color: #eee;          /* Light grey. */
-  border-radius: 0.2em;              /* Round edges or box. */
-  font-family: courier, monospace; /* Change font. */
-  padding: 0 0.2em;                  /* Add padding between text and box. */
+  background-color: #eee;          /* Light grey */
+  border-radius: 0.2em;            /* Round edges or box */
+  font-family: courier, monospace; /* Change font */
+  padding: 0 0.2em;                /* Add padding between text and box */
+}
+
+a {
+  color: #1e6bb8; /* A nice blue */
+  text-decoration: none; /* Links are not underlined by default */
+}
+
+a:hover {
+  text-decoration: underline; /* Links are underlined when hovered */
 }
 
 .navbar {
