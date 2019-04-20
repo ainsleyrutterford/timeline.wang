@@ -1,4 +1,5 @@
 "use strict";
+
 // Run a node.js web server for local development of a static web site. Create a
 // site folder, put server.js in it, create a sub-folder called "public", with
 // at least a file "index.html" in it. Start the server with "node server.js &",

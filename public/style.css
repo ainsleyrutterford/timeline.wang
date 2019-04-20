@@ -1,20 +1,63 @@
 /* The stylesheet for the entire website at the moment. */
 
+/* This allows the navbar to extend all the way to the left and right */
+* {
+  margin: 0;
+  padding: 0;
+  }
+
 body {
   font-family: 'Open Sans', sans-serif; /* Using Open Sans for the entire page. */
 }
 
+/* This is for the central column of content. */
+.container {
+  width: 62rem;
+  margin: 0 auto;
+  padding-top: 2rem;
+}
+
 h1 {
   color: #000000; /* Black. */
+  padding: 1rem 1rem 1rem 0rem; /* top, right, bottom, left */
 }
 
 p {
   color: #3A3A3A; /* A nice dark grey. */
+  padding: 0.5rem 1rem 0.5rem 0rem; /* top, right, bottom, left */
 }
 
 code {
   background-color: #eee;          /* Light grey. */
-  border-radius: 3px;              /* Round edges or box. */
+  border-radius: 0.2em;              /* Round edges or box. */
   font-family: courier, monospace; /* Change font. */
-  padding: 0 3px;                  /* Add padding between text and box. */
+  padding: 0 0.2em;                  /* Add padding between text and box. */
+}
+
+.navbar {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+.navbar li {
+  float: left;
+}
+
+.navbar-right {
+  float: right !important;
+}
+
+.navbar li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 1em 1em;
+  text-decoration: none;
+}
+
+.navbar li a:hover {
+  color: #ccc;
 }
