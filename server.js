@@ -26,6 +26,9 @@ let fs = require("fs").promises;
 let OK = 200, NotFound = 404, BadType = 415, Error = 500;
 let types, paths;
 
+// Reuire sqlite
+var sqlite = require("sqlite");
+
 // Start the server:
 start();
 
@@ -144,4 +147,33 @@ function defineTypes() {
     docx  : undefined,      // non-standard, platform dependent, use .pdf
   }
   return types;
+}
+
+// Example function to fetch all animals from a database. Change this to suit
+// our needs.
+async function fetch() {
+  try {
+    var db = await sqlite.open("./db.sqlite");
+    var as = await db.all("select * from animals");
+    console.log(as);
+  } catch (error) {
+    console.log(error); }
+}
+
+// Example function to insert an animal into a database. Change this to suit
+// our needs.
+async function insert() {
+  var db = await sqlite.open("./db.sqlite");
+  // Using prepared statements to prevent SQL injection attacks
+  var ps = db.prepare("insert into animals values (?,?)");
+  await ps.run(64, "cat"); // May need to be single quotes?
+}
+
+// Example function to update a single row in a database. Change this to suit
+// our needs.
+async function update() {
+  var db = await sqlite.open("./db.sqlite");
+  // Using prepared statements to prevent SQL injection attacks
+  var ps = db.prepare("update animals set breed=? where id=?");
+  await ps.run("terrier", 42);
 }
