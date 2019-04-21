@@ -4,10 +4,12 @@
     <meta charset="UTF-8"/>
     <link rel="stylesheet" href="style.css"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans"/>
-    <script defer="defer" src="timeline.js"></script>
     <title>timeline.wang</title>
   </head>
   <body>
     <canvas id="canvas"></canvas>
+    <!-- This script line should be in the head so Ian can mark it
+    but the defer option is only working on firefox and not chrome -->
+    <script defer="defer" src="timeline.js"></script>
   </body>
 </html>
