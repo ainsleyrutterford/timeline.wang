@@ -70,3 +70,9 @@ a:hover {
 .navbar li a:hover {
   color: #ccc;
 }
+
+.timeline-heading {
+  text-align: center;
+  font-size: 8em;
+  padding-top: 1em;
+}

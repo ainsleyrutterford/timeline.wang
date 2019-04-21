@@ -2,37 +2,33 @@
 
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext('2d');
+let dpi = window.devicePixelRatio;
 
-var ball = {
-  x: 100,
-  y: 100,
-  vx: 5,
-  vy: 2,
-  radius: 25,
-  color: 'blue',
+canvas.width = window.innerWidth * dpi;
+canvas.height = window.innerHeight * dpi;
+canvas.style.width = window.innerWidth + "px";
+canvas.style.height = window.innerHeight + "px";
+
+ctx.textAlign = "center";
+ctx.font='bold 10em sans-serif';
+
+ctx.scale(dpi, dpi);
+
+var text = {
+  x: canvas.width/dpi * 2,
+  y: (canvas.height/2)/dpi,
   draw: function() {
-    ctx.beginPath();
-    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, true);
-    ctx.closePath();
-    ctx.fillStyle = this.color;
-    ctx.fill();
+    ctx.fillText("Fuck you", this.x, this.y);
+    this.x -= 10;
+    if (this.x < -canvas.width/dpi) {
+      this.x = canvas.width/dpi * 2;
+    }
   }
 };
 
 function draw() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
   ctx.clearRect(0,0, canvas.width, canvas.height);
-  ball.draw();
-  ball.x += ball.vx;
-  ball.y += ball.vy;
-
-  if (ball.y + ball.vy > canvas.height || ball.y + ball.vy < 0) {
-    ball.vy = -ball.vy;
-  }
-  if (ball.x + ball.vx > canvas.width || ball.x + ball.vx < 0) {
-    ball.vx = -ball.vx;
-  }
+  text.draw();
 
   window.requestAnimationFrame(draw);
 }
