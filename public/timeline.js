@@ -3,7 +3,9 @@
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext('2d');
 let dpi = window.devicePixelRatio;
-let y_center;
+let focal_length = 500;
+let y_center, x_center;
+let global_z;
 
 // Scale the canvas to be the correct resolution for the window. Also takes
 // retina screens into account.
@@ -20,12 +22,13 @@ function scale_canvas() {
   canvas.style.height = window.innerHeight + "px";
 
   // Recenter the y_center.
-  y_center = (canvas.height/2)/dpi;
+  y_center = (canvas.height / 2) / dpi;
+  x_center = (canvas.width  / 2) / dpi;
 
  // Center align text.
   ctx.textAlign = "center";
   // Large sans-serif text.
-  ctx.font='bold 10em sans-serif';
+  ctx.font = 'bold 10em sans-serif';
 
   // Scale the context by the device pixel ratio.
   ctx.scale(dpi, dpi);
@@ -34,22 +37,33 @@ function scale_canvas() {
 // Scale the canvas first.
 scale_canvas();
 
-// The text object.
-var text = {
-  x: canvas.width/dpi * 2,
-  draw: function() {
-    ctx.fillText("Fuck you", this.x, y_center);
-    this.x -= 10;
-    if (this.x < -canvas.width/dpi) {
-      this.x = canvas.width/dpi * 2;
+function Text(x_3D, y_3D, z_3D, text) {
+  this.x_3D = x_3D;
+  this.y_3D = y_3D;
+  this.z_3D = z_3D;
+  this.text = text;
+  this.draw = function() {
+    var x = focal_length * this.x_3D/this.z_3D + x_center;
+    var y = focal_length * this.y_3D/this.z_3D + y_center;
+    this.z_3D -= 0.1;
+    this.font_size = 20/this.z_3D;
+    ctx.font = 'bold ' + this.font_size + 'em sans-serif';
+    if (this.z_3D > 0) {
+      ctx.fillStyle = 'rgba(0, 0, 0, ' + (100-this.z_3D)/100 + ')';
+      ctx.fillText(text, x, y);
     }
   }
-};
+}
+
+let words = [new Text( 1,  1,  80, "wong"),
+             new Text( 0,  0,  90, "wing"),
+             new Text(-1,  1,  70, "wung"),
+             new Text(-1, -1, 100, "wang")]
 
 // The draw() function. Calls itself repeatedly.
 function draw() {
   ctx.clearRect(0,0, canvas.width, canvas.height);
-  text.draw();
+  words.forEach(function(word) { word.draw(); });
   window.requestAnimationFrame(draw);
 }
 
