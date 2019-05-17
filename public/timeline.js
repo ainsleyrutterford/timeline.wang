@@ -6,6 +6,7 @@ let dpi = window.devicePixelRatio;
 let focal_length = 500;
 let y_center, x_center;
 let global_z = 0;
+let paused = false;
 
 // Scale the canvas to be the correct resolution for the window. Also takes
 // retina screens into account.
@@ -14,12 +15,12 @@ function scale_canvas() {
   // which is 1 for 1080p screens and 2 for retina screens. Do the same for
   // the height.
   canvas.width = window.innerWidth * dpi;
-  canvas.height = window.innerHeight * dpi;
+  canvas.height = (window.innerHeight - 5) * dpi;
 
   // Set the canvas style width and height to the same as the window width
   // and height.
-  canvas.style.width = (window.innerWidth-5) + "px";
-  canvas.style.height = (window.innerHeight-5) + "px";
+  canvas.style.width = window.innerWidth + "px";
+  canvas.style.height = (window.innerHeight - 5) + "px";
 
   // Recenter the y_center.
   y_center = (canvas.height / 2) / dpi;
@@ -62,16 +63,18 @@ function Entry(x_3D, y_3D, z_3D, text, source) {
   }
 }
 
-let entries = [new Entry( 1,  1, 100, "apple", "apple.png"),
-               new Entry( 0,  0, 110, "amazon", "amazon.png"),
-               new Entry(-1,  1, 120, "twitter", "twitter.png"),
-               new Entry(-1, -1, 130, "wang", "amazon.png")]
+let entries = [new Entry(-1, -1, 130, "apple", "apple.png"),
+               new Entry( 0,  1, 120, "amazon", "amazon.png"),
+               new Entry( 1,  0, 110, "twitter", "twitter.png"),
+               new Entry( 1,  1, 100, "wang", "amazon.png")]
 
 // The draw() function. Calls itself repeatedly.
 function draw() {
   ctx.clearRect(0,0, canvas.width, canvas.height);
   entries.forEach(function(entry) { entry.draw(); });
-  global_z += 0.1;
+  if (!paused) {
+    global_z += 0.1;
+  }
   window.requestAnimationFrame(draw);
 }
 
@@ -85,6 +88,11 @@ window.addEventListener('resize', function(e) {
 });
 
 window.addEventListener('wheel', function(e) {
-  const delta = Math.sign(e.deltaY);
-  global_z += (delta/10);
+  global_z += e.deltaY / 50;
+});
+
+window.addEventListener('keyup', function(e) {
+  if (e.keyCode == 32) {
+    paused = !paused;
+  }
 });
