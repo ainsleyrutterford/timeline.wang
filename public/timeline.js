@@ -18,14 +18,14 @@ function scale_canvas() {
 
   // Set the canvas style width and height to the same as the window width
   // and height.
-  canvas.style.width = window.innerWidth + "px";
-  canvas.style.height = window.innerHeight + "px";
+  canvas.style.width = (window.innerWidth-5) + "px";
+  canvas.style.height = (window.innerHeight-5) + "px";
 
   // Recenter the y_center.
   y_center = (canvas.height / 2) / dpi;
   x_center = (canvas.width  / 2) / dpi;
 
- // Center align text.
+  // Center align text.
   ctx.textAlign = "center";
   // Large sans-serif text.
   ctx.font = 'bold 10em sans-serif';
@@ -37,32 +37,34 @@ function scale_canvas() {
 // Scale the canvas first.
 scale_canvas();
 
-function Entry(x_3D, y_3D, z_3D, text) {
-  this.x_3D = x_3D;
-  this.y_3D = y_3D;
-  this.z_3D = z_3D;
-  this.text = text;
+function Entry(x_3D, y_3D, z_3D, text, source) {
+  this.x_3D   = x_3D;
+  this.y_3D   = y_3D;
+  this.z_3D   = z_3D;
+  this.text   = text;
+
+  const image = new Image();
+  image.src   = source;
+
   this.draw = function() {
     var relative_z = this.z_3D - global_z;
     var x = focal_length * (this.x_3D / relative_z) + x_center;
     var y = focal_length * (this.y_3D / relative_z) + y_center;
-    this.font_size = 20 / relative_z;
-    ctx.font = 'bold ' + this.font_size + 'em sans-serif';
+
     if (relative_z > 0) {
-      const image = new Image();
-      image.src = 'apple.png';
+      ctx.font = 'bold ' + 20 / relative_z + 'em sans-serif';
       var alpha = (100 - relative_z) / 100;
       ctx.globalAlpha = (alpha < 0) ? 0 : alpha;
-      ctx.drawImage(image, x, y, 200/relative_z, 200/relative_z);
+      ctx.drawImage(image, x, y, 200 / relative_z, 200 / relative_z);
       ctx.fillText(text, x, y);
     }
   }
 }
 
-let entries = [new Entry( 1,  1, 100, "wong"),
-               new Entry( 0,  0, 110, "wing"),
-               new Entry(-1,  1, 120, "wung"),
-               new Entry(-1, -1, 130, "wang")]
+let entries = [new Entry( 1,  1, 100, "wong", "apple.png"),
+               new Entry( 0,  0, 110, "wing", "apple.png"),
+               new Entry(-1,  1, 120, "wung", "apple.png"),
+               new Entry(-1, -1, 130, "wang", "apple.png")]
 
 // The draw() function. Calls itself repeatedly.
 function draw() {
@@ -79,4 +81,9 @@ window.requestAnimationFrame(draw);
 // fit the window again.
 window.addEventListener('resize', function(e) {
   scale_canvas();
+});
+
+window.addEventListener('wheel', function(e) {
+  const delta = Math.sign(e.deltaY);
+  global_z += (delta/10);
 });
