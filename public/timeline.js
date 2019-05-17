@@ -61,10 +61,10 @@ function Entry(x_3D, y_3D, z_3D, text, source) {
   }
 }
 
-let entries = [new Entry( 1,  1, 100, "wong", "apple.png"),
-               new Entry( 0,  0, 110, "wing", "apple.png"),
-               new Entry(-1,  1, 120, "wung", "apple.png"),
-               new Entry(-1, -1, 130, "wang", "apple.png")]
+let entries = [new Entry( 1,  1, 100, "apple", "apple.png"),
+               new Entry( 0,  0, 110, "amazon", "amazon.png"),
+               new Entry(-1,  1, 120, "twitter", "twitter.png"),
+               new Entry(-1, -1, 130, "wang", "amazon.png")]
 
 // The draw() function. Calls itself repeatedly.
 function draw() {
