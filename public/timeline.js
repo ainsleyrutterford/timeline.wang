@@ -5,7 +5,7 @@ var ctx = canvas.getContext('2d');
 let dpi = window.devicePixelRatio;
 let focal_length = 500;
 let y_center, x_center;
-let global_z;
+let global_z = 0;
 
 // Scale the canvas to be the correct resolution for the window. Also takes
 // retina screens into account.
@@ -37,33 +37,34 @@ function scale_canvas() {
 // Scale the canvas first.
 scale_canvas();
 
-function Text(x_3D, y_3D, z_3D, text) {
+function Entry(x_3D, y_3D, z_3D, text) {
   this.x_3D = x_3D;
   this.y_3D = y_3D;
   this.z_3D = z_3D;
   this.text = text;
   this.draw = function() {
-    var x = focal_length * this.x_3D/this.z_3D + x_center;
-    var y = focal_length * this.y_3D/this.z_3D + y_center;
-    this.z_3D -= 0.1;
-    this.font_size = 20/this.z_3D;
+    var relative_z = this.z_3D - global_z;
+    var x = focal_length * (this.x_3D / relative_z) + x_center;
+    var y = focal_length * (this.y_3D / relative_z) + y_center;
+    this.font_size = 20 / relative_z;
     ctx.font = 'bold ' + this.font_size + 'em sans-serif';
-    if (this.z_3D > 0) {
-      ctx.fillStyle = 'rgba(0, 0, 0, ' + (100-this.z_3D)/100 + ')';
+    if (relative_z > 0) {
+      ctx.fillStyle = 'rgba(0, 0, 0, ' + (100 - relative_z) / 100 + ')';
       ctx.fillText(text, x, y);
     }
   }
 }
 
-let words = [new Text( 1,  1,  80, "wong"),
-             new Text( 0,  0,  90, "wing"),
-             new Text(-1,  1,  70, "wung"),
-             new Text(-1, -1, 100, "wang")]
+let entries = [new Entry( 1,  1, 100, "wong"),
+               new Entry( 0,  0, 110, "wing"),
+               new Entry(-1,  1, 120, "wung"),
+               new Entry(-1, -1, 130, "wang")]
 
 // The draw() function. Calls itself repeatedly.
 function draw() {
   ctx.clearRect(0,0, canvas.width, canvas.height);
-  words.forEach(function(word) { word.draw(); });
+  entries.forEach(function(entry) { entry.draw(); });
+  global_z += 0.1;
   window.requestAnimationFrame(draw);
 }
 
