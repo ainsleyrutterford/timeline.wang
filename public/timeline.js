@@ -5,7 +5,7 @@ var ctx = canvas.getContext('2d');
 let dpi = window.devicePixelRatio;
 let focal_length = 500;
 let y_center, x_center;
-let global_z = 0;
+let camera_x = 0, camera_y = 0, camera_z = 0;
 let paused = false;
 
 // Scale the canvas to be the correct resolution for the window. Also takes
@@ -48,9 +48,11 @@ function Entry(x_3D, y_3D, z_3D, text, source) {
   image.src   = source;
 
   this.draw = function() {
-    var relative_z = this.z_3D - global_z;
-    var x = focal_length * (this.x_3D / relative_z) + x_center;
-    var y = focal_length * (this.y_3D / relative_z) + y_center;
+    var relative_x = this.x_3D - camera_x;
+    var relative_y = this.y_3D - camera_y;
+    var relative_z = this.z_3D - camera_z;
+    var x = focal_length * (relative_x / relative_z) + x_center;
+    var y = focal_length * (relative_y / relative_z) + y_center;
 
     if (relative_z > 0) {
       ctx.font = 'bold ' + 20 / relative_z + 'em sans-serif';
@@ -71,9 +73,9 @@ let entries = [new Entry(-1, -1, 130, "apple", "apple.png"),
 // The draw() function. Calls itself repeatedly.
 function draw() {
   ctx.clearRect(0,0, canvas.width, canvas.height);
-  entries.forEach(function(entry) { entry.draw(); });
+  entries.forEach(entry => entry.draw());
   if (!paused) {
-    global_z += 0.1;
+    camera_z += 0.1;
   }
   window.requestAnimationFrame(draw);
 }
@@ -88,7 +90,17 @@ window.addEventListener('resize', function(e) {
 });
 
 window.addEventListener('wheel', function(e) {
-  global_z += e.deltaY / 50;
+  camera_z += e.deltaY / 50;
+});
+
+window.addEventListener('mousemove', function (e) {
+  var rect = canvas.getBoundingClientRect();
+  var mouse_x = e.clientX - rect.left;
+  var mouse_y = e.clientY - rect.top ;
+  const width  = canvas.width  / dpi;
+  const height = canvas.height / dpi;
+  camera_x = -1 + 2 * (width  - mouse_x) / width ;
+  camera_y = -1 + 2 * (height - mouse_y) / height;
 });
 
 window.addEventListener('keyup', function(e) {
