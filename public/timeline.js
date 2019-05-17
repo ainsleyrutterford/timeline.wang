@@ -92,7 +92,14 @@ window.addEventListener('wheel', function(e) {
 });
 
 window.addEventListener('keyup', function(e) {
-  if (e.keyCode == 32) {
-    paused = !paused;
+  switch (e.keyCode) {
+    case 32: // Spacebar
+      paused = !paused;
+      break;
+    case 27: // Escape
+      window.location.href = 'index.html';
+      break;
+    default:
+      break;
   }
 });
