@@ -26,7 +26,7 @@ function scale_canvas() {
   x_center = (canvas.width  / 2) / dpi;
 
   // Center align text.
-  ctx.textAlign = "center";
+  ctx.textAlign = "left";
   // Large sans-serif text.
   ctx.font = 'bold 10em sans-serif';
 
@@ -55,7 +55,8 @@ function Entry(x_3D, y_3D, z_3D, text, source) {
       ctx.font = 'bold ' + 20 / relative_z + 'em sans-serif';
       var alpha = (100 - relative_z) / 100;
       ctx.globalAlpha = (alpha < 0) ? 0 : alpha;
-      ctx.drawImage(image, x, y, 200 / relative_z, 200 / relative_z);
+      var size = 200 / relative_z;
+      ctx.drawImage(image, x - size, y - size, size, size);
       ctx.fillText(text, x, y);
     }
   }
