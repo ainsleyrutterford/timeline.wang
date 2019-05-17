@@ -49,7 +49,11 @@ function Entry(x_3D, y_3D, z_3D, text) {
     this.font_size = 20 / relative_z;
     ctx.font = 'bold ' + this.font_size + 'em sans-serif';
     if (relative_z > 0) {
-      ctx.fillStyle = 'rgba(0, 0, 0, ' + (100 - relative_z) / 100 + ')';
+      const image = new Image();
+      image.src = 'apple.png';
+      var alpha = (100 - relative_z) / 100;
+      ctx.globalAlpha = (alpha < 0) ? 0 : alpha;
+      ctx.drawImage(image, x, y, 200/relative_z, 200/relative_z);
       ctx.fillText(text, x, y);
     }
   }
