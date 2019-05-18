@@ -1,11 +1,15 @@
 "use strict";
 
-// Import the express module and create an express application.
+// Import modules.
 var express = require('express');
+var sqlite  = require("sqlite");
+var helmet  = require('helmet')
+
+// Create an express application.
 var app = express();
 
-// Import the sqlite module.
-var sqlite = require("sqlite");
+// Use the helmet module.
+app.use(helmet())
 
 // Serve static files in the 'public' directory.
 app.use(express.static('public'));
@@ -42,7 +46,11 @@ async function insert() {
 // Example function to update a single row in a database. Change this to suit
 // our needs.
 async function update() {
-  var db = await sqlite.open("./db.sqlite");
-  // Using prepared statements to prevent SQL injection attacks
-  db.run("update animals set breed=? where id=?", "terrier", 42);
+  try {
+    var db = await sqlite.open("./db.sqlite");
+    // Using prepared statements to prevent SQL injection attacks
+    db.run("update animals set breed=? where id=?", "terrier", 42);
+  } catch (error) {
+    console.log(error);
+  }
 }

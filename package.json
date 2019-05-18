@@ -5,6 +5,7 @@
   "main": "create.js",
   "dependencies": {
     "express": "^4.17.0",
+    "helmet": "^3.18.0",
     "sqlite": "^3.0.3",
     "vnu-jar": "^18.11.5"
   },
