@@ -103,11 +103,22 @@ window.addEventListener('mousemove', function (e) {
   camera_y = -1 + 2 * (height - mouse_y) / height;
 });
 
-window.addEventListener('keyup', function(e) {
+// Use keydown for pausing as it feels more responsive.
+window.addEventListener('keydown', function(e) {
+  // We use a switch statement incase we want to add any functionality
+  // later on.
   switch (e.keyCode) {
     case 32: // Spacebar
       paused = !paused;
       break;
+    default:
+      break;
+  }
+});
+
+// Keydown does not work for the escape buttons so we use keyup in this case.
+window.addEventListener('keyup', function(e) {
+  switch (e.keyCode) {
     case 27: // Escape
       window.location.href = 'index.html';
       break;
