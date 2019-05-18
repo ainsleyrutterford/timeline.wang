@@ -1,15 +1,17 @@
 "use strict";
 
 // Import modules.
-var express = require('express');
-var sqlite  = require("sqlite");
-var helmet  = require('helmet')
+var express     = require('express');
+var sqlite      = require("sqlite");
+var helmet      = require('helmet');
+var compression = require('compression');
 
 // Create an express application.
 var app = express();
 
-// Use the helmet module.
-app.use(helmet())
+// Use these middleware modules.
+app.use(helmet());
+app.use(compression());
 
 // Serve static files in the 'public' directory.
 app.use(express.static('public'));

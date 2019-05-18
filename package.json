@@ -4,6 +4,7 @@
   "description": "This is the coursework for the third year Computer Science unit 'Web Technologies' at the University of Bristol.",
   "main": "create.js",
   "dependencies": {
+    "compression": "^1.7.4",
     "express": "^4.17.0",
     "helmet": "^3.18.0",
     "sqlite": "^3.0.3",
