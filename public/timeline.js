@@ -54,7 +54,7 @@ function Entry(x_3D, y_3D, z_3D, text, source) {
     var x = focal_length * (relative_x / relative_z) + x_center;
     var y = focal_length * (relative_y / relative_z) + y_center;
 
-    if (relative_z > 0) {
+    if (relative_z > 0.1) {
       ctx.font = 'bold ' + 20 / relative_z + 'em sans-serif';
       var alpha = (100 - relative_z) / 100;
       ctx.globalAlpha = (alpha < 0) ? 0 : alpha;
@@ -63,6 +63,14 @@ function Entry(x_3D, y_3D, z_3D, text, source) {
       ctx.fillText(text, x, y);
     }
   }
+}
+
+function draw_positions() {
+  ctx.font = 'bold 0.8em sans-serif';
+  ctx.globalAlpha = 1;
+  ctx.fillText('camera x: ' + camera_x.toFixed(2), 9, 18);
+  ctx.fillText('camera y: ' + camera_y.toFixed(2), 9, 35);
+  ctx.fillText('camera z: ' + camera_z.toFixed(2), 9, 52);
 }
 
 let entries = [new Entry(-1, -1, 130, "apple", "apple.png"),
@@ -77,6 +85,7 @@ function draw() {
   if (!paused) {
     camera_z += 0.1;
   }
+  draw_positions();
   window.requestAnimationFrame(draw);
 }
 
