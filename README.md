@@ -1,3 +1,3 @@
-# Web Technologies Coursework
+# timeline.wang
 
-This is the coursework for the third year Computer Science unit 'Web Technologies' at the University of Bristol.
+timeline.wang is an interactive timeline.
