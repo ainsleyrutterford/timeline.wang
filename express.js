@@ -5,6 +5,8 @@ var express     = require('express');
 var sqlite      = require("sqlite");
 var helmet      = require('helmet');
 var compression = require('compression');
+var passport    = require('passport');
+var Strategy    = require('passport-local').Strategy;
 
 // Create an express application.
 var app = express();
@@ -13,7 +15,82 @@ var app = express();
 app.use(helmet());
 app.use(compression());
 
-// Serve static files in the 'public' directory.
+passport.use(new Strategy(
+  function(username, password, cb) {
+    find_by_username(username, function(err, user) {
+      if (err) { return cb(err); }
+      if (!user) { return cb(null, false); }
+      if (user.password != password) { return cb(null, false); }
+      return cb(null, user);
+    });
+  }));
+
+passport.serializeUser(function(user, cb) {
+  cb(null, user.id);
+});
+
+passport.deserializeUser(function(id, cb) {
+  find_by_id(id, function (err, user) {
+    if (err) { return cb(err); }
+    cb(null, user);
+  });
+});
+
+// Configure view engine to render EJS templates.
+app.set('views', __dirname + '/public');
+app.set('view engine', 'ejs');
+
+// Use application-level middleware for common functionality, including
+// logging, parsing, and session handling.
+app.use(require('cookie-parser')());
+app.use(require('body-parser').urlencoded({ extended: true }));
+app.use(require('express-session')({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
+
+// Initialize Passport and restore authentication state, if any, from the
+// session.
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Define routes.
+app.get('/',
+  function(req, res) {
+    res.render('index', { user: req.user });
+  });
+
+app.get('/timeline',
+  function(req, res) {
+    res.render('timeline', { user: req.user });
+  });
+
+app.get('/about',
+  function(req, res){
+    res.render('about', { user: req.user });
+  });
+
+app.get('/login',
+  function(req, res){
+    res.render('login');
+  });
+
+app.post('/login',
+  passport.authenticate('local', { failureRedirect: '/login' }),
+  function(req, res) {
+    res.redirect('/');
+  });
+
+app.get('/logout',
+  function(req, res){
+    req.logout();
+    res.redirect('/');
+  });
+
+app.get('/profile',
+  require('connect-ensure-login').ensureLoggedIn(),
+  function(req, res){
+    res.render('profile', { user: req.user });
+  });
+
+// // Serve static files in the 'public' directory.
 app.use(express.static('public'));
 
 // Start the server on port 3000.
@@ -21,37 +98,31 @@ app.listen(process.env.PORT || 3000, function() {
   console.log('Server listening on port 3000...');
 });
 
-// Example function to fetch all animals from a database. Change this to suit
-// our needs.
-async function fetch() {
+async function find_by_username(username, cb) {
   try {
     var db = await sqlite.open("./db.sqlite");
-    var as = await db.all("select * from animals");
-    console.log(as);
+    // Using prepared statements to prevent SQL injection attacks
+    var user = await db.all("select * from users where username=?", username);
+    if (user.length === 0) {
+      return cb(null, null);
+    } else {
+      return cb(null, user[0]);
+    }
   } catch (error) {
     console.log(error);
   }
 }
 
-// Example function to insert an animal into a database. Change this to suit
-// our needs.
-async function insert() {
+async function find_by_id(id, cb) {
   try {
     var db = await sqlite.open("./db.sqlite");
     // Using prepared statements to prevent SQL injection attacks
-    db.run("insert into animals values (?,?)", 64, "cat");
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-// Example function to update a single row in a database. Change this to suit
-// our needs.
-async function update() {
-  try {
-    var db = await sqlite.open("./db.sqlite");
-    // Using prepared statements to prevent SQL injection attacks
-    db.run("update animals set breed=? where id=?", "terrier", 42);
+    var user = await db.all("select * from users where id=?", id);
+    if (user.length === 0) {
+      cb(new Error('User ' + id + ' does not exist'));
+    } else {
+      cb(null, user[id - 1]);
+    }
   } catch (error) {
     console.log(error);
   }

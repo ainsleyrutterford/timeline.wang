@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-GB" lang="en-GB">
+  <head>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans"/>
+    <title>timeline.wang</title>
+  </head>
+  <body>
+    <ul class="navbar">
+      <li><a href="/"><strong><em>tl</em></strong></a></li>
+      <li><a href="/profile">Contributions</a></li>
+      <li><a href="/about">About</a></li>
+
+      <% if (!user) { %>
+      	<li class="navbar-right"><a href="/login">Log in</a></li>
+        <li class="navbar-right"><a href="/signup">Sign up</a></li>
+      <% } else { %>
+      	<li class="navbar-right"><a href="/logout">Log out</a></li>
+      <% } %>
+    </ul>
+
+    <p>Your current Contributions:</p>
+
+  </body>
+</html>

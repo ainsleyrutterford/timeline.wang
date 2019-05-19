@@ -73,10 +73,10 @@ function draw_positions() {
   ctx.fillText('camera z: ' + camera_z.toFixed(2), 9, 52);
 }
 
-let entries = [new Entry(-1, -1, 130, "apple", "apple.png"),
-               new Entry( 0,  1, 120, "amazon", "amazon.png"),
-               new Entry( 1,  0, 110, "twitter", "twitter.png"),
-               new Entry( 1,  1, 100, "wang", "amazon.png")]
+let entries = [new Entry(-1, -1, 130, "apple", "images/apple.png"),
+               new Entry( 0,  1, 120, "amazon", "images/amazon.png"),
+               new Entry( 1,  0, 110, "twitter", "images/twitter.png"),
+               new Entry( 1,  1, 100, "wang", "images/amazon.png")]
 
 // The draw() function. Calls itself repeatedly.
 function draw() {
@@ -129,7 +129,7 @@ window.addEventListener('keydown', function(e) {
 window.addEventListener('keyup', function(e) {
   switch (e.keyCode) {
     case 27: // Escape
-      window.location.href = 'index.html';
+      window.location.href = '/';
       break;
     default:
       break;

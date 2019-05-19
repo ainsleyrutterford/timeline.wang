@@ -8,11 +8,16 @@
   </head>
   <body>
     <ul class="navbar">
-      <li><a href="index.html"><strong><em>tl</em></strong></a></li>
-      <li><a href="myevents.html">Contributions</a></li>
-      <li><a href="about.html">About</a></li>
-      <li class="navbar-right"><a href="#login">Log in</a></li>
-      <li class="navbar-right"><a href="signup.html">Sign up</a></li>
+      <li><a href="/"><strong><em>tl</em></strong></a></li>
+      <li><a href="/profile">Contributions</a></li>
+      <li><a href="/about">About</a></li>
+
+      <% if (!user) { %>
+      	<li class="navbar-right"><a href="/login">Log in</a></li>
+        <li class="navbar-right"><a href="/signup">Sign up</a></li>
+      <% } else { %>
+      	<li class="navbar-right"><a href="/logout">Log out</a></li>
+      <% } %>
     </ul>
     <div class="container">
       <h1>This is a header</h1>
