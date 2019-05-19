@@ -76,3 +76,40 @@ a:hover {
   font-size: 8em;
   padding-top: 1em;
 }
+
+.input {
+  font-size: 1em;
+  background-color: transparent;
+  border: none;
+  border-bottom: 0.1em solid #ccc;
+  padding: 10px 0px;
+  transition: 0.5s;
+}
+
+.input:focus {
+  border-bottom: 0.1em solid red;
+}
+
+.form-container {
+  text-align: center;
+  margin: 10% auto 25% auto;
+  width: 20em;
+  height: 20em;
+}
+
+.submit-button {
+  margin-top: 1em;
+  border: 0.1em solid red;
+  border-radius: 0.3em;
+  background-color: transparent;
+  color: red;
+  padding: 0.5em 0.5em;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+/* Green */
+.submit-button:hover {
+  background-color: red;
+  color: white;
+}
