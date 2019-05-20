@@ -159,8 +159,8 @@ async function register_user(username, password) {
 
     var user = await db.all("select * from users where username=?", username);
     if (user.length === 0) {
-      bcrypt.hash(password, saltRounds, function(err, hash) {
-        db.run("insert into users (username, password) values (?, ?)", username, hash);
+      await bcrypt.hash(password, saltRounds, async function(err, hash) {
+        await db.run("insert into users (username, password) values (?, ?)", username, hash);
       });
       return true;
     } else {
