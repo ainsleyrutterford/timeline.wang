@@ -7,6 +7,9 @@ var helmet      = require('helmet');
 var compression = require('compression');
 var passport    = require('passport');
 var Strategy    = require('passport-local').Strategy;
+var bcrypt      = require('bcrypt');
+
+const saltRounds = 10;
 
 // Create an express application.
 var app = express();
@@ -16,11 +19,12 @@ app.use(helmet());
 app.use(compression());
 
 passport.use(new Strategy(
-  function(username, password, cb) {
-    find_by_username(username, function(err, user) {
+  async function(username, password, cb) {
+    find_by_username(username, async function(err, user) {
       if (err) { return cb(err); }
       if (!user) { return cb(null, false, { message: 'Username does not exist' }); }
-      if (user.password != password) { return cb(null, false, { message: 'Incorrect password' }); }
+      const match = await bcrypt.compare(password, user.password);
+      if (!match) { return cb(null, false, { message: 'Incorrect password' }); }
       return cb(null, user);
     });
   }));
@@ -155,7 +159,9 @@ async function register_user(username, password) {
 
     var user = await db.all("select * from users where username=?", username);
     if (user.length === 0) {
-      db.run("insert into users (username, password) values (?, ?)", username, password);
+      bcrypt.hash(password, saltRounds, function(err, hash) {
+        db.run("insert into users (username, password) values (?, ?)", username, hash);
+      });
       return true;
     } else {
       return false;
