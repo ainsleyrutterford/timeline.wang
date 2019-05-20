@@ -19,8 +19,8 @@ passport.use(new Strategy(
   function(username, password, cb) {
     find_by_username(username, function(err, user) {
       if (err) { return cb(err); }
-      if (!user) { return cb(null, false, {message: 'Username does not exist'}); }
-      if (user.password != password) { return cb(null, false, {message: 'Incorrect password'}); }
+      if (!user) { return cb(null, false, { message: 'Username does not exist' }); }
+      if (user.password != password) { return cb(null, false, { message: 'Incorrect password' }); }
       return cb(null, user);
     });
   }));
@@ -64,12 +64,12 @@ app.get('/timeline',
   });
 
 app.get('/about',
-  function(req, res){
+  function(req, res) {
     res.render('about', { user: req.user });
   });
 
 app.get('/login',
-  function(req, res){
+  function(req, res) {
     res.render('login', { message: req.flash('error') });
   });
 
@@ -80,19 +80,37 @@ app.post('/login',
     res.redirect('/');
   });
 
+app.get('/signup',
+  function(req, res) {
+    res.render('signup', { message: req.flash('signup-error') });
+  });
+
+app.post('/signup',
+  function(req, res) {
+    const body = req.body;
+    var success = register_user(body.username, body.password);
+    if (success) {
+      res.redirect('/');
+    } else {
+      req.flash('signup-error', 'Something went wrong whilst signing you up!');
+      res.redirect('/signup');
+    }
+    res.end();
+  });
+
 app.get('/logout',
-  function(req, res){
+  function(req, res) {
     req.logout();
     res.redirect('/');
   });
 
 app.get('/profile',
   require('connect-ensure-login').ensureLoggedIn(),
-  function(req, res){
+  function(req, res) {
     res.render('profile', { user: req.user });
   });
 
-// // Serve static files in the 'public' directory.
+// Serve static files in the 'public' directory.
 app.use(express.static('public'));
 
 // Start the server on port 3000.
@@ -123,7 +141,23 @@ async function find_by_id(id, cb) {
     if (user.length === 0) {
       cb(new Error('User ' + id + ' does not exist'));
     } else {
-      cb(null, user[id - 1]);
+      cb(null, user[0]);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+async function register_user(username, password) {
+  try {
+    var db = await sqlite.open("./db.sqlite");
+
+    var user = await db.all("select * from users where username=?", username);
+    if (user.length === 0) {
+      db.run("insert into users (username, password) values (?, ?)", username, password);
+      return true;
+    } else {
+      return false;
     }
   } catch (error) {
     console.log(error);
