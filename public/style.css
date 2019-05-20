@@ -37,6 +37,7 @@ code {
 a {
   color: #1e6bb8; /* A nice blue */
   text-decoration: none; /* Links are not underlined by default */
+  outline: transparent;
 }
 
 a:hover {
