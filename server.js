@@ -86,13 +86,13 @@ app.get('/signup',
   });
 
 app.post('/signup',
-  function(req, res) {
+  async function(req, res) {
     const body = req.body;
-    var success = register_user(body.username, body.password);
+    var success = await register_user(body.username, body.password);
     if (success) {
       res.redirect('/');
     } else {
-      req.flash('signup-error', 'Something went wrong whilst signing you up!');
+      req.flash('signup-error', 'Username already exists');
       res.redirect('/signup');
     }
     res.end();
