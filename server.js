@@ -19,8 +19,8 @@ passport.use(new Strategy(
   function(username, password, cb) {
     find_by_username(username, function(err, user) {
       if (err) { return cb(err); }
-      if (!user) { return cb(null, false); }
-      if (user.password != password) { return cb(null, false); }
+      if (!user) { return cb(null, false, {message: 'Username does not exist'}); }
+      if (user.password != password) { return cb(null, false, {message: 'Incorrect password'}); }
       return cb(null, user);
     });
   }));
@@ -45,6 +45,7 @@ app.set('view engine', 'ejs');
 app.use(require('cookie-parser')());
 app.use(require('body-parser').urlencoded({ extended: true }));
 app.use(require('express-session')({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
+app.use(require('connect-flash')());
 
 // Initialize Passport and restore authentication state, if any, from the
 // session.
@@ -69,11 +70,12 @@ app.get('/about',
 
 app.get('/login',
   function(req, res){
-    res.render('login');
+    res.render('login', { message: req.flash('error') });
   });
 
 app.post('/login',
-  passport.authenticate('local', { failureRedirect: '/login' }),
+  passport.authenticate('local', { failureRedirect: '/login',
+                                   failureFlash: true }),
   function(req, res) {
     res.redirect('/');
   });

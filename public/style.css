@@ -118,3 +118,12 @@ a:hover {
   height: 7em;
   margin-bottom: 1em;
 }
+
+.login-error {
+  color: white;
+  background-color: #e33;
+  border-radius: 0.3em;
+  margin-left: 3em;
+  margin-right: 3em;
+  padding: 0.1em;
+}
