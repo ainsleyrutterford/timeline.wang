@@ -12,8 +12,10 @@
         <!-- This image is just a placeholder for our own logo. -->
         <img class="wang-logo" src="images/apple.png">
 
-        <% if (message != '') { %>
-        	<div class="login-error"><%= message %></div>
+        <% if (message == 'You can now log in!') { %>
+        	<div class="signup-success"><%= message %></div>
+        <% } else if (message != '') { %>
+          <div class="login-error"><%= message %></div>
         <% } %>
 
         <input class="input" type="text" name="username" placeholder="Username"/>

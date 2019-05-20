@@ -128,3 +128,12 @@ a:hover {
   margin-right: 3em;
   padding: 0.1em;
 }
+
+.signup-success {
+  color: white;
+  background-color: #3e3;
+  border-radius: 0.3em;
+  margin-left: 3em;
+  margin-right: 3em;
+  padding: 0.1em;
+}

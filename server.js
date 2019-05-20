@@ -90,7 +90,8 @@ app.post('/signup',
     const body = req.body;
     var success = await register_user(body.username, body.password);
     if (success) {
-      res.redirect('/');
+      req.flash('error', 'You can now log in!');
+      res.redirect('/login');
     } else {
       req.flash('signup-error', 'Username already exists');
       res.redirect('/signup');
