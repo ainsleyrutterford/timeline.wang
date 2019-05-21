@@ -89,6 +89,7 @@ a:hover {
 
 .input:focus {
   border-bottom: 0.1em solid red;
+  transform: scale(1.02);
 }
 
 .form-container {
