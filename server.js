@@ -50,6 +50,7 @@ app.set('view engine', 'ejs');
 // logging, parsing, and session handling.
 app.use(require('cookie-parser')());
 app.use(require('body-parser').urlencoded({ extended: true }));
+app.use(require('body-parser').json());
 app.use(require('express-session')({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
 app.use(require('connect-flash')());
 
@@ -127,8 +128,14 @@ app.post('/signup',
     res.end();
   });
 
+app.post('/contribute',
+  function (req, res) {
+    console.log(req.body);
+    res.send();
+  });
+
 app.get('/logout',
-  function(req, res) {
+  function (req, res) {
     req.logout();
     res.redirect('/');
   });
