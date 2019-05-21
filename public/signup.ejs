@@ -11,9 +11,16 @@
       <div class="form-container">
         <!-- This image is just a placeholder for our own logo. -->
         <img class="wang-logo" src="images/apple.png">
-
-        <% if (message != '') { %>
-        	<div class="login-error"><%= message %></div>
+        </br>
+        <% if (errors) { %>
+          <div class="login-error">
+            <ul>
+              <% for (var i = 0; i < errors.length; i++) { %>
+                <li><%= errors[i].msg %></li>
+              <% } %>
+            </ul>
+          </div>
+          </br>
         <% } %>
         <input class="input" type="text" name="firstname" placeholder="First name"/>
         <br/>

@@ -95,7 +95,7 @@ a:hover {
 .form-container {
   text-align: center;
   margin: 10% auto 25% auto;
-  width: 20em;
+  width: 30em;
   height: 20em;
 }
 
@@ -128,6 +128,7 @@ a:hover {
   margin-left: 3em;
   margin-right: 3em;
   padding: 0.1em;
+  text-align: left;
 }
 
 .signup-success {

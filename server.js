@@ -9,6 +9,8 @@ var passport    = require('passport');
 var Strategy    = require('passport-local').Strategy;
 var bcrypt      = require('bcrypt');
 
+const { check, validationResult } = require('express-validator/check');
+
 const saltRounds = 10;
 
 // Create an express application.
@@ -86,19 +88,41 @@ app.post('/login',
 
 app.get('/signup',
   function(req, res) {
-    res.render('signup', { message: req.flash('signup-error') });
+    res.render('signup', { errors: req.errors });
   });
 
 app.post('/signup',
+  [
+    check('firstname')
+    .isLength({ min: 1 })
+    .withMessage('You must enter a first name'),
+    check('surname')
+    .isLength({ min: 1 })
+    .withMessage('You must enter a surname'),
+    check('username')
+    .isLength({ min: 1 })
+    .withMessage('You must enter a username'),
+    check('password')
+    .isLength({ min: 5 })
+    .withMessage('Your password must be at least 5 characters long')
+  ],
   async function(req, res) {
+    var errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      res.render('signup', { errors: errors.array() });
+      return;
+    }
     const body = req.body;
     var success = await register_user(body.username, body.password, body.firstname, body.surname);
     if (success) {
       req.flash('error', 'You can now log in!');
       res.redirect('/login');
     } else {
-      req.flash('signup-error', 'Username already exists');
-      res.redirect('/signup');
+      const user_error = [{ location: 'body',
+                            param:    'username',
+                            value:    '',
+                            msg:      'Username already exists' }];
+      res.render('signup', { errors: user_error });
     }
     res.end();
   });
