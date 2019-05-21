@@ -13,8 +13,8 @@ form.addEventListener("submit", function (event) {
   var object = {};
   form_data.forEach((value, key) => { object[key] = value; });
   var json = JSON.stringify(object);
-  fetch('/contribute', {
-                method: 'POST',
-                body: json,
-                headers: { 'Content-Type': 'application/json' } }).then(handle);
+  fetch('/contribute', { method: 'POST',
+                         body: json,
+                         headers: { 'Content-Type': 'application/json' } 
+                       } ).then(handle);
 });
