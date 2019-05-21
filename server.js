@@ -92,7 +92,7 @@ app.get('/signup',
 app.post('/signup',
   async function(req, res) {
     const body = req.body;
-    var success = await register_user(body.username, body.password);
+    var success = await register_user(body.username, body.password, body.firstname, body.surname);
     if (success) {
       req.flash('error', 'You can now log in!');
       res.redirect('/login');
@@ -127,7 +127,8 @@ async function find_by_username(username, cb) {
   try {
     var db = await sqlite.open("./db.sqlite");
     // Using prepared statements to prevent SQL injection attacks
-    var user = await db.all("select * from users where username=?", username);
+    var ps = await db.prepare("select * from users where username=?");
+    var user = await ps.all(username);
     if (user.length === 0) {
       return cb(null, null);
     } else {
@@ -142,7 +143,8 @@ async function find_by_id(id, cb) {
   try {
     var db = await sqlite.open("./db.sqlite");
     // Using prepared statements to prevent SQL injection attacks
-    var user = await db.all("select * from users where id=?", id);
+    var ps = await db.prepare("select * from users where id=?");
+    var user = await ps.all(id);
     if (user.length === 0) {
       cb(new Error('User ' + id + ' does not exist'));
     } else {
@@ -153,14 +155,21 @@ async function find_by_id(id, cb) {
   }
 }
 
-async function register_user(username, password) {
+async function register_user(username, password, firstname, surname) {
   try {
     var db = await sqlite.open("./db.sqlite");
-
-    var user = await db.all("select * from users where username=?", username);
+    var ps = await db.prepare("select * from users where username=?");
+    var user = await ps.all(username);
     if (user.length === 0) {
       await bcrypt.hash(password, saltRounds, async function(err, hash) {
-        await db.run("insert into users (username, password) values (?, ?)", username, hash);
+        var ps = await db.prepare("insert into users (username, password, firstname, surname, contributions, joindate) \
+                                   values ( ?, ?, ?, ?, ?, ? )");
+
+        var date = new Date();
+        var month = date.getMonth() + 1;
+        var date_string = date.getFullYear() + "-" + month + "-" + date.getDate();
+
+        await ps.run(username, hash, firstname, surname, 0, date_string);
       });
       return true;
     } else {
