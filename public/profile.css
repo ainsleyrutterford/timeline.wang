@@ -1,0 +1,84 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif; /* Using Open Sans for the entire page. */
+}
+
+a {
+  color: #1e6bb8; /* A nice blue */
+  text-decoration: none; /* Links are not underlined by default */
+  outline: transparent;
+}
+
+a:hover {
+  text-decoration: underline; /* Links are underlined when hovered */
+}
+
+.navbar {                  /* Navigation Bar Style */
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+.navbar li {
+  float: left;
+}
+
+.navbar-right {
+  float: right !important;
+}
+
+.navbar li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 1em 1em;
+  text-decoration: none;
+}
+
+.navbar li a:hover {
+  color: #ccc;
+}
+
+.container {      /* Container for profile and contributions */
+  display: flex;
+  margin: 0 auto;
+  max-width: 70rem;
+  min-width: 70rem;
+  height: 100%;
+}
+
+.profile {                /* Profile sizing and margins */
+  border: 1px solid #124;
+  width: 20em;
+  min-width: 20em;
+  height: 30em;
+  margin-left: 1em;
+  margin-top: 8em;
+  border-radius: 0.3em;
+}
+
+.contributions {         /* Contribution sizing and margins. Using flex to vertically align contributions */
+  position: relative;
+  display: flex;
+  justify-content: center, space-between;
+  flex-direction: column;
+  margin-top: 8em;
+  height: 100%;
+  width: 100%;
+  margin-left: 1em;
+  margin-right: 1em;
+}
+
+.contribution {           /* Styling for each contribution */
+  border: 1px solid #124;
+  height: 10em;
+  margin-bottom: 1em;
+  border-radius: 0.3em;
+  padding: 0.5em;
+}
