@@ -34,11 +34,3 @@ async function create() {
     console.log(error);
   }
 }
-
-async function insert() {
-  var db = await sqlite.open("./db.sqlite");
-  // Using prepared statements to prevent SQL injection attacks
-  var ps = await db.prepare("insert into users (username, password, firstname, surname, contributions, joindate) \
-                       values ( ?, ?, ?, ?, ?, ?)");
-  await ps.run("jamesssss", "testpass2ssss", "Jamesssss", "OReillyss", 350, "2029-05-20");
-}
