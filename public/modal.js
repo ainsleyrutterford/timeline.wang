@@ -8,6 +8,13 @@ async function handle(response) {
     window.location.href = '/';
   } else {
     console.log(json_response.errors);
+    var errors_container = document.querySelector(".errors-container");
+    var html = "<ul>";
+    for (var i = 0; i < json_response.errors.length; i++) {
+      html += "<li>" + json_response.errors[i].msg + "</li>";
+    }
+    html += "</ul>";
+    errors_container.innerHTML = html;
   }
 }
 
