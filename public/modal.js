@@ -2,9 +2,9 @@
 
 var form = document.getElementById("form");
 
-function handle(response) {
-  console.log("Handling");
-  console.log(response);
+async function handle(response) {
+  const json_response = await response.json();
+  console.log(json_response);
 }
 
 form.addEventListener("submit", function (event) {
@@ -15,6 +15,6 @@ form.addEventListener("submit", function (event) {
   var json = JSON.stringify(object);
   fetch('/contribute', { method: 'POST',
                          body: json,
-                         headers: { 'Content-Type': 'application/json' } 
+                         headers: { 'Content-Type': 'application/json' }
                        } ).then(handle);
 });

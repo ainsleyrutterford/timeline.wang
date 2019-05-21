@@ -131,7 +131,7 @@ app.post('/signup',
 app.post('/contribute',
   function (req, res) {
     console.log(req.body);
-    res.send();
+    res.json({ hello: 'world' });
   });
 
 app.get('/logout',
