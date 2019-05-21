@@ -64,7 +64,6 @@ a:hover {
 }
 
 .contributions {         /* Contribution sizing and margins. Using flex to vertically align contributions */
-  position: relative;
   display: flex;
   justify-content: center, space-between;
   flex-direction: column;
@@ -76,9 +75,72 @@ a:hover {
 }
 
 .contribution {           /* Styling for each contribution */
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
   border: 1px solid #124;
-  height: 10em;
+  height: 8.9em;
   margin-bottom: 1em;
   border-radius: 0.3em;
-  padding: 0.5em;
+  padding: 0.65em 0.65em 0em 0.65em;
+}
+
+.image-and-description {
+  display: flex;
+  justify-content: flex-start;
+  height: 8em;
+}
+
+.contribution-date {
+  border: 1px solid #124;
+  height: 0.5em;
+  width: 3em;
+  margin-left: 0em;
+  margin-top: 0.19em;
+}
+
+.contribution-image {
+  border: 1px solid #124;
+  border-radius: 0.15em;
+  height: 8em;
+  width: 8em;
+  min-width: 8em;
+  min-height: 8em;
+  margin-right: 1em;
+}
+
+.date-title-text {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  height: 8em;
+  width: 100%;
+  margin-right: 0em;
+}
+
+.date-title {
+  display: flex;
+  justify-content: flex-start;
+  height: 1.5em;
+  width: 100%;
+  margin-bottom: 0.2em;
+}
+
+.historical-date {
+  display: flex;
+  border: 1px solid #124;
+  width: 12em;
+  margin-right: 1.5em;
+}
+
+.contribution-title {
+  display: flex;
+  border: 1px solid #124;
+  width: 100%;
+}
+
+.description {
+  display: flex;
+  border: 1px solid #124;
+  height: 6.5em;
 }
