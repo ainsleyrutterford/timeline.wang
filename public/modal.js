@@ -4,7 +4,11 @@ var form = document.getElementById("form");
 
 async function handle(response) {
   const json_response = await response.json();
-  console.log(json_response);
+  if (!json_response.errors) {
+    window.location.href = '/';
+  } else {
+    console.log(json_response.errors);
+  }
 }
 
 form.addEventListener("submit", function (event) {

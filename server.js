@@ -129,9 +129,29 @@ app.post('/signup',
   });
 
 app.post('/contribute',
-  function (req, res) {
+  [
+    check('title')
+    .isLength({ min: 1 })
+    .withMessage('You must enter a title')
+    .isLength({ max: 30 })
+    .withMessage('Titles must be less than 30 characters'),
+    check('description')
+    .isLength({ min: 1 })
+    .withMessage('You must enter a description')
+    .isLength({ max: 120 })
+    .withMessage('Descriptions must be less than 120 characters'),
+    check('date')
+    .isLength({ min: 1 })
+    .withMessage('You must enter a date'),
+  ],
+  async function (req, res) {
     console.log(req.body);
-    res.json({ hello: 'world' });
+    var errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      res.json({ errors: errors.array() });
+    } else {
+      res.json({ errors: '' });
+    }
   });
 
 app.get('/logout',
