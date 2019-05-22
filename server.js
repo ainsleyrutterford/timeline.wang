@@ -154,7 +154,7 @@ app.post('/contribute',
       res.json({ errors: errors.array() });
     } else {
       const body = req.body;
-      var time = moment().format("hh:mm:ss-DD-MM-YYYY");
+      var time = moment().format("HH:mm:ss-DD-MM-YYYY");
       imgur.uploadBase64(body.image)
         .then(function (json) {
           add_contribution(body.title, body.date, body.description, json.data.link, req.user.id, time);
