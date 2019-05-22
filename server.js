@@ -8,6 +8,7 @@ var compression = require('compression');
 var passport    = require('passport');
 var Strategy    = require('passport-local').Strategy;
 var bcrypt      = require('bcrypt');
+var moment      = require('moment');
 
 const { check, validationResult } = require('express-validator/check');
 
@@ -145,11 +146,13 @@ app.post('/contribute',
     .withMessage('You must enter a date'),
   ],
   async function (req, res) {
-    console.log(req.body);
     var errors = validationResult(req);
     if (!errors.isEmpty()) {
       res.json({ errors: errors.array() });
     } else {
+      const body = req.body;
+      var time = moment().format("hh:mm:ss-DD-MM-YYYY");
+      await add_contribution(body.title, body.date, body.description, "images/apple.png", req.user.id, time);
       res.json({ errors: '' });
     }
   });
@@ -216,16 +219,24 @@ async function register_user(username, password, firstname, surname) {
         var ps = await db.prepare("insert into users (username, password, firstname, surname, contributions, joindate) \
                                    values ( ?, ?, ?, ?, ?, ? )");
 
-        var date = new Date();
-        var month = date.getMonth() + 1;
-        var date_string = date.getFullYear() + "-" + month + "-" + date.getDate();
-
+        var date_string = moment().format('DD-MM-YYYY');
         await ps.run(username, hash, firstname, surname, 0, date_string);
       });
       return true;
     } else {
       return false;
     }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+async function add_contribution(title, date, description, image, user_id, contribution_date) {
+  try {
+    var db = await sqlite.open("./db.sqlite");
+    var ps = await db.prepare("insert into contributions (contributor_id, contribution_date, title, image_source, description, likes) \
+                               values ( ?, ?, ?, ?, ?, ? )");
+    await ps.run(user_id, contribution_date, title, image, description, 0);
   } catch (error) {
     console.log(error);
   }
