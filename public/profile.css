@@ -57,72 +57,102 @@ a:hover {
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
-  width: 20em;
-  min-width: 20em;
+  position: sticky;
+  top: 1em;
+  width: 19em;
+  min-width: 19em;
   height: 30em;
   margin-left: 1em;
   margin-top: 2.5em;
   border-radius: 0.3em;
-  background-color: #fcfcfc;
-  border: 1px solid #ddd;
+  /* background-color: #fcfcfc; */
+  /* border: 1px solid #ddd; */
 }
 
 .avatar {
   display: flex;
   border-radius: 0.2em;
-  border: 0.1em solid #fcfcfc;
+  border: 0em solid #fcfcfc;
   width: 16em;
   height: 16em;
-  margin-top: 2em;
-  margin-left: 2em;
+  margin-top: 0em;
+  margin-left: 0em;
   margin-right: 2em;
   margin-bottom: 1.5em;
 }
 
 .name {
   display: flex;
-  flex: 1 1 auto;
-  height: 1.5em;
-  margin-left: 1.48em;
+  flex: 0 1 auto;
+  height: 0.7em;
+  margin-left: 0em;
   margin-bottom: 0.5em;
   font-weight: 570;
-  font-size: 1.4em;
+  font-size: 1.5em;
 }
 
 .username {
   color: #878481;
   display: flex;
-  width: 14em;
-  height: 4em;
-  margin-left: 2em;
+  border-bottom: 0.05em solid #ededed;
+  padding-bottom: 1.6em;
+  max-width: 14.5em;
+  height: 0.8em;
+  margin-left: 0em;
   margin-bottom: 1em;
+  font-size: 1.1em;
 }
 
 .number-contributions {
   display: flex;
-  width: 14em;
-  height: 4em;
-  margin-left: 2em;
+  flex: 0 1 auto;
+  height: 0.6em;
+  margin-left: 0em;
   margin-bottom: 1em;
+  font-size: 0.9em;
 }
 
 .date-joined {
   display: flex;
-  width: 14em;
-  height: 4em;
-  margin-left: 2em;
+  border-bottom: 0.05em solid #ededed;
+  padding-bottom: 1.2em;
+  max-width: 17.7em;
+  flex: 0 1 auto;
+  height: 1.6em;
+  margin-left: 0em;
   margin-bottom: 2em;
+  font-size: 0.9em;
 }
 
 .contributions {         /* Contribution sizing and margins. Using flex to vertically align contributions */
   display: flex;
   justify-content: center, space-between;
   flex-direction: column;
-  margin-top: 2.5em;
+  margin-top: 1.5em;
   height: 100%; /* MAYBE REMOVE */
   width: 100%; /* MAYBE REMOVE */
   margin-left: 1em;
   margin-right: 1em;
+}
+
+.contributions-navbar-container {
+  display: flex;
+  background-color: #fff;
+  position: sticky;
+  top:0em;
+  height: 4em;
+  margin-bottom: 1em;
+}
+
+.contributions-navbar {
+  display: flex;
+  position: sticky;
+  flex: auto;
+  top: 1em;
+  height: 3em;
+  border: 1px solid black;
+  margin-top: 1em;
+  background-color: white;
 }
 
 .contribution {           /* Styling for each contribution */
@@ -193,7 +223,7 @@ a:hover {
 
 .description {
   color: #424242;
-  border-top: 0.1em solid #DDF;
+  border-top: 0.1em solid #ddd;
   padding-top: 0.3em;
   display: flex;
   height: 6.5em;
