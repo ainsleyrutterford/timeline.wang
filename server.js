@@ -9,6 +9,9 @@ var passport    = require('passport');
 var Strategy    = require('passport-local').Strategy;
 var bcrypt      = require('bcrypt');
 var moment      = require('moment');
+var imgur       = require('imgur');
+
+imgur.setClientId('4e62d0b8bda287e');
 
 const { check, validationResult } = require('express-validator/check');
 
@@ -153,6 +156,13 @@ app.post('/contribute',
       const body = req.body;
       var time = moment().format("hh:mm:ss-DD-MM-YYYY");
       await add_contribution(body.title, body.date, body.description, "images/apple.png", req.user.id, time);
+      imgur.uploadBase64(body.image)
+        .then(function (json) {
+          console.log(json.data.link);
+        })
+        .catch(function (err) {
+          console.error(err.message);
+        });
       res.json({ errors: '' });
     }
   });
