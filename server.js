@@ -253,6 +253,10 @@ async function add_contribution(title, historical_date, description, image, user
     var ps = await db.prepare("insert into contributions (contributor_id, contribution_date, historical_date, title, image_source, description, likes) \
                                values (?, ?, ?, ?, ?, ?, ?)");
     await ps.run(user_id, contribution_date, historical_date, title, image, description, 0);
+    ps = await db.prepare("select * from contributions where contributor_id=?");
+    var contributions = await ps.all(user_id);
+    ps = await db.prepare("update users set contributions=? where id=?");
+    await ps.run(contributions.length, user_id);
   } catch (error) {
     console.log(error);
   }

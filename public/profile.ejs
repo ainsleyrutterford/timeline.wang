@@ -25,10 +25,10 @@
     <div class="container">
       <div class="profile">
         <img class="avatar" src="images/ainsley.jpeg"/>
-        <div class="name">Ainsley Rutterford</div>
-        <div class="username">Ziimzy</div>
-        <div class="number-contributions">26 contributions</div>
-        <div class="date-joined"><span class="member-icon"></span>Member since May 2019</div>
+        <div class="name"><%= user.firstname %> <%= user.surname %></div>
+        <div class="username"><%= user.username %></div>
+        <div class="number-contributions"><%= user.contributions %> contributions</div>
+        <div class="date-joined"><span class="member-icon"></span>Member since <%= user.joindate %></div>
       </div>
       <div class="contributions">
 
