@@ -263,6 +263,12 @@ async function get_contributions(user_id) {
     var db = await sqlite.open("./db.sqlite");
     var ps = await db.prepare("select * from contributions where contributor_id = ?");
     var contributions = await ps.all(user_id);
+    await contributions.forEach(contribution => {
+      var contribution_date = moment(contribution.contribution_date, "HH:mm:ss-YYYY-MM-DD");
+      var historical_date   = moment(contribution.historical_date, "YYYY-MM-DD");
+      contribution.contribution_date = moment(contribution_date).fromNow();
+      contribution.historical_date   = moment(historical_date).format('MMMM Do YYYY');
+    });
     return contributions;
   } catch (error) {
     console.log(error);
