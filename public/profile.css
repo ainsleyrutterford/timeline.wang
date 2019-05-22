@@ -75,7 +75,7 @@ a:hover {
   border: 0em solid #fcfcfc;
   width: 16em;
   height: 16em;
-  margin-top: 0em;
+  margin-top: 1.2em;
   margin-left: 0em;
   margin-right: 2em;
   margin-bottom: 1.5em;
@@ -105,33 +105,37 @@ a:hover {
 
 .number-contributions {
   display: flex;
-  flex: 0 1 auto;
+  justify-content: flex-start;
+  align-items: center;
   height: 0.6em;
   margin-left: 0em;
   margin-bottom: 1em;
   font-size: 0.9em;
 }
 
+#contribution-icon {
+  height: 1em;
+  width: 1em;
+  margin-right: 0.5em;
+  padding-bottom: 0.1em;
+}
+
 .date-joined {
   display: flex;
-  border-bottom: 0.05em solid #ededed;
-  padding-bottom: 1.2em;
-  max-width: 17.7em;
-  flex: 0 1 auto;
-  height: 1.6em;
+  justify-content: flex-start;
+  align-items: center;
+  padding-bottom: 1.4em;
+  height: 0.6em;
   margin-left: 0em;
-  margin-bottom: 2em;
+  margin-bottom: 0em;
   font-size: 0.9em;
 }
 
-.date-joined .member-icon{
-  background-size: 10px 10px;
-  background: url("images/member.jpg") no-repeat;
-  float: left;
-  width: 1em;
+#member-icon {
   height: 1em;
-  margin-right: 0em;
-  margin-top:0em;
+  width: 1em;
+  margin-right: 0.5em;
+  padding-bottom: 0.1em;
 }
 
 .contributions {         /* Contribution sizing and margins. Using flex to vertically align contributions */
@@ -166,39 +170,50 @@ a:hover {
   border-bottom: 0.05em solid #cccccc;
 }
 
-.button {
+.contributions-navbar-items {
+    display: flex;
+    justify-content: flex-start;
     border: 0.15em solid transparent;
     display: inline-block;
     background-color: #ffffff;
     padding: 0rem 1rem;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
-    color: #424242;
+    color: #666666;
     font-family: inherit;
     font-size: 0.9rem;
     cursor: pointer;
     outline: none;
+    border-width: 0em 0em 0.15em 0em;
 }
 
-.button .icon {
-  background: url(https://img.icons8.com/ios/20/000000/filter-filled.png) no-repeat;
-  float: left;
-  width: 1em;
+.contributions-navbar-items:hover {
+  border-width: 0em 0em 0.15em 0em;
+  border-color: #fff #fff #00c3ff #fff;
+  color: #2d2d2d;
+}
+
+#sort-icon {
   height: 1em;
-  margin-right: 0.6em;
-  margin-top:0.24em;
+  width: 1em;
+  margin-right: 0.5em;
+  padding-top: 0.1em;
 }
 
-.button .span {
-    width: 0.8em;
-    height: 0.8em;
+#sortby-button-text {
+  padding-right: 1em;
 }
 
-.button:hover {
-  border-bottom: 0.15em solid red;
+#new-contribution-icon {
+  height: 1em;
+  width: 1em;
+  margin-right: 0.5em;
+  padding-top: 0.1em;
 }
 
+#contribution-button-text {
+  padding-right: 0.8em;
+}
 
 .contribution {           /* Styling for each contribution */
   display: flex;

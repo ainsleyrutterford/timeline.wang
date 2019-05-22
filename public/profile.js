@@ -39,8 +39,8 @@ async function handle_user(response) {
     navbar.innerHTML += "<li class=\"navbar-right\"><a href=\"/logout\">Log out</a></li>";
     name.innerHTML = user.firstname + " " + user.surname;
     username.innerHTML = user.username;
-    contributions.innerHTML = user.contributions + " contributions";
-    date.innerHTML = "Member since " + user.joindate;
+    contributions.innerHTML += user.contributions + " contributions";
+    date.innerHTML += "Member since " + user.joindate;
 
     fetch('/contributions', { method: 'GET' } ).then(handle_contributions);
   } else {
