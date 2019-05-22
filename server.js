@@ -166,6 +166,18 @@ app.post('/contribute',
     }
   });
 
+app.get('/user',
+  async function (req, res) {
+    var user = req.user;
+    if (user) {
+      var join_date = moment(user.joindate, "YYYY-MM-DD");
+      user.joindate = moment(join_date).format('MMMM Do YYYY');
+      res.json(user);
+    } else {
+      res.status(500).send('No user');
+    }
+  });
+
 app.get('/contributions',
   async function (req, res) {
     var user_id = req.user.id;
@@ -180,7 +192,7 @@ app.get('/logout',
   });
 
 app.get('/profile',
-  require('connect-ensure-login').ensureLoggedIn(),
+  // require('connect-ensure-login').ensureLoggedIn(),
   function(req, res) {
     res.render('profile', { user: req.user });
   });

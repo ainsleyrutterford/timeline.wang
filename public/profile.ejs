@@ -4,8 +4,8 @@
     <meta charset="UTF-8"/>
     <link rel="stylesheet" href="profile.css"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans"/>
-    <title><%= user.username %></title>
-    <link rel = "icon" type = "image/png" href = "/images/apple.png">
+    <title></title>
+    <link rel="icon" type="image/png" href="/images/apple.png">
     <script async="false" defer="defer" src="profile.js"></script>
   </head>
   <body>
@@ -14,21 +14,15 @@
       <li><a href="/"><strong><em>tl</em></strong></a></li>
       <li><a href="/profile">Profile</a></li>
       <li><a href="/about">About</a></li>
-      <% if (!user) { %>
-      	<li class="navbar-right"><a href="/login">Log in</a></li>
-        <li class="navbar-right"><a href="/signup">Sign up</a></li>
-      <% } else { %>
-      	<li class="navbar-right"><a href="/logout">Log out</a></li>
-      <% } %>
     </ul>
 
     <div class="container">
       <div class="profile">
         <img class="avatar" src="images/ainsley.jpeg"/>
-        <div class="name"><%= user.firstname %> <%= user.surname %></div>
-        <div class="username"><%= user.username %></div>
-        <div class="number-contributions"><%= user.contributions %> contributions</div>
-        <div class="date-joined"><span class="member-icon"></span>Member since <%= user.joindate %></div>
+        <div class="name"></div>
+        <div class="username"></div>
+        <div class="number-contributions"></div>
+        <div class="date-joined"><span class="member-icon"></span></div>
       </div>
       <div class="contributions">
 
