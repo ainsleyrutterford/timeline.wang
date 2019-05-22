@@ -21,6 +21,7 @@ async function create() {
                     (id INTEGER PRIMARY KEY AUTOINCREMENT, \
                      contributor_id INT NOT NULL,          \
                      contribution_date TEXT NOT NULL,      \
+                     historical_date TEXT NOT NULL,        \
                      title VARCHAR(80) NOT NULL,           \
                      image_source VARCHAR(255),            \
                      description VARCHAR(255),             \

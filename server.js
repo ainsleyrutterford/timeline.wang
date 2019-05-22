@@ -154,7 +154,7 @@ app.post('/contribute',
       res.json({ errors: errors.array() });
     } else {
       const body = req.body;
-      var time = moment().format("HH:mm:ss-DD-MM-YYYY");
+      var time = moment().format("HH:mm:ss-YYYY-MM-DD");
       imgur.uploadBase64(body.image)
         .then(function (json) {
           add_contribution(body.title, body.date, body.description, json.data.link, req.user.id, time);
@@ -235,7 +235,7 @@ async function register_user(username, password, firstname, surname) {
         var ps = await db.prepare("insert into users (username, password, firstname, surname, contributions, joindate) \
                                    values ( ?, ?, ?, ?, ?, ? )");
 
-        var date_string = moment().format('DD-MM-YYYY');
+        var date_string = moment().format('YYYY-MM-DD');
         await ps.run(username, hash, firstname, surname, 0, date_string);
       });
       return true;
@@ -247,12 +247,12 @@ async function register_user(username, password, firstname, surname) {
   }
 }
 
-async function add_contribution(title, date, description, image, user_id, contribution_date) {
+async function add_contribution(title, historical_date, description, image, user_id, contribution_date) {
   try {
     var db = await sqlite.open("./db.sqlite");
-    var ps = await db.prepare("insert into contributions (contributor_id, contribution_date, title, image_source, description, likes) \
-                               values ( ?, ?, ?, ?, ?, ? )");
-    await ps.run(user_id, contribution_date, title, image, description, 0);
+    var ps = await db.prepare("insert into contributions (contributor_id, contribution_date, historical_date, title, image_source, description, likes) \
+                               values (?, ?, ?, ?, ?, ?, ?)");
+    await ps.run(user_id, contribution_date, historical_date, title, image, description, 0);
   } catch (error) {
     console.log(error);
   }

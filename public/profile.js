@@ -12,7 +12,7 @@ async function handle(response) {
                  <img class=\"contribution-image\" src=\"" + json_response[i].image_source + "\"/> \
                  <div class=\"date-title-text\"> \
                    <div class=\"date-title\">\
-                     <div class=\"historical-date\">April 1989</div> \
+                     <div class=\"historical-date\">" + json_response[i].historical_date + "</div> \
                      <div class=\"contribution-title\">" + json_response[i].title + "</div> \
                    </div>\
                    <div class=\"description\">"+ json_response[i].description +"</div> \
