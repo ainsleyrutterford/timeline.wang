@@ -167,9 +167,9 @@ app.post('/contribute',
   });
 
 app.get('/contributions',
-  function (req, res) {
+  async function (req, res) {
     var user_id = req.user.id;
-    var contributions = get_contributions(user_id);
+    var contributions = await get_contributions(user_id);
     res.json(contributions);
   });
 
@@ -262,8 +262,7 @@ async function get_contributions(user_id) {
   try {
     var db = await sqlite.open("./db.sqlite");
     var ps = await db.prepare("select * from contributions where contributor_id = ?");
-    var contributions = await ps.run(user_id);
-    console.log(contributions);
+    var contributions = await ps.all(user_id);
     return contributions;
   } catch (error) {
     console.log(error);

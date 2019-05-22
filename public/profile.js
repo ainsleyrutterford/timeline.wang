@@ -4,6 +4,7 @@ fetch('/contributions', { method: 'GET' } ).then(handle);
 
 async function handle(response) {
   const json_response = await response.json();
+  console.log(json_response);
   if (!json_response.errors) {
   } else {
     var errors_container = document.querySelector(".errors-container");
