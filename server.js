@@ -166,6 +166,13 @@ app.post('/contribute',
     }
   });
 
+app.get('/contributions',
+  function (req, res) {
+    var user_id = req.user.id;
+    var contributions = get_contributions(user_id);
+    res.json(contributions);
+  });
+
 app.get('/logout',
   function (req, res) {
     req.logout();
@@ -246,6 +253,18 @@ async function add_contribution(title, date, description, image, user_id, contri
     var ps = await db.prepare("insert into contributions (contributor_id, contribution_date, title, image_source, description, likes) \
                                values ( ?, ?, ?, ?, ?, ? )");
     await ps.run(user_id, contribution_date, title, image, description, 0);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+async function get_contributions(user_id) {
+  try {
+    var db = await sqlite.open("./db.sqlite");
+    var ps = await db.prepare("select * from contributions where contributor_id = ?");
+    var contributions = await ps.run(user_id);
+    console.log(contributions);
+    return contributions;
   } catch (error) {
     console.log(error);
   }
