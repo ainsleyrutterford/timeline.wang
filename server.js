@@ -9,6 +9,9 @@ var passport    = require('passport');
 var Strategy    = require('passport-local').Strategy;
 var bcrypt      = require('bcrypt');
 var moment      = require('moment');
+var imgur       = require('imgur');
+
+imgur.setClientId('4e62d0b8bda287e');
 
 const { check, validationResult } = require('express-validator/check');
 
@@ -145,16 +148,41 @@ app.post('/contribute',
     .isLength({ min: 1 })
     .withMessage('You must enter a date'),
   ],
-  async function (req, res) {
+  function (req, res) {
     var errors = validationResult(req);
     if (!errors.isEmpty()) {
       res.json({ errors: errors.array() });
     } else {
       const body = req.body;
-      var time = moment().format("hh:mm:ss-DD-MM-YYYY");
-      await add_contribution(body.title, body.date, body.description, "images/apple.png", req.user.id, time);
+      var time = moment().format("HH:mm:ss-YYYY-MM-DD");
+      imgur.uploadBase64(body.image)
+        .then(function (json) {
+          add_contribution(body.title, body.date, body.description, json.data.link, req.user.id, time);
+        })
+        .catch(function (err) {
+          console.error(err.message);
+        });
       res.json({ errors: '' });
     }
+  });
+
+app.get('/user',
+  async function (req, res) {
+    var user = req.user;
+    if (user) {
+      var join_date = moment(user.joindate, "YYYY-MM-DD");
+      user.joindate = moment(join_date).format('MMMM Do YYYY');
+      res.json(user);
+    } else {
+      res.status(500).send('No user');
+    }
+  });
+
+app.get('/contributions',
+  async function (req, res) {
+    var user_id = req.user.id;
+    var contributions = await get_contributions(user_id);
+    res.json(contributions);
   });
 
 app.get('/logout',
@@ -182,11 +210,11 @@ async function find_by_username(username, cb) {
     var db = await sqlite.open("./db.sqlite");
     // Using prepared statements to prevent SQL injection attacks
     var ps = await db.prepare("select * from users where username=?");
-    var user = await ps.all(username);
-    if (user.length === 0) {
+    var user = await ps.get(username);
+    if (!user) {
       return cb(null, null);
     } else {
-      return cb(null, user[0]);
+      return cb(null, user);
     }
   } catch (error) {
     console.log(error);
@@ -198,11 +226,11 @@ async function find_by_id(id, cb) {
     var db = await sqlite.open("./db.sqlite");
     // Using prepared statements to prevent SQL injection attacks
     var ps = await db.prepare("select * from users where id=?");
-    var user = await ps.all(id);
-    if (user.length === 0) {
+    var user = await ps.get(id);
+    if (!user) {
       cb(new Error('User ' + id + ' does not exist'));
     } else {
-      cb(null, user[0]);
+      cb(null, user);
     }
   } catch (error) {
     console.log(error);
@@ -213,13 +241,13 @@ async function register_user(username, password, firstname, surname) {
   try {
     var db = await sqlite.open("./db.sqlite");
     var ps = await db.prepare("select * from users where username=?");
-    var user = await ps.all(username);
-    if (user.length === 0) {
+    var user = await ps.get(username);
+    if (!user) {
       await bcrypt.hash(password, saltRounds, async function(err, hash) {
         var ps = await db.prepare("insert into users (username, password, firstname, surname, contributions, joindate) \
                                    values ( ?, ?, ?, ?, ?, ? )");
 
-        var date_string = moment().format('DD-MM-YYYY');
+        var date_string = moment().format('YYYY-MM-DD');
         await ps.run(username, hash, firstname, surname, 0, date_string);
       });
       return true;
@@ -231,12 +259,33 @@ async function register_user(username, password, firstname, surname) {
   }
 }
 
-async function add_contribution(title, date, description, image, user_id, contribution_date) {
+async function add_contribution(title, historical_date, description, image, user_id, contribution_date) {
   try {
     var db = await sqlite.open("./db.sqlite");
-    var ps = await db.prepare("insert into contributions (contributor_id, contribution_date, title, image_source, description, likes) \
-                               values ( ?, ?, ?, ?, ?, ? )");
-    await ps.run(user_id, contribution_date, title, image, description, 0);
+    var ps = await db.prepare("insert into contributions (contributor_id, contribution_date, historical_date, title, image_source, description, likes) \
+                               values (?, ?, ?, ?, ?, ?, ?)");
+    await ps.run(user_id, contribution_date, historical_date, title, image, description, 0);
+    ps = await db.prepare("select * from contributions where contributor_id=?");
+    var contributions = await ps.all(user_id);
+    ps = await db.prepare("update users set contributions=? where id=?");
+    await ps.run(contributions.length, user_id);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+async function get_contributions(user_id) {
+  try {
+    var db = await sqlite.open("./db.sqlite");
+    var ps = await db.prepare("select * from contributions where contributor_id = ?");
+    var contributions = await ps.all(user_id);
+    await contributions.forEach(contribution => {
+      var contribution_date = moment(contribution.contribution_date, "HH:mm:ss-YYYY-MM-DD");
+      var historical_date   = moment(contribution.historical_date, "YYYY-MM-DD");
+      contribution.contribution_date = moment(contribution_date).fromNow();
+      contribution.historical_date   = moment(historical_date).format('MMMM Do YYYY');
+    });
+    return contributions;
   } catch (error) {
     console.log(error);
   }

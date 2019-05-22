@@ -4,8 +4,9 @@
     <meta charset="UTF-8"/>
     <link rel="stylesheet" href="profile.css"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans"/>
-    <title><%= user.username %></title>
-    <link rel = "icon" type = "image/png" href = "/images/apple.png">
+    <title></title>
+    <link rel="icon" type="image/png" href="/images/apple.png">
+    <script async="false" defer="defer" src="profile.js"></script>
   </head>
   <body>
 
@@ -13,189 +14,24 @@
       <li><a href="/"><strong><em>tl</em></strong></a></li>
       <li><a href="/profile">Profile</a></li>
       <li><a href="/about">About</a></li>
-      <% if (!user) { %>
-      	<li class="navbar-right"><a href="/login">Log in</a></li>
-        <li class="navbar-right"><a href="/signup">Sign up</a></li>
-      <% } else { %>
-      	<li class="navbar-right"><a href="/logout">Log out</a></li>
-      <% } %>
     </ul>
 
     <div class="container">
-
       <div class="profile">
-
         <img class="avatar" src="images/ainsley.jpeg"/>
-        <div class="name">Ainsley Rutterford</div>
-        <div class="username">Ziimzy</div>
-        <div class="number-contributions"><img id="contribution-icon" src="images/member.jpg"/><span>6 contributions</span></div>
-        <div class="date-joined"><img id="member-icon" src="images/member.jpg"/><span>Member since May 2019</span></div>
-
+        <div class="name"></div>
+        <div class="username"></div>
+        <div class="number-contributions"><img id="contribution-icon" src="images/member.jpg"/><span></span></div>
+        <div class="date-joined"><img id="member-icon" src="images/member.jpg"/><span></span></div>
       </div>
 
       <div class="contributions">
-
         <div class="contributions-navbar-container">
           <div class="contributions-navbar">
             <button class="contributions-navbar-items"><img id="sort-icon" src="images/member.jpg"/><span id="sortby-button-text">Sort By</span></button>
             <button class="contributions-navbar-items"><img id="new-contribution-icon" src="images/member.jpg"/><span id="contribution-button-text">New Contribution</span></button>
           </div>
         </div>
-
-        <div class="contribution">
-          <div class="image-and-description">
-            <img class="contribution-image" src="images/turing.jpg"/>
-            <div class="date-title-text">
-              <div class="date-title">
-                <div class="historical-date">April 1989</div>
-                <div class="contribution-title">Tiananmen Square  .</div>
-              </div>
-              <div class="description">Bletchley Park</div>
-            </div>
-          </div>
-          <div class="contribution-date">3 months ago</div>
-        </div>
-
-        <div class="contribution">
-          <div class="image-and-description">
-            <img class="contribution-image" src="images/turing.jpg"/>
-            <div class="date-title-text">
-              <div class="date-title">
-                <div class="historical-date">September 1939</div>
-                <div class="contribution-title">Alan Turing's brilliancy at Blechely Park.</div>
-              </div>
-              <div class="description">blah blah blah blah blah blah blah blah blah blah blah lbaljsn jdflj rjfj fo  soerlwj</div>
-            </div>
-          </div>
-          <div class="contribution-date">21st May 2019</div>
-        </div>
-
-        <div class="contribution">
-          <div class="image-and-description">
-            <img class="contribution-image" src="images/turing.jpg"/>
-            <div class="date-title-text">
-              <div class="date-title">
-                <div class="historical-date">September 1939</div>
-                <div class="contribution-title">Alan Turing's brilliancy at Blechely Park.</div>
-              </div>
-              <div class="description">blah blah blah blah blah blah blah blah blah blah blah lbaljsn jdflj rjfj fo  soerlwj</div>
-            </div>
-          </div>
-          <div class="contribution-date">21st May 2019</div>
-        </div>
-
-        <div class="contribution">
-          <div class="image-and-description">
-            <img class="contribution-image" src="images/turing.jpg"/>
-            <div class="date-title-text">
-              <div class="date-title">
-                <div class="historical-date">September 1939</div>
-                <div class="contribution-title">Alan Turing's brilliancy at Blechely Park.</div>
-              </div>
-              <div class="description">blah blah blah blah blah blah blah blah blah blah blah lbaljsn jdflj rjfj fo  soerlwj</div>
-            </div>
-          </div>
-          <div class="contribution-date">21st May 2019</div>
-        </div>
-
-        <div class="contribution">
-          <div class="image-and-description">
-            <img class="contribution-image" src="images/turing.jpg"/>
-            <div class="date-title-text">
-              <div class="date-title">
-                <div class="historical-date">September 1939</div>
-                <div class="contribution-title">Alan Turing's brilliancy at Blechely Park.</div>
-              </div>
-              <div class="description">blah blah blah blah blah blah blah blah blah blah blah lbaljsn jdflj rjfj fo  soerlwj</div>
-            </div>
-          </div>
-          <div class="contribution-date">21st May 2019</div>
-        </div>
-
-        <div class="contribution">
-          <div class="image-and-description">
-            <img class="contribution-image" src="images/turing.jpg"/>
-            <div class="date-title-text">
-              <div class="date-title">
-                <div class="historical-date">September 1939</div>
-                <div class="contribution-title">Alan Turing's brilliancy at Blechely Park.</div>
-              </div>
-              <div class="description">blah blah blah blah blah blah blah blah blah blah blah lbaljsn jdflj rjfj fo  soerlwj</div>
-            </div>
-          </div>
-          <div class="contribution-date">21st May 2019</div>
-        </div>
-
-        <div class="contribution">
-          <div class="image-and-description">
-            <img class="contribution-image" src="images/turing.jpg"/>
-            <div class="date-title-text">
-              <div class="date-title">
-                <div class="historical-date">September 1939</div>
-                <div class="contribution-title">Alan Turing's brilliancy at Blechely Park.</div>
-              </div>
-              <div class="description">blah blah blah blah blah blah blah blah blah blah blah lbaljsn jdflj rjfj fo  soerlwj</div>
-            </div>
-          </div>
-          <div class="contribution-date">21st May 2019</div>
-        </div>
-
-        <div class="contribution">
-          <div class="image-and-description">
-            <img class="contribution-image" src="images/turing.jpg"/>
-            <div class="date-title-text">
-              <div class="date-title">
-                <div class="historical-date">September 1939</div>
-                <div class="contribution-title">Alan Turing's brilliancy at Blechely Park.</div>
-              </div>
-              <div class="description">blah blah blah blah blah blah blah blah blah blah blah lbaljsn jdflj rjfj fo  soerlwj</div>
-            </div>
-          </div>
-          <div class="contribution-date">21st May 2019</div>
-        </div>
-
-        <div class="contribution">
-          <div class="image-and-description">
-            <img class="contribution-image" src="images/turing.jpg"/>
-            <div class="date-title-text">
-              <div class="date-title">
-                <div class="historical-date">September 1939</div>
-                <div class="contribution-title">Alan Turing's brilliancy at Blechely Park.</div>
-              </div>
-              <div class="description">blah blah blah blah blah blah blah blah blah blah blah lbaljsn jdflj rjfj fo  soerlwj</div>
-            </div>
-          </div>
-          <div class="contribution-date">21st May 2019</div>
-        </div>
-
-        <div class="contribution">
-          <div class="image-and-description">
-            <img class="contribution-image" src="images/turing.jpg"/>
-            <div class="date-title-text">
-              <div class="date-title">
-                <div class="historical-date">September 1939</div>
-                <div class="contribution-title">Alan Turing's brilliancy at Blechely Park.</div>
-              </div>
-              <div class="description">blah blah blah blah blah blah blah blah blah blah blah lbaljsn jdflj rjfj fo  soerlwj</div>
-            </div>
-          </div>
-          <div class="contribution-date">21st May 2019</div>
-        </div>
-
-        <div class="contribution">
-          <div class="image-and-description">
-            <img class="contribution-image" src="images/turing.jpg"/>
-            <div class="date-title-text">
-              <div class="date-title">
-                <div class="historical-date">September 1939</div>
-                <div class="contribution-title">Alan Turing's brilliancy at Blechely Park.</div>
-              </div>
-              <div class="description">blah blah blah blah blah blah blah blah blah blah blah lbaljsn jdflj rjfj fo  soerlwj</div>
-            </div>
-          </div>
-          <div class="contribution-date">21st May 2019</div>
-        </div>
-
       </div>
     </div>
   </body>
