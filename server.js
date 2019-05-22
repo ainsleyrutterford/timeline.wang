@@ -198,11 +198,11 @@ async function find_by_username(username, cb) {
     var db = await sqlite.open("./db.sqlite");
     // Using prepared statements to prevent SQL injection attacks
     var ps = await db.prepare("select * from users where username=?");
-    var user = await ps.all(username);
-    if (user.length === 0) {
+    var user = await ps.get(username);
+    if (!user) {
       return cb(null, null);
     } else {
-      return cb(null, user[0]);
+      return cb(null, user);
     }
   } catch (error) {
     console.log(error);
@@ -214,11 +214,11 @@ async function find_by_id(id, cb) {
     var db = await sqlite.open("./db.sqlite");
     // Using prepared statements to prevent SQL injection attacks
     var ps = await db.prepare("select * from users where id=?");
-    var user = await ps.all(id);
-    if (user.length === 0) {
+    var user = await ps.get(id);
+    if (!user) {
       cb(new Error('User ' + id + ' does not exist'));
     } else {
-      cb(null, user[0]);
+      cb(null, user);
     }
   } catch (error) {
     console.log(error);
@@ -229,8 +229,8 @@ async function register_user(username, password, firstname, surname) {
   try {
     var db = await sqlite.open("./db.sqlite");
     var ps = await db.prepare("select * from users where username=?");
-    var user = await ps.all(username);
-    if (user.length === 0) {
+    var user = await ps.get(username);
+    if (!user) {
       await bcrypt.hash(password, saltRounds, async function(err, hash) {
         var ps = await db.prepare("insert into users (username, password, firstname, surname, contributions, joindate) \
                                    values ( ?, ?, ?, ?, ?, ? )");
