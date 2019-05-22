@@ -148,17 +148,16 @@ app.post('/contribute',
     .isLength({ min: 1 })
     .withMessage('You must enter a date'),
   ],
-  async function (req, res) {
+  function (req, res) {
     var errors = validationResult(req);
     if (!errors.isEmpty()) {
       res.json({ errors: errors.array() });
     } else {
       const body = req.body;
       var time = moment().format("hh:mm:ss-DD-MM-YYYY");
-      await add_contribution(body.title, body.date, body.description, "images/apple.png", req.user.id, time);
       imgur.uploadBase64(body.image)
         .then(function (json) {
-          console.log(json.data.link);
+          add_contribution(body.title, body.date, body.description, json.data.link, req.user.id, time);
         })
         .catch(function (err) {
           console.error(err.message);
