@@ -124,6 +124,16 @@ a:hover {
   font-size: 0.9em;
 }
 
+.date-joined .member-icon{
+  background-size: 10px 10px;
+  background: url("images/member.jpg") no-repeat;
+  float: left;
+  width: 1em;
+  height: 1em;
+  margin-right: 0em;
+  margin-top:0em;
+}
+
 .contributions {         /* Contribution sizing and margins. Using flex to vertically align contributions */
   display: flex;
   justify-content: center, space-between;
@@ -146,14 +156,49 @@ a:hover {
 
 .contributions-navbar {
   display: flex;
+  justify-content: flex-end;
   position: sticky;
   flex: auto;
   top: 1em;
   height: 3em;
-  border: 1px solid black;
   margin-top: 1em;
   background-color: white;
+  border-bottom: 0.05em solid #cccccc;
 }
+
+.button {
+    border: 0.15em solid transparent;
+    display: inline-block;
+    background-color: #ffffff;
+    padding: 0rem 1rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    color: #424242;
+    font-family: inherit;
+    font-size: 0.9rem;
+    cursor: pointer;
+    outline: none;
+}
+
+.button .icon {
+  background: url(https://img.icons8.com/ios/20/000000/filter-filled.png) no-repeat;
+  float: left;
+  width: 1em;
+  height: 1em;
+  margin-right: 0.6em;
+  margin-top:0.24em;
+}
+
+.button .span {
+    width: 0.8em;
+    height: 0.8em;
+}
+
+.button:hover {
+  border-bottom: 0.15em solid red;
+}
+
 
 .contribution {           /* Styling for each contribution */
   display: flex;
