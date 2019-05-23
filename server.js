@@ -158,11 +158,11 @@ app.post('/contribute',
       imgur.uploadBase64(body.image)
         .then(function (json) {
           add_contribution(body.title, body.date, body.description, json.data.link, req.user.id, time);
+          res.json({ errors: '' });
         })
         .catch(function (err) {
           console.error(err.message);
         });
-      res.json({ errors: '' });
     }
   });
 
