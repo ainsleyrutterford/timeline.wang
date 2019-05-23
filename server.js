@@ -10,6 +10,8 @@ var Strategy    = require('passport-local').Strategy;
 var bcrypt      = require('bcrypt');
 var moment      = require('moment');
 var imgur       = require('imgur');
+var https       = require('https');
+var fs          = require('fs');
 
 imgur.setClientId('4e62d0b8bda287e');
 
@@ -206,8 +208,12 @@ app.get('/profile',
 // Serve static files in the 'public' directory.
 app.use(express.static('public'));
 
-// Start the server on port 3000.
-app.listen(process.env.PORT || 3000, function() {
+https.createServer({
+    key: fs.readFileSync('./key.pem'),
+    cert: fs.readFileSync('./cert.pem'),
+    passphrase: 'ainsley'
+}, app)
+.listen(process.env.PORT || 3000, function() {
   console.log('Server listening on port 3000...');
 });
 
