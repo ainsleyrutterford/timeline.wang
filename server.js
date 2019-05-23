@@ -265,7 +265,6 @@ async function register_user(username, password, firstname, surname) {
 
 async function add_contribution(title, historical_date, description, image, user_id, contribution_date) {
   try {
-    console.log(title, historical_date, description, image, user_id, contribution_date);
     var db = await sqlite.open("./db.sqlite");
     var ps = await db.prepare("insert into contributions (contributor_id, contribution_date, historical_date, title, image_source, description, likes) \
                                values (?, ?, ?, ?, ?, ?, ?)");
