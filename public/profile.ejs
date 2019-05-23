@@ -5,15 +5,18 @@
     <link rel="stylesheet" href="profile.css"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans"/>
     <title>title</title>
-    <link rel="icon" type="image/png" href="/images/apple.png"></link>
+    <link rel="icon" type="image/png" href="/icons/member.svg"></link>
     <script async="false" defer="defer" src="profile.js"></script>
   </head>
   <body>
 
     <ul class="navbar">
-      <li><a href="/"><strong><em>tl</em></strong></a></li>
-      <li><a href="/profile">Profile</a></li>
-      <li><a href="/about">About</a></li>
+      <div id="left-navbar">
+        <li><a href="/"><div id="wanglogo"></div></a></li>
+        <li><a href="/profile">Profile</a></li>
+        <li><a href="/about">About</a></li>
+      </div>
+      <div id="right-navbar"></div>
     </ul>
 
     <div class="container">
@@ -21,15 +24,15 @@
         <img alt="" class="avatar" src="images/ainsley.jpeg"/>
         <div class="name"></div>
         <div class="username"></div>
-        <div class="number-contributions"><img alt="" id="contribution-icon" src="images/apple.png"/></div>
-        <div class="date-joined"><img alt="" id="member-icon" src="images/apple.png"/></div>
+        <div class="number-contributions"><img alt="" id="contribution-icon" src="icons/contributions.svg"/></div>
+        <div class="date-joined"><img alt="" id="member-icon" src="icons/member.svg"/></div>
       </div>
 
       <div class="contributions">
         <div class="contributions-navbar-container">
           <div class="contributions-navbar">
-            <button class="contributions-navbar-items"><img alt="" id="sort-icon" src="images/apple.png"/><span id="sortby-button-text">Sort By</span></button>
-            <button class="contributions-navbar-items" id="contribution-button"><img alt="" id="new-contribution-icon" src="images/apple.png"/><span id="contribution-button-text">New Contribution</span></button>
+            <button class="contributions-navbar-items"><img alt="" id="sort-icon" src="icons/sort.svg"/><span id="sortby-button-text">Sort By</span></button>
+            <button class="contributions-navbar-items" id="contribution-button"><img alt="" id="new-contribution-icon" src="icons/plus.svg"/><span id="contribution-button-text">New Contribution</span></button>
           </div>
         </div>
       </div>

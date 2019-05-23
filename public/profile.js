@@ -29,7 +29,7 @@ async function handle_user(response) {
     const user = await response.json();
 
     var title = document.querySelector("title");
-    var navbar = document.querySelector(".navbar");
+    var navbar = document.getElementById("right-navbar");
     var name = document.querySelector(".name");
     var username = document.querySelector(".username");
     var contributions = document.querySelector(".number-contributions");
