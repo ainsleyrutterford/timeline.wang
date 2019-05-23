@@ -53,13 +53,13 @@ async function handle_form(response) {
   if (!json_response.errors) {
     window.location.href = '/profile';
   } else {
-    var errors_container = document.querySelector(".errors-container");
-    var html = "<ul>";
+    var form = document.getElementById("form");
+    var html = "<div class=\"errors-container\"><ul>";
     for (var i = 0; i < json_response.errors.length; i++) {
       html += "<li>" + json_response.errors[i].msg + "</li>";
     }
-    html += "</ul>";
-    errors_container.innerHTML = html;
+    html += "</ul></div>";
+    form.innerHTML = html + form.innerHTML;
   }
 }
 
