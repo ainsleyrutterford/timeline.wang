@@ -211,6 +211,7 @@ async function find_by_username(username, cb) {
     // Using prepared statements to prevent SQL injection attacks
     var ps = await db.prepare("select * from users where username=?");
     var user = await ps.get(username);
+    await ps.finalize();
     if (!user) {
       return cb(null, null);
     } else {
@@ -227,6 +228,7 @@ async function find_by_id(id, cb) {
     // Using prepared statements to prevent SQL injection attacks
     var ps = await db.prepare("select * from users where id=?");
     var user = await ps.get(id);
+    await ps.finalize();
     if (!user) {
       cb(new Error('User ' + id + ' does not exist'));
     } else {
@@ -242,6 +244,7 @@ async function register_user(username, password, firstname, surname) {
     var db = await sqlite.open("./db.sqlite");
     var ps = await db.prepare("select * from users where username=?");
     var user = await ps.get(username);
+    await ps.finalize();
     if (!user) {
       await bcrypt.hash(password, saltRounds, async function(err, hash) {
         var ps = await db.prepare("insert into users (username, password, firstname, surname, contributions, joindate) \
@@ -249,6 +252,7 @@ async function register_user(username, password, firstname, surname) {
 
         var date_string = moment().format('YYYY-MM-DD');
         await ps.run(username, hash, firstname, surname, 0, date_string);
+        await ps.finalize();
       });
       return true;
     } else {
@@ -261,14 +265,21 @@ async function register_user(username, password, firstname, surname) {
 
 async function add_contribution(title, historical_date, description, image, user_id, contribution_date) {
   try {
+    console.log(title, historical_date, description, image, user_id, contribution_date);
     var db = await sqlite.open("./db.sqlite");
     var ps = await db.prepare("insert into contributions (contributor_id, contribution_date, historical_date, title, image_source, description, likes) \
                                values (?, ?, ?, ?, ?, ?, ?)");
     await ps.run(user_id, contribution_date, historical_date, title, image, description, 0);
+    await ps.finalize();
+
     ps = await db.prepare("select * from contributions where contributor_id=?");
     var contributions = await ps.all(user_id);
+    await ps.finalize();
+
     ps = await db.prepare("update users set contributions=? where id=?");
     await ps.run(contributions.length, user_id);
+    await ps.finalize();
+
   } catch (error) {
     console.log(error);
   }
@@ -279,6 +290,7 @@ async function get_contributions(user_id) {
     var db = await sqlite.open("./db.sqlite");
     var ps = await db.prepare("select * from contributions where contributor_id = ?");
     var contributions = await ps.all(user_id);
+    await ps.finalize();
     await contributions.forEach(contribution => {
       var contribution_date = moment(contribution.contribution_date, "HH:mm:ss-YYYY-MM-DD");
       var historical_date   = moment(contribution.historical_date, "YYYY-MM-DD");

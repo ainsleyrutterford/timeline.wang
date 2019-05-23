@@ -1,6 +1,6 @@
 "use strict";
 
-fetch('/user',          { method: 'GET' } ).then(handle_user);
+fetch('/user',          { method: 'GET', credentials: 'include' } ).then(handle_user);
 
 async function handle_contributions(response) {
   const json_response = await response.json();
@@ -42,7 +42,7 @@ async function handle_user(response) {
     contributions.innerHTML += user.contributions + " contributions";
     date.innerHTML += "Member since " + user.joindate;
 
-    fetch('/contributions', { method: 'GET' } ).then(handle_contributions);
+    fetch('/contributions', { method: 'GET', credentials: 'include' } ).then(handle_contributions);
   } else {
     window.location.href = '/login';
   }

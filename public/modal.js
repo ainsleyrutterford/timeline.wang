@@ -36,7 +36,8 @@ form.addEventListener("submit", function (event) {
     var json = JSON.stringify(object);
     fetch('/contribute', { method: 'POST',
                            body: json,
-                           headers: { 'Content-Type': 'application/json' }
+                           headers: { 'Content-Type': 'application/json' },
+                           credentials: 'include'
                          } ).then(handle);
   }, false);
 
