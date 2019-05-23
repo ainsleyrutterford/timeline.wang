@@ -1,3 +1,23 @@
+/*
+This file contains the styling for the profile/contributions
+page on timeline.wang.
+*/
+
+/*
+This styling file follows the "outside in" convention.
+CSS properties in this file are ordered by how much they
+impact the selected elements or other elements aroud them.
+*/
+
+/*
+The ordering is as follows:
+  - Layout Properties
+  - Box Model Properties
+  - Visual Properties
+  - Typography Properties
+  - Miscellaneous properties
+*/
+
 * {
   margin: 0;
   padding: 0;
@@ -8,21 +28,26 @@ body {
 }
 
 a {
+  outline: transparent;
+
   color: #1e6bb8; /* A nice blue */
   text-decoration: none; /* Links are not underlined by default */
-  outline: transparent;
 }
 
 a:hover {
   text-decoration: underline; /* Links are underlined when hovered */
 }
 
+
+/*----------- Navigation Bar -------------*/
+
 .navbar {                  /* Navigation Bar Style */
-  list-style-type: none;
   margin: 0;
   padding: 0;
-  overflow: hidden;
+
   background-color: #333;
+  list-style-type: none;
+  overflow: hidden;
 }
 
 .navbar li {
@@ -35,9 +60,11 @@ a:hover {
 
 .navbar li a {
   display: block;
-  color: white;
-  text-align: center;
   padding: 1em 1em;
+
+  color: white;
+
+  text-align: center;
   text-decoration: none;
 }
 
@@ -48,244 +75,273 @@ a:hover {
 .container {      /* Container for profile and contributions */
   display: flex;
   margin: 0 auto;
+
   max-width: 70rem;
   min-width: 70rem;
-  height: 100%; /* MAYBE REMOVE */
 }
+
+/*----------- Profile ------------*/
 
 .profile {                /* Profile sizing and margins */
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
-  position: sticky;
-  top: 1em;
-  width: 19em;
-  min-width: 19em;
-  height: 30em;
-  margin-left: 1em;
-  margin-top: 2.5em;
-  border-radius: 0.3em;
-  /* background-color: #fcfcfc; */
-  /* border: 1px solid #ddd; */
+  position: sticky;       /* Making the profile sticky */
+  top: 1rem;               /* stays 1em from top of screen */
+
+  width: 19rem;
+  min-width: 19rem;
+  height: 30rem;
+
+  margin: 2.5rem 0rem 0rem 1rem;
+  border-radius: 0.3rem;
 }
 
-.avatar {
+.avatar {                 /* Avatar photo */
   display: flex;
-  border-radius: 0.2em;
-  border: 0em solid #fcfcfc;
-  width: 16em;
-  height: 16em;
-  margin-top: 1.2em;
-  margin-left: 0em;
-  margin-right: 2em;
-  margin-bottom: 1.5em;
+
+  width: 16rem;
+  height: 16rem;
+  margin: 1.2rem 2rem 1.5rem 0rem;
+
+  border-radius: 0.1rem;
 }
 
-.name {
+.name {                   /* First and last name */
   display: flex;
-  flex: 0 1 auto;
-  height: 0.7em;
-  margin-left: 0em;
-  margin-bottom: 0.5em;
+  flex: 0 1 auto;          /* div will shrink to text */
+
+  height: 0.7rem;
+  margin-bottom: 0.5rem;
+
   font-weight: 570;
-  font-size: 1.5em;
+  font-size: 1.5rem;
 }
 
-.username {
+.username {               /* simple username in a lighter color */
+  display: flex;
+
+  height: 0.8rem;
+  max-width: 14.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 1.9rem;
+  padding-top: 0.7rem;
+
   color: #878481;
-  display: flex;
-  border-bottom: 0.05em solid #ededed;
-  padding-bottom: 1.6em;
-  max-width: 14.5em;
-  height: 0.8em;
-  margin-left: 0em;
-  margin-bottom: 1em;
-  font-size: 1.1em;
+  border-bottom: 0.05rem solid #ededed;
+
+  font-size: 1.1rem;
 }
 
-.number-contributions {
+.number-contributions {      /* number of contributions made by the user */
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  height: 0.6em;
-  margin-left: 0em;
-  margin-bottom: 1em;
-  font-size: 0.9em;
+
+  height: 0.6rem;
+  margin-bottom: 1rem;
+  padding-top: 0.6rem;
+
+  font-size: 0.9rem;
 }
 
-#contribution-icon {
-  height: 1em;
-  width: 1em;
-  margin-right: 0.5em;
-  padding-bottom: 0.1em;
+#contribution-icon {         /* icon for contributions */
+  width: 1rem;
+  height: 1rem;
+  margin-right: 0.5rem;
+  padding-bottom: 0.1rem;
 }
 
-.date-joined {
+.date-joined {               /* date the user made an account */
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  padding-bottom: 1.4em;
-  height: 0.6em;
-  margin-left: 0em;
-  margin-bottom: 0em;
-  font-size: 0.9em;
+
+  height: 0.6rem;
+  padding-bottom: 1.4rem;
+
+  font-size: 0.9rem;
 }
 
-#member-icon {
-  height: 1em;
-  width: 1em;
-  margin-right: 0.5em;
-  padding-bottom: 0.1em;
+#member-icon {              /* member-icon accompanying the date joined */
+  width: 1rem;
+  height: 1rem;
+  margin-right: 0.5rem;
+  padding-bottom: 0.1rem;
 }
+
+/*--------- Contributions ----------*/
 
 .contributions {         /* Contribution sizing and margins. Using flex to vertically align contributions */
   display: flex;
   justify-content: center, space-between;
   flex-direction: column;
-  margin-top: 1.5em;
-  height: 100%; /* MAYBE REMOVE */
-  width: 100%; /* MAYBE REMOVE */
-  margin-left: 1em;
-  margin-right: 1em;
+
+  width: 100%;
+  height: 100%;
+
+  margin: 1.5rem 1rem 0rem 1rem;
 }
 
-.contributions-navbar-container {
+.contributions-navbar-container {           /* stickied container for contributions navbar */
   display: flex;
   background-color: #fff;
-  position: sticky;
-  top:0em;
-  height: 4em;
-  margin-bottom: 1em;
+  position: sticky;              /* Sticking the container to the top of the screen */
+  top: 0rem;
+
+  height: 4rem;
+  margin-bottom: 1rem;
 }
 
-.contributions-navbar {
+.contributions-navbar {           /* navigation bar for contributions */
   display: flex;
   justify-content: flex-end;
-  position: sticky;
   flex: auto;
-  top: 1em;
-  height: 3em;
-  margin-top: 1em;
-  background-color: white;
-  border-bottom: 0.05em solid #cccccc;
+  position: sticky;
+  top: 1rem;
+
+  height: 3rem;
+  margin-top: 1rem;
+
+  background-color: #ffffff;
+  border-bottom: 0.05rem solid #cccccc;
 }
 
-.contributions-navbar-items {
+.contributions-navbar-items {        /* styling for the items in contributions navigation bar */
     display: flex;
     justify-content: flex-start;
-    border: 0.15em solid transparent;
-    display: inline-block;
-    background-color: #ffffff;
+
     padding: 0rem 1rem;
-    text-align: center;
-    text-decoration: none;
+
+    border: 0.15rem solid transparent;
+    border-width: 0rem 0rem 0.15rem 0rem;
+    outline: none;
     color: #666666;
+    background-color: #ffffff;
+
     font-family: inherit;
     font-size: 0.9rem;
+    text-align: center;
+    text-decoration: none;
+
     cursor: pointer;
-    outline: none;
-    border-width: 0em 0em 0.15em 0em;
 }
 
-.contributions-navbar-items:hover {
-  border-width: 0em 0em 0.15em 0em;
+.contributions-navbar-items:hover {          /* hover events for contributions navbar */
+  border-width: 0rem 0rem 0.15rem 0rem;
   border-color: #fff #fff #00c3ff #fff;
   color: #2d2d2d;
 }
 
-#sort-icon {
-  height: 1em;
-  width: 1em;
-  margin-right: 0.5em;
-  padding-top: 0.1em;
+#sort-icon {          /* icon for sorting button */
+  height: 1rem;
+  width: 1rem;
+  margin-right: 0.5rem;
+  padding-top: 0.1rem;
 }
 
 #sortby-button-text {
-  padding-right: 1em;
+  padding-right: 1rem;
 }
 
-#new-contribution-icon {
-  height: 1em;
-  width: 1em;
-  margin-right: 0.5em;
-  padding-top: 0.1em;
+#new-contribution-icon {        /* icon for new contribution button */
+  height: 1rem;
+  width: 1rem;
+  margin-right: 0.5rem;
+  padding-top: 0.1rem;
 }
 
 #contribution-button-text {
-  padding-right: 0.8em;
+  padding-right: 0.8rem;
 }
+
+/*------- contribution card -------*/
 
 .contribution {           /* Styling for each contribution */
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
-  border: 1px solid #ddd;
-  background-color: #fcfcfc;
+
   height: 8.9em;
   margin-bottom: 1em;
-  border-radius: 0.3em;
   padding: 0.65em 1.65em 0em 0.65em;
+
+  border: 1px solid #ddd;
+  border-radius: 0.3em;
+  background-color: #fcfcfc;
 }
 
-.image-and-description {
+.image-and-description {    /* styling for contribution desription */
   display: flex;
   justify-content: flex-start;
-  height: 8em;
+  height: 8rem;
 }
 
-.contribution-date {
-  height: 0.5em;
+.contribution-date {      /* styling for contribution date */
   flex: 1 1 auto;
-  text-align: right;
-  margin-top: 0.1em;
-  font-size: 0.6em;
+
+  height: 0.5rem;
+  margin-top: 0.1rem;
+
   color: #878481;
+
+  text-align: right;
+  font-size: 0.6rem;
 }
 
-.contribution-image {
-  border-radius: 0.15em;
-  height: 8em;
-  width: 8em;
-  min-width: 8em;
-  min-height: 8em;
-  margin-right: 1em;
+.contribution-image {       /* styling for contribution image */
+  width: 8rem;
+  min-width: 8rem;
+  height: 8rem;
+  min-height: 8rem;
+  margin-right: 1rem;
+
+  border-radius: 0.15rem;
 }
 
-.date-title-text {
+.date-title-text {        /* styling for date, title and text container */
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
-  height: 8em;
+
+  height: 8rem;
   width: 100%; /* MAYBE REMOVE */
-  margin-right: 0em;
 }
 
-.date-title {
+.date-title {             /* styling for date and title container */
   display: flex;
   justify-content: flex-start;
-  height: 1.5em;
+
   width: 100%; /* MAYBE REMOVE */
-  margin-bottom: 0.2em;
+  height: 1.5rem;
+  margin-bottom: 0.2rem;
 }
 
-.historical-date {
+.historical-date {        /* styling for historical date */
+  display: flex;
   flex: 0 1 auto;
-  margin-right: 1.5em;
-  font-size: 1em;
+
+  margin-right: 1.5rem;
+
+  font-size: 1rem;
   font-weight: 580;
 }
 
 .contribution-title {
   flex: 0 1 auto;
-  font-size: 1em;
+
+  font-size: 1rem;
   font-weight: 400;
 }
 
 .description {
-  color: #424242;
-  border-top: 0.1em solid #ddd;
-  padding-top: 0.3em;
   display: flex;
-  height: 6.5em;
-  font-size: 0.8em;
+
+  height: 6.5rem;
+  padding-top: 0.3rem;
+
+  border-top: 0.1rem solid #ddd;
+  color: #424242;
+
+  font-size: 0.8rem;
 }
