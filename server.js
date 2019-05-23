@@ -185,6 +185,12 @@ app.get('/contributions',
     res.json(contributions);
   });
 
+app.get('/all_contributions',
+  async function (req, res) {
+    var contributions = await get_all_contributions();
+    res.json(contributions);
+  });
+
 app.get('/logout',
   function (req, res) {
     req.logout();
@@ -266,9 +272,17 @@ async function register_user(username, password, firstname, surname) {
 async function add_contribution(title, historical_date, description, image, user_id, contribution_date) {
   try {
     var db = await sqlite.open("./db.sqlite");
-    var ps = await db.prepare("insert into contributions (contributor_id, contribution_date, historical_date, title, image_source, description, likes) \
-                               values (?, ?, ?, ?, ?, ?, ?)");
-    await ps.run(user_id, contribution_date, historical_date, title, image, description, 0);
+    var ps = await db.prepare("select username from users where id=?");
+    var user = await ps.get(user_id);
+    await ps.finalize();
+
+    var historical = moment(historical_date, "YYYY-MM-DD");
+    var beginning = moment("0000-01-01", "YYYY-MM-DD");
+    var serialised_hist_date = historical.diff(moment(beginning), 'days');
+
+    ps = await db.prepare("insert into contributions (contributor_id, contributor_username, contribution_date, historical_date, serialised_hist_date, title, image_source, description, likes) \
+                               values (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    await ps.run(user_id, user.username, contribution_date, historical_date, serialised_hist_date, title, image, description, 0);
     await ps.finalize();
 
     ps = await db.prepare("select * from contributions where contributor_id=?");
@@ -295,6 +309,22 @@ async function get_contributions(user_id) {
       var historical_date   = moment(contribution.historical_date, "YYYY-MM-DD");
       contribution.contribution_date = moment(contribution_date).fromNow();
       contribution.historical_date   = moment(historical_date).format('MMMM Do YYYY');
+    });
+    return contributions;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+async function get_all_contributions() {
+  try {
+    var db = await sqlite.open("./db.sqlite");
+    var ps = await db.prepare("select * from contributions");
+    var contributions = await ps.all();
+    await ps.finalize();
+    await contributions.forEach(contribution => {
+      var historical_date = moment(contribution.historical_date, "YYYY-MM-DD");
+      contribution.historical_date = moment(historical_date).format('MMMM Do YYYY');
     });
     return contributions;
   } catch (error) {
