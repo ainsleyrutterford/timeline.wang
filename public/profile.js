@@ -33,14 +33,12 @@ async function handle_user(response) {
     const user = await response.json();
 
     var title = document.querySelector("title");
-    var navbar = document.getElementById("right-navbar");
     var name = document.querySelector(".name");
     var username = document.querySelector(".username");
     var contributions = document.querySelector(".number-contributions");
     var date = document.querySelector(".date-joined");
 
     title.innerHTML = user.username;
-    navbar.innerHTML += "<li class=\"navbar-right\"><a href=\"/logout\">Log out</a></li>";
     name.innerHTML = user.firstname + " " + user.surname;
     username.innerHTML = user.username;
     contributions.innerHTML += user.contributions + " contributions";

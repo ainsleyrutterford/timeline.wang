@@ -38,53 +38,6 @@ a:hover {
   text-decoration: underline; /* Links are underlined when hovered */
 }
 
-
-/*----------- Navigation Bar -------------*/
-
-.navbar {                  /* Navigation Bar Style */
-  margin: 0;
-  padding: 0;
-
-  background-color: #333;
-  list-style-type: none;
-  overflow: hidden;
-
-  display: flex;
-  justify-content: space-between;
-}
-
-#left-navbar {
-  display: flex;
-}
-
-#right-navbar {
-  display: flex;
-}
-
-.navbar li {
-  float: left;
-  margin-top: auto;
-  margin-bottom: auto;
-}
-
-.navbar-right {
-  float: right !important;
-}
-
-.navbar li a {
-  display: block;
-  padding: 1em 1em;
-
-  color: white;
-
-  text-align: center;
-  text-decoration: none;
-}
-
-.navbar li a:hover {
-  color: #ccc;
-}
-
 .container {      /* Container for profile and contributions */
   display: flex;
   margin: 0 auto;
@@ -706,16 +659,4 @@ input[type="file"] {
   color: #fff;
   text-align
 
-}
-
-#wanglogo {
-  background-image: url("icons/timelinewang.svg");
-  width: 10rem;
-  height: 2rem;
-  z-index: 1;
-}
-
-#wanglogo:hover {
-  background-image: url("icons/timelinewang.svg");
-  opacity: 0.6;
 }

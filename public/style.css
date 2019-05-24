@@ -44,16 +44,30 @@ a:hover {
   text-decoration: underline; /* Links are underlined when hovered */
 }
 
-.navbar {
-  list-style-type: none;
+.navbar {                  /* Navigation Bar Style */
   margin: 0;
   padding: 0;
-  overflow: hidden;
+
   background-color: #333;
+  list-style-type: none;
+  overflow: hidden;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+#left-navbar {
+  display: flex;
+}
+
+#right-navbar {
+  display: flex;
 }
 
 .navbar li {
   float: left;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 .navbar-right {
@@ -62,14 +76,28 @@ a:hover {
 
 .navbar li a {
   display: block;
-  color: white;
-  text-align: center;
   padding: 1em 1em;
+
+  color: white;
+
+  text-align: center;
   text-decoration: none;
 }
 
 .navbar li a:hover {
   color: #ccc;
+}
+
+#wanglogo {
+  background-image: url("icons/timelinewang.svg");
+  width: 10rem;
+  height: 2rem;
+  z-index: 1;
+}
+
+#wanglogo:hover {
+  background-image: url("icons/timelinewang.svg");
+  opacity: 0.6;
 }
 
 .timeline-heading {
@@ -113,12 +141,6 @@ a:hover {
 .submit-button:hover {
   background-color: #888;
   color: white;
-}
-
-.wang-logo {
-  width: 7em;
-  height: 7em;
-  margin-bottom: 1em;
 }
 
 .login-error {
