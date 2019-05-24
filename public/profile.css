@@ -348,6 +348,8 @@ a:hover {
 
 /* The Modal (background) */
 .modal {
+  display: flex;
+  flex-direction: column;
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
@@ -357,15 +359,192 @@ a:hover {
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
   background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  background-color: rgba(0,0,0,0.5); /* Black w/ opacity */
   padding-top: 60px;
+  border: none;
 }
 
 /* Modal form */
 #form {
-  background-color: #fefefe;
-  text-align: center;
+  width: 40rem;
+  height: 40rem;
   margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-  border: 1px solid #888;
-  width: 40em; /* Could be more or less, depending on screen size */
+  border-radius: 0.3rem;
+
+  background:
+    /* top, transparent blue, faked with gradient */
+    linear-gradient(
+      rgba(0, 0, 0, 0.6),
+      rgba(0, 0, 0, 0.8)
+    ),
+    /* bottom, image */
+    url("images/earthrise.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 50%;
+    border: none; */
 }
+
+.flex-outer {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+}
+
+.flex-outer > li {
+  display: flex;
+}
+
+
+.contribution-label {
+  color: #white;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+  font-size: 0.9rem;
+  flex: 0 0 20rem;
+  font-family: 'Open Sans';
+  margin-bottom: 0.2rem;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: white;
+  opacity: 1; /* Firefox */
+}
+
+.contribution-input {
+  margin-left: auto;
+  margin-right: auto;
+  flex: 0 0 20rem;
+  height: 1.2rem;
+
+  border:none;
+	padding: 0.2rem 0.2rem;
+	border-radius: 0.3rem;
+	background:rgba(0,0,0,0.3);
+  caret-color: white;
+  color: white;
+  font-size: 0.9rem;
+}
+
+#contribution-quote {
+  margin-top: 3rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0.4rem;
+  text-align: center;
+  width: 24rem;
+  color: white;
+  font-size: 1.1rem;
+}
+
+#quote-author {
+  margin-bottom: 3rem;
+  margin-left: auto;
+  margin-right: auto;
+  color: white;
+}
+
+#form-title {
+  color: white;
+}
+
+#title-textbox {
+  margin-bottom: 1.4rem;
+  border: 0.05rem solid transparent;
+}
+
+#title-textbox:focus {
+    outline: none;
+    border:0.05rem solid rgb(30, 211,252, 0.5);
+  }
+
+#form-date {
+  width: 4rem;
+  color: white;
+  margin-left: 10rem;
+  text-align: left;
+  font-size: 0.9rem;
+  font-family: 'Open Sans';
+  margin-bottom: 0.2rem;
+}
+
+#date-textbox {
+  width: 7.4rem;
+  margin-left: 9.87rem;
+  margin-bottom: 1.5rem;
+	padding: 0.2rem 0.2rem;
+	border-radius:0.3rem;
+	background:rgba(0,0,0,0.3);
+  caret-color: white;
+  color: white;
+  font-size: 0.9em;
+  border: 0.05em solid transparent;
+}
+
+#date-textbox:focus {
+    outline: none;
+    border:0.05rem solid rgb(30, 211,252, 0.5);
+  }
+
+#form-image {
+  margin-left: 6rem;
+  margin-bottom: 0rem;
+  color: white;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+#form-description {
+  color: white;
+}
+
+#description-textbox {
+  margin-left: auto;
+  margin-right: auto;
+  flex: 0 0 20rem;
+  height: 7rem;
+  background: rgba(0,0,0,0.3);
+  border: 0.1rem solid transparent;
+  border-radius: 0.3rem;
+  padding: 0.3rem 0.3rem;
+  resize: none;
+  caret-color: white;
+  color: white;
+}
+
+#description-textbox:focus {
+    outline: none;
+    border:0.1rem solid rgb(30, 211,252, 0.5);
+  }
+
+#form-submit {
+    margin-top: 2rem;
+    width: 8rem;
+    height: 3rem;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 0.3rem;
+    border: none;
+}
+
+#custom-file-upload {
+  width: 7rem;
+  height: 1.1rem;
+  border-radius: 0.3rem;
+  margin-left: 2.2rem;
+  background-color: rgba(0,0,0,0.3);
+  display: inline-block;
+  padding: 0.2rem 0.4rem;
+  border: 0.1rem solid transparent;
+  cursor: pointer;
+  font-size: 0.8rem;
+  color: white;
+}
+
+#title-textbox:focus {
+    outline: none;
+    border:0.1rem solid rgb(30, 211,252, 0.5);
+  }

@@ -37,15 +37,37 @@
 
     <div id="modal-id" class="modal">
       <form id="form" enctype="multipart/form-data">
-        <label for="title">Title:</label>
-        <input type="text" name="title" placeholder="timeline.wang created"/></br>
-        <label for="date">Date:</label>
-        <input type="date" name="date"/></br>
-        <label for="date">Image:</label>
-        <input type="file" name="image"/></br>
-        <label for="description">Description:</label></br>
-        <textarea rows="4" cols="50" name="description" form="form" placeholder="timeline.wang was created in 2019 by Ainsley Rutterford and James O'Reilly"></textarea></br>
-        <input type="submit" value="Submit"/>
+        <ul class="flex-outer">
+            <li id="contribution-quote">
+              "We are not makers of history. We are made by history."
+            </li>
+            <li id="quote-author"> Martin Luther King Jr.
+            </li>
+            <li>
+              <label for="title" class="contribution-label" id="form-title">Title:</label>
+            </li>
+            <li>
+              <input type="text" name="title" placeholder="" class="contribution-input" id="title-textbox"/>
+            </li>
+            <li>
+              <label for="date" id="form-date">Date:</label>
+              <label for="date" class="contribution-label" id="form-image">Image:</label>
+            </li>
+            <li>
+              <input type="date" name="date" id="date-textbox"/>
+                <label for "file-upload" id="custom-file-upload">Choose Image</label>
+                  <input type="file" name="image" id="file-upload"/>
+            </li>
+            <li>
+              <label for="description" class="contribution-label" id="form-description">Description:</label>
+            </li>
+            <li>
+              <textarea rows="4" cols="50" name="description"  id="description-textbox" form="form" placeholder=""></textarea>
+            </li>
+            <li>
+              <button type="submit" id="form-submit">Submit Contribution</button>
+            </li>
+        </ul>
       </form>
     </div>
 
