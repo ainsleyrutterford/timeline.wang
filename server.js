@@ -55,8 +55,8 @@ app.set('view engine', 'ejs');
 // Use application-level middleware for common functionality, including
 // logging, parsing, and session handling.
 app.use(require('cookie-parser')());
-app.use(require('body-parser').urlencoded({ extended: true }));
-app.use(require('body-parser').json());
+app.use(require('body-parser').urlencoded({limit: '10mb', extended: true}));
+app.use(require('body-parser').json({limit: '10mb', extended: true}));
 app.use(require('express-session')({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
 app.use(require('connect-flash')());
 
