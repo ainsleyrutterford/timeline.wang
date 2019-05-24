@@ -454,6 +454,7 @@ a:hover {
 #title-textbox {
   margin-bottom: 1.4rem;
   border: 0.05rem solid transparent;
+  color: #ddd;
 }
 
 #title-textbox:focus {
@@ -481,7 +482,7 @@ a:hover {
 	border-radius:0.3rem;
 	background:rgba(0,0,0,0.3);
   caret-color: white;
-  color: white;
+  color: #ddd;
   font-size: 0.9em;
   border: 0.05em solid transparent;
 }
@@ -492,7 +493,7 @@ a:hover {
   }
 
 #form-image {
-  margin-left: 8.2rem;
+  margin-left: 7.9rem;
   margin-bottom: 0rem;
   color: #ddd;
   font-size: 1rem;
@@ -500,8 +501,17 @@ a:hover {
 }
 
 input[type="file"] {
-    display: none;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap; /* 1 */
+  clip-path: inset(50%);
+  border: 0;
 }
+
 
 #form-description {
   color: #ddd;
@@ -515,12 +525,12 @@ input[type="file"] {
   flex: 0 0 19.5rem;
   height: 7rem;
   background: rgba(0,0,0,0.3);
-  border: 0.1rem solid transparent;
+  border: 0.05rem solid transparent;
   border-radius: 0.3rem;
   padding: 0.3rem 0.3rem;
   resize: none;
   caret-color: white;
-  color: white;
+  color: #ddd;
 }
 
 #description-textbox:focus {
@@ -529,13 +539,29 @@ input[type="file"] {
   }
 
 #form-submit {
-    margin-top: 2rem;
-    width: 8rem;
+    margin: 3.2rem auto 0rem auto;
+    width: 8.5rem;
     height: 3rem;
-    margin-left: auto;
-    margin-right: auto;
+
     border-radius: 0.3rem;
-    border: none;
+    border-color: transparent;
+    outline: none;
+
+    transition: 0.5s;
+    background-size: 200% auto;
+    /* text-shadow: 0px 0px 10px rgba(0,0,0,0.2);*/
+    /* box-shadow: 0 0 20px #eee; */
+    background-color: transparent;
+    background-image: linear-gradient(to right, rgba(0,0,0,0.3)  0%, rgba(100,100,100,0.3) 51%, rgba(0,0,0,0.3) 100%);
+
+    color: white;
+    font-size: 1.3rem;
+    font-weight: 500;
+}
+
+#form-submit:hover {
+  background-position: right center;
+  cursor: pointer;
 }
 
 #custom-file-upload {
@@ -549,10 +575,15 @@ input[type="file"] {
   border: 0.05rem solid transparent;
   cursor: pointer;
   font-size: 0.8rem;
-  color: white;
-  text-align: center;
+  color: #ddd;
+  text-align: left;
 }
+
 #custom-file-upload:focus {
   outline: none;
   border: 0.05rem solid rgb(30, 211,252, 0.5);
+}
+
+#custom-file-upload:focus-within {
+  border:0.05rem solid rgb(30, 211,252, 0.5);
 }
