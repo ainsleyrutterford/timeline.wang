@@ -61,9 +61,6 @@
 
     <div id="modal-id" class="modal">
       <form id="form" enctype="multipart/form-data">
-
-        <!-- errors container coming in here -->
-
         <ul class="flex-outer">
           <li id="contribution-quote">
             "We are not makers of history.</br>We are made by history."
@@ -77,9 +74,11 @@
             <input type="text" name="title" placeholder="" class="contribution-input" id="title-textbox"/>
           </li>
           <li>
+            <div id="title-error"></div>
+          </li>
+          <li>
             <label for="date" id="form-date">Date</label>
-            <label for="date" class="contribution-label" id="form-image">Image
-            </label>
+            <label for="date" class="contribution-label" id="form-image">Image</label>
           </li>
           <li>
             <input type="date" name="date" id="date-textbox"/>
@@ -89,16 +88,26 @@
             </label>
           </li>
           <li>
+            <div id="date-image-error">
+              <div id="date-error"></div>
+              <div id="image-error"></div>
+            </div>
+          </li>
+          <li>
             <label for="description" class="contribution-label" id="form-description">Description</label>
           </li>
           <li>
             <textarea rows="4" cols="50" name="description"  id="description-textbox" form="form" placeholder="" class="contribution-input"></textarea>
           </li>
-          <div id="the-count">
-            <span id="current">0</span>
-            <span id="maximum">/ 300</span>
-          </div>
           <li>
+            <div id="description-error-counter-container">
+              <div id="description-error"></div>
+              <div id="the-count">
+              <span id="current">0</span>
+              <span id="maximum">/ 300</span>
+              </div>
+            </div>
+          </li>
             <button type="submit" id="form-submit">Submit</button>
           </li>
         </ul>
