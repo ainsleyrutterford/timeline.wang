@@ -48,10 +48,6 @@ passport.deserializeUser(function(id, cb) {
   });
 });
 
-// Configure view engine to render EJS templates.
-app.set('views', __dirname + '/public');
-app.set('view engine', 'ejs');
-
 // Use application-level middleware for common functionality, including
 // logging, parsing, and session handling.
 app.use(require('cookie-parser')());
@@ -65,25 +61,31 @@ app.use(require('connect-flash')());
 app.use(passport.initialize());
 app.use(passport.session());
 
+// Serve static files in the 'public' directory.
+app.use(express.static('public'));
+
 // Define routes.
 app.get('/',
   function(req, res) {
-    res.render('index', { user: req.user });
+    res.sendFile(__dirname + '/public/index.html');
   });
 
 app.get('/timeline',
   function(req, res) {
-    res.render('timeline', { user: req.user });
+    // res.render('timeline', { user: req.user });
+    res.sendFile(__dirname + '/public/timeline.html');
   });
 
 app.get('/about',
   function(req, res) {
-    res.render('about', { user: req.user });
+    // res.render('about', { user: req.user });
+    res.sendFile(__dirname + '/public/about.html');
   });
 
 app.get('/login',
   function(req, res) {
-    res.render('login', { message: req.flash('error') });
+    // res.render('login', { message: req.flash('error') });
+    res.sendFile(__dirname + '/public/login.html');
   });
 
 app.post('/login',
@@ -95,7 +97,8 @@ app.post('/login',
 
 app.get('/signup',
   function(req, res) {
-    res.render('signup', { errors: req.errors });
+    // res.render('signup', { errors: req.errors });
+    res.sendFile(__dirname + '/public/signup.html');
   });
 
 app.post('/signup',
@@ -116,7 +119,8 @@ app.post('/signup',
   async function(req, res) {
     var errors = validationResult(req);
     if (!errors.isEmpty()) {
-      res.render('signup', { errors: errors.array() });
+      // res.render('signup', { errors: errors.array() });
+      res.sendFile(__dirname + '/public/signup.html');
       return;
     }
     const body = req.body;
@@ -129,7 +133,8 @@ app.post('/signup',
                             param:    'username',
                             value:    '',
                             msg:      'Username already exists' }];
-      res.render('signup', { errors: user_error });
+      // res.render('signup', { errors: user_error });
+      res.sendFile(__dirname + '/public/signup.html');
     }
     res.end();
   });
@@ -202,11 +207,9 @@ app.get('/logout',
 app.get('/profile',
   require('connect-ensure-login').ensureLoggedIn(),
   function(req, res) {
-    res.render('profile', { user: req.user });
+    // res.render('profile', { user: req.user });
+    res.sendFile(__dirname + '/public/profile.html');
   });
-
-// Serve static files in the 'public' directory.
-app.use(express.static('public'));
 
 if (process.argv[2] === 'local') {
   app.listen(process.env.PORT || 8080, function() {
