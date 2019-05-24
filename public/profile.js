@@ -54,9 +54,9 @@ async function handle_form(response) {
     window.location.href = '/profile';
   } else {
     var form = document.getElementById("form");
-    var html = "<div class=\"errors-container\"><ul>";
+    var html = "<div id=\"errors-container\"><ul id=\"error-list\">";
     for (var i = 0; i < json_response.errors.length; i++) {
-      html += "<li>" + json_response.errors[i].msg + "</li>";
+      html += "<li class=\"error-response\">" + json_response.errors[i].msg + "</li>";
     }
     html += "</ul></div>";
     form.innerHTML = html + form.innerHTML;
@@ -73,6 +73,8 @@ window.onclick = function(event) {
   } else if (event.target.id == button.id || event.target.parentNode.id == button.id) {
     // had to use id as it wasn't working otherwise.
     modal.style.display = "block";
+    var errors = document.getElementById("errors-container");
+    errors.parentNode.removeChild(errors);
   }
 }
 

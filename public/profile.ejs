@@ -21,15 +21,25 @@
         <img alt="" class="avatar" src="images/ainsley.jpeg"/>
         <div class="name"></div>
         <div class="username"></div>
-        <div class="number-contributions"><img alt="" id="contribution-icon" src="images/apple.png"/></div>
-        <div class="date-joined"><img alt="" id="member-icon" src="images/apple.png"/></div>
+        <div class="number-contributions">
+          <img alt="" id="contribution-icon" src="images/apple.png"/>
+        </div>
+        <div class="date-joined">
+          <img alt="" id="member-icon" src="images/apple.png"/>
+        </div>
       </div>
 
       <div class="contributions">
         <div class="contributions-navbar-container">
           <div class="contributions-navbar">
-            <button class="contributions-navbar-items"><img alt="" id="sort-icon" src="images/apple.png"/><span id="sortby-button-text">Sort By</span></button>
-            <button class="contributions-navbar-items" id="contribution-button"><img alt="" id="new-contribution-icon" src="images/apple.png"/><span id="contribution-button-text">New Contribution</span></button>
+            <button class="contributions-navbar-items">
+              <img alt="" id="sort-icon" src="images/apple.png"/>
+              <span id="sortby-button-text">Sort By</span>
+            </button>
+            <button class="contributions-navbar-items" id="contribution-button">
+              <img alt="" id="new-contribution-icon" src="images/apple.png"/>
+              <span id="contribution-button-text">New Contribution</span>
+            </button>
           </div>
         </div>
       </div>
@@ -43,38 +53,42 @@
         <!-- errors container coming in here -->
 
         <ul class="flex-outer">
-            <li id="contribution-quote">
-              "We are not makers of history. We are made by history."
-            </li>
-            <li id="quote-author"> Martin Luther King Jr.
-            </li>
-            <li>
-              <label for="title" class="contribution-label" id="form-title">Title</label>
-            </li>
-            <li>
-              <input type="text" name="title" placeholder="" class="contribution-input" id="title-textbox"/>
-            </li>
-            <li>
-              <label for="date" id="form-date">Date</label>
-              <label for="date" class="contribution-label" id="form-image">Image
-              </label>
-            </li>
-            <li>
-              <input type="date" name="date" id="date-textbox"/>
-              <label id="custom-file-upload">
-                <input type="file" name="image">
-                Choose Image
-              </label>
-            </li>
-            <li>
-              <label for="description" class="contribution-label" id="form-description">Description</label>
-            </li>
-            <li>
-              <textarea rows="4" cols="50" name="description"  id="description-textbox" form="form" placeholder=""></textarea>
-            </li>
-            <li>
-              <button type="submit" id="form-submit">Submit</button>
-            </li>
+          <li id="contribution-quote">
+            "We are not makers of history. We are made by history."
+          </li>
+          <li id="quote-author"> Martin Luther King Jr.
+          </li>
+          <li>
+            <label for="title" class="contribution-label" id="form-title">Title</label>
+          </li>
+          <li>
+            <input type="text" name="title" placeholder="" class="contribution-input" id="title-textbox"/>
+          </li>
+          <li>
+            <label for="date" id="form-date">Date</label>
+            <label for="date" class="contribution-label" id="form-image">Image
+            </label>
+          </li>
+          <li>
+            <input type="date" name="date" id="date-textbox"/>
+            <label id="custom-file-upload">
+              <input type="file" name="image">
+              Choose Image
+            </label>
+          </li>
+          <li>
+            <label for="description" class="contribution-label" id="form-description">Description</label>
+          </li>
+          <li>
+            <textarea rows="4" cols="50" name="description"  id="description-textbox" form="form" placeholder=""></textarea>
+          </li>
+          <div id="the-count">
+            <span id="current">0</span>
+            <span id="maximum">/ 300</span>
+          </div>
+          <li>
+            <button type="submit" id="form-submit">Submit</button>
+          </li>
         </ul>
       </form>
     </div>

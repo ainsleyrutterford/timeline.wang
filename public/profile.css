@@ -359,7 +359,7 @@ a:hover {
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
   background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.25); /* Black w/ opacity */
+  background-color: rgba(0,0,0,0.3); /* Black w/ opacity */
   padding-top: 60px;
   border: none;
 }
@@ -367,8 +367,8 @@ a:hover {
 /* Modal form */
 #form {
   width: 34rem;
-  height: 40rem;
-  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+  height: 36rem;
+  margin: 2% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
   border-radius: 0.3rem;
 
   background:
@@ -534,12 +534,28 @@ input[type="file"] {
 }
 
 #description-textbox:focus {
-    outline: none;
-    border:0.05rem solid rgb(30, 211,252, 0.5);
-  }
+  outline: none;
+  border:0.05rem solid rgb(30, 211,252, 0.5);
+}
+
+#the-count {
+  display: flex;
+  justify-content: flex-start;
+
+  padding: 0.1rem 0 0 7rem;
+  font-size: 0.875rem;
+}
+
+#current {
+  color: #fff;
+}
+
+#maximum {
+  color: #fff;
+}
 
 #form-submit {
-    margin: 3.2rem auto 0rem auto;
+    margin: 1.5rem auto 0rem auto;
     width: 8.5rem;
     height: 3rem;
 
@@ -586,4 +602,26 @@ input[type="file"] {
 
 #custom-file-upload:focus-within {
   border:0.05rem solid rgb(30, 211,252, 0.5);
+}
+
+/*---------- Styling Errors ----------*/
+
+#errors-container {
+  display: flex;
+  background-color: rgb(255,100,100,1);
+  position: absolute;
+  margin-left: 5rem;
+  margin-top: 2rem;
+  flex: 0 1 auto;
+}
+
+#error-list {
+  list-style: none;
+  flex: 0 1 auto;
+}
+
+.error-response {
+  color: #fff;
+  text-align
+
 }
