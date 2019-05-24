@@ -2,6 +2,10 @@
 
 fetch('/user', { method: 'GET', credentials: 'include' } ).then(handle_user);
 
+var avatar = document.querySelector(".avatar");
+var number = Math.floor(Math.random()*4)+1;
+avatar.src = "avatars/avatar-" + number + ".png";
+
 async function handle_contributions(response) {
   const json_response = await response.json();
   var contributions_container = document.querySelector(".contributions");
