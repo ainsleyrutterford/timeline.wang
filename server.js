@@ -209,12 +209,12 @@ app.get('/profile',
 app.use(express.static('public'));
 
 https.createServer({
-    key: fs.readFileSync('./key.pem'),
-    cert: fs.readFileSync('./cert.pem'),
+    key: fs.readFileSync('/etc/letsencrypt/live/timeline.wang/privkey.pem'),
+    cert: fs.readFileSync('/etc/letsencrypt/live/timeline.wang/fullchain.pem'),
     passphrase: 'ainsley'
 }, app)
-.listen(process.env.PORT || 3000, function() {
-  console.log('Server listening on port 3000...');
+.listen(process.env.PORT || 8080, function() {
+  console.log('Server listening on port 8080...');
 });
 
 async function find_by_username(username, cb) {
