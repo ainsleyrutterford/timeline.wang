@@ -88,12 +88,19 @@ app.get('/login',
     res.sendFile(__dirname + '/public/login.html');
   });
 
-app.post('/login',
-  passport.authenticate('local', { failureRedirect: '/login',
-                                   failureFlash: true }),
-  function(req, res) {
-    res.redirect('/');
-  });
+app.post('/login', function (req, res, next) {
+  passport.authenticate('local', function (err, user, info) {
+    if (err) { return next(err); }
+    if (!user) {
+      res.json(info);
+    } else {
+      req.login(user, function (err) {
+        if (err) { return next(err); }
+        res.json({ message: '' });
+      });
+    }
+  }) (req, res, next);
+});
 
 app.get('/signup',
   function(req, res) {
