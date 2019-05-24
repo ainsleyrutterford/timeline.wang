@@ -361,6 +361,8 @@ a:hover {
 
 /* The Modal (background) */
 .modal {
+  display: flex;
+  flex-direction: column;
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
@@ -370,17 +372,271 @@ a:hover {
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
   background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  background-color: rgba(0,0,0,0.3); /* Black w/ opacity */
   padding-top: 60px;
+  border: none;
 }
 
 /* Modal form */
 #form {
-  background-color: #fefefe;
+  width: 34rem;
+  height: 36rem;
+  margin: 2% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+  border-radius: 0.3rem;
+
+  background:
+    /* top, transparent blue, faked with gradient */
+    linear-gradient(
+      rgba(0, 0, 0, 0.4),
+      rgba(0, 0, 0, 0.4)
+    ),
+    /* bottom, image */
+    url("images/earthrise-4-right.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 50%;
+    border: none; */
+}
+
+.flex-outer {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+}
+
+.flex-outer > li {
+  display: flex;
+}
+
+
+.contribution-label {
+  color: #white;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+  font-size: 0.9rem;
+  flex: 0 0 20rem;
+  font-family: 'Open Sans';
+  margin-bottom: 0.2rem;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: white;
+  opacity: 1; /* Firefox */
+}
+
+.contribution-input {
+  margin-left: auto;
+  margin-right: auto;
+  flex: 0 0 20rem;
+  height: 1.2rem;
+
+  border:none;
+	padding: 0.2rem 0.2rem;
+	border-radius: 0.3rem;
+	background:rgba(0,0,0,0.3);
+  caret-color: white;
+  color: white;
+  font-size: 0.9rem;
+}
+
+#contribution-quote {
+  margin-top: 3rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0.4rem;
   text-align: center;
-  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-  border: 1px solid #888;
-  width: 40em; /* Could be more or less, depending on screen size */
+  width: 24rem;
+  color: white;
+  font-size: 1.1rem;
+}
+
+#quote-author {
+  margin-bottom: 3rem;
+  margin-left: auto;
+  margin-right: auto;
+  color: white;
+}
+
+#form-title {
+  color: #ddd;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+#title-textbox {
+  margin-bottom: 1.4rem;
+  border: 0.05rem solid transparent;
+  color: #ddd;
+}
+
+#title-textbox:focus {
+    outline: none;
+    border: 0.05rem solid rgb(30, 211,252, 0.5);
+  }
+
+#form-date {
+  width: 4rem;
+  margin-left: 7rem;
+  text-align: left;
+  font-size: 0.9rem;
+  font-family: 'Open Sans';
+  margin-bottom: 0.2rem;
+  color: #ddd;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+#date-textbox {
+  width: 7.4rem;
+  margin-left: 6.87rem;
+  margin-bottom: 1.5rem;
+	padding: 0.2rem 0.2rem;
+	border-radius:0.3rem;
+	background:rgba(0,0,0,0.3);
+  caret-color: white;
+  color: #ddd;
+  font-size: 0.9em;
+  border: 0.05em solid transparent;
+}
+
+#date-textbox:focus {
+    outline: none;
+    border:0.05rem solid rgb(30, 211,252, 0.5);
+  }
+
+#form-image {
+  margin-left: 7.9rem;
+  margin-bottom: 0rem;
+  color: #ddd;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+input[type="file"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap; /* 1 */
+  clip-path: inset(50%);
+  border: 0;
+}
+
+
+#form-description {
+  color: #ddd;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+#description-textbox {
+  margin-left: auto;
+  margin-right: auto;
+  flex: 0 0 19.5rem;
+  height: 7rem;
+  background: rgba(0,0,0,0.3);
+  border: 0.05rem solid transparent;
+  border-radius: 0.3rem;
+  padding: 0.3rem 0.3rem;
+  resize: none;
+  caret-color: white;
+  color: #ddd;
+}
+
+#description-textbox:focus {
+  outline: none;
+  border:0.05rem solid rgb(30, 211,252, 0.5);
+}
+
+#the-count {
+  display: flex;
+  justify-content: flex-start;
+
+  padding: 0.1rem 0 0 7rem;
+  font-size: 0.875rem;
+}
+
+#current {
+  color: #fff;
+}
+
+#maximum {
+  color: #fff;
+}
+
+#form-submit {
+    margin: 1.5rem auto 0rem auto;
+    width: 8.5rem;
+    height: 3rem;
+
+    border-radius: 0.3rem;
+    border-color: transparent;
+    outline: none;
+
+    transition: 0.5s;
+    background-size: 200% auto;
+    /* text-shadow: 0px 0px 10px rgba(0,0,0,0.2);*/
+    /* box-shadow: 0 0 20px #eee; */
+    background-color: transparent;
+    background-image: linear-gradient(to right, rgba(0,0,0,0.3)  0%, rgba(100,100,100,0.3) 51%, rgba(0,0,0,0.3) 100%);
+
+    color: white;
+    font-size: 1.3rem;
+    font-weight: 500;
+}
+
+#form-submit:hover {
+  background-position: right center;
+  cursor: pointer;
+}
+
+#custom-file-upload {
+  width: 7rem;
+  height: 1.1rem;
+  border-radius: 0.3rem;
+  margin-left: 2.2rem;
+  background-color: rgba(0,0,0,0.3);
+  display: inline-block;
+  padding: 0.2rem 0.4rem;
+  border: 0.05rem solid transparent;
+  cursor: pointer;
+  font-size: 0.8rem;
+  color: #ddd;
+  text-align: left;
+}
+
+#custom-file-upload:focus {
+  outline: none;
+  border: 0.05rem solid rgb(30, 211,252, 0.5);
+}
+
+#custom-file-upload:focus-within {
+  border:0.05rem solid rgb(30, 211,252, 0.5);
+}
+
+/*---------- Styling Errors ----------*/
+
+#errors-container {
+  display: flex;
+  background-color: rgb(255,100,100,1);
+  position: absolute;
+  margin-left: 5rem;
+  margin-top: 2rem;
+  flex: 0 1 auto;
+}
+
+#error-list {
+  list-style: none;
+  flex: 0 1 auto;
+}
+
+.error-response {
+  color: #fff;
+  text-align
+
 }
 
 #wanglogo {
