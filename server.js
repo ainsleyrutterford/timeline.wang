@@ -208,14 +208,20 @@ app.get('/profile',
 // Serve static files in the 'public' directory.
 app.use(express.static('public'));
 
-https.createServer({
-    key: fs.readFileSync('/etc/letsencrypt/live/timeline.wang/privkey.pem'),
-    cert: fs.readFileSync('/etc/letsencrypt/live/timeline.wang/fullchain.pem'),
-    passphrase: 'ainsley'
-}, app)
-.listen(process.env.PORT || 8080, function() {
-  console.log('Server listening on port 8080...');
-});
+if (process.argv[2] === 'local') {
+  app.listen(process.env.PORT || 8080, function() {
+    console.log('Server listening on port 8080...');
+  });
+} else {
+  https.createServer({
+      key: fs.readFileSync('/etc/letsencrypt/live/timeline.wang/privkey.pem'),
+      cert: fs.readFileSync('/etc/letsencrypt/live/timeline.wang/fullchain.pem'),
+      passphrase: 'ainsley'
+  }, app)
+  .listen(process.env.PORT || 8080, function() {
+    console.log('Server listening on port 8080...');
+  });
+}
 
 async function find_by_username(username, cb) {
   try {
