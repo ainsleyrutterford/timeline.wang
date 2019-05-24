@@ -221,8 +221,7 @@ a:hover {
 }
 
 .contributions-navbar-items {        /* styling for the items in contributions navigation bar */
-    display: flex;
-    justify-content: flex-start;
+    display: block;
 
     padding: 0rem 1rem;
 
@@ -233,7 +232,7 @@ a:hover {
     background-color: #ffffff;
 
     font-family: inherit;
-    font-size: 0.9rem;
+    font-size: 1.05rem;
     text-align: center;
     text-decoration: none;
 
@@ -268,6 +267,65 @@ a:hover {
   padding-right: 0.8rem;
 }
 
+/* TESTING */
+.dropdown .dropbtn {
+  font-size: 1.05rem;
+  outline: none;
+  padding: 12px 16px;
+  background-color: inherit;
+  font-family: inherit;
+}
+
+.dropbtn {
+  display:block;
+  border: 0.15rem solid transparent;
+  border-width: 0rem 0rem 0.15rem 0rem;
+  padding: 0rem 1rem;
+  margin-bottom: 0.05rem;
+
+  outline: none;
+  color: #666666;
+  background-color: #ffffff;
+
+  font-family: inherit;
+  font-size: 1.05rem;
+  text-align: center;
+  text-decoration: none;
+
+  cursor: pointer;
+}
+
+.dropbtn:hover {
+  border-width: 0rem 0rem 0.15rem 0rem;
+  border-color: #fff #fff #00c3ff #fff;
+  color: #2d2d2d;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
 /*------- contribution card -------*/
 
 .contribution {           /* Styling for each contribution */
@@ -431,13 +489,19 @@ a:hover {
 }
 
 #contribution-quote {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
   margin-top: 3rem;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 0.4rem;
-  text-align: center;
   width: 24rem;
-  color: white;
+  color: #eee;
+  /* font-style: italic; */
+  font-weight: 300;
+  font-family: 'Roboto', sans-serif;
   font-size: 1.1rem;
 }
 

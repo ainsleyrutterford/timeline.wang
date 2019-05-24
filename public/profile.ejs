@@ -4,6 +4,7 @@
     <meta charset="UTF-8"/>
     <link rel="stylesheet" href="profile.css"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&display=swap"/>
     <title>title</title>
     <link rel="icon" href="icons/tl.svg" type="image/x-icon" />
     <script async="false" defer="defer" src="profile.js"></script>
@@ -35,10 +36,16 @@
       <div class="contributions">
         <div class="contributions-navbar-container">
           <div class="contributions-navbar">
-            <button class="contributions-navbar-items">
-              <img alt="" id="sort-icon" src="icons/sort.svg"/>
-              <span id="sortby-button-text">Sort By</span>
-            </button>
+            <div class="dropdown">
+              <button class="dropbtn">
+                <img alt="" id="sort-icon" src="icons/sort.svg"/>
+                <span id="sortby-button-text">Sort By</span>
+              </button>
+              <div class="dropdown-content">
+              <a href="#">Link 1</a>
+              <a href="#">Link 2</a>
+              </div>
+            </div>
             <button class="contributions-navbar-items" id="contribution-button">
               <img alt="" id="new-contribution-icon" src="icons/plus.svg"/>
               <span id="contribution-button-text">New Contribution</span>
@@ -47,8 +54,6 @@
         </div>
       </div>
     </div>
-
-
 
     <div id="modal-id" class="modal">
       <form id="form" enctype="multipart/form-data">
