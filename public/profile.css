@@ -110,6 +110,10 @@ a:hover {
   border-radius: 0.3rem;
 }
 
+.avatar-container {
+  display: flex;
+}
+
 .avatar {                 /* Avatar photo */
   display: flex;
 
@@ -117,7 +121,15 @@ a:hover {
   height: 16rem;
   margin: 1.2rem 2rem 1.5rem 0rem;
 
-  border-radius: 0.1rem;
+  border-radius: 0.3rem;
+  border: 1px solid #ededed;
+}
+
+.info-container {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  margin-left: 3%;
 }
 
 .name {                   /* First and last name */
@@ -135,7 +147,7 @@ a:hover {
   display: flex;
 
   height: 0.8rem;
-  max-width: 14.5rem;
+  max-width: 15.2rem;
   margin-bottom: 1rem;
   padding-bottom: 1.9rem;
   padding-top: 0.7rem;
@@ -221,8 +233,7 @@ a:hover {
 }
 
 .contributions-navbar-items {        /* styling for the items in contributions navigation bar */
-    display: flex;
-    justify-content: flex-start;
+    display: block;
 
     padding: 0rem 1rem;
 
@@ -233,7 +244,7 @@ a:hover {
     background-color: #ffffff;
 
     font-family: inherit;
-    font-size: 0.9rem;
+    font-size: 1.05rem;
     text-align: center;
     text-decoration: none;
 
@@ -268,6 +279,68 @@ a:hover {
   padding-right: 0.8rem;
 }
 
+/* TESTING */
+.dropdown .dropbtn {
+  font-size: 1.05rem;
+  outline: none;
+  padding: 12px 16px;
+  background-color: inherit;
+  font-family: inherit;
+}
+
+.dropbtn {
+  display:block;
+  border: 0.15rem solid transparent;
+  border-width: 0rem 0rem 0.15rem 0rem;
+  padding: 0rem 0.1rem;
+  margin-bottom: 0rem;
+
+  outline: none;
+  color: #666666;
+  background-color: #ffffff;
+
+  font-family: inherit;
+  font-size: 1.05rem;
+  text-align: center;
+  text-decoration: none;
+
+  cursor: pointer;
+}
+
+.dropbtn:hover {
+  border-width: 0rem 0rem 0.15rem 0rem;
+  border-color: #fff #fff #00c3ff #fff;
+  color: #2d2d2d;
+}
+
+.dropdown-content {
+  display: none;
+  /* right: 0; */
+  position: absolute;
+  background-color: #ffffff;
+  min-width: 160px;
+  z-index: 1;
+  border: 0.05rem solid;
+  border-color: #fff #ddd #ddd #ddd;
+  border-radius: 0rem 0rem 0.3rem 0.3rem;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content a {
+  float: none;
+  padding: 7px 16px 7px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+  color: #666666;
+}
+
+.dropdown-content a:hover {
+  color: #000;
+}
 /*------- contribution card -------*/
 
 .contribution {           /* Styling for each contribution */
@@ -361,6 +434,8 @@ a:hover {
 
 /* The Modal (background) */
 .modal {
+  display: flex;
+  flex-direction: column;
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
@@ -370,17 +445,267 @@ a:hover {
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
   background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  background-color: rgba(255,255,255,0.1); /* Black w/ opacity */
   padding-top: 60px;
+  border: none;
 }
 
 /* Modal form */
 #form {
-  background-color: #fefefe;
+  width: 34rem;
+  height: 36rem;
+  margin: 2% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+  border-radius: 0.3rem;
+
+  /* top, transparent blue, faked with gradient */
+  background: rgba(10, 10, 10, 0.95);
+}
+
+.flex-outer {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+}
+
+.flex-outer > li {
+  display: flex;
+}
+
+.contribution-label {
+  color: #white;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+  font-size: 0.9rem;
+  flex: 0 0 20rem;
+  font-family: 'Open Sans';
+  margin-bottom: 0.2rem;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: white;
+  opacity: 1; /* Firefox */
+}
+
+.contribution-input {
+  margin-left: auto;
+  margin-right: auto;
+  flex: 0 0 20rem;
+  height: 1.2rem;
+
+  border:none;
+	padding: 0.2rem 0.2rem;
+	border-radius: 0.3rem;
+	background:rgba(255,255,255,0.1);
+  caret-color: white;
+  color: white;
+  font-size: 0.9rem;
+}
+
+#contribution-quote {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
   text-align: center;
-  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-  border: 1px solid #888;
-  width: 40em; /* Could be more or less, depending on screen size */
+  margin-top: 3rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0.4rem;
+  width: 24rem;
+  color: #eee;
+  /* font-style: italic; */
+  font-weight: 300;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.1rem;
+}
+
+#quote-author {
+  margin-bottom: 3rem;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 0.8rem;
+  color: #bbb;
+}
+
+#form-title {
+  color: #ddd;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+#title-textbox {
+  margin-bottom: 1.4rem;
+  border: 0.05rem solid transparent;
+  color: #ddd;
+}
+
+#title-textbox:focus {
+    outline: none;
+    border: 0.05rem solid rgb(30, 211,252, 0.5);
+  }
+
+#form-date {
+  width: 4rem;
+  margin-left: 7rem;
+  text-align: left;
+  font-size: 0.9rem;
+  font-family: 'Open Sans';
+  margin-bottom: 0.2rem;
+  color: #ddd;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+#date-textbox {
+  width: 7.4rem;
+  margin-left: 6.87rem;
+  margin-bottom: 1.5rem;
+	padding: 0.2rem 0.2rem;
+	border-radius:0.3rem;
+	background:rgba(255,255,255,0.1);
+  caret-color: white;
+  color: #ddd;
+  font-size: 0.9em;
+  border: 0.05em solid transparent;
+}
+
+#date-textbox:focus {
+    outline: none;
+    border:0.05rem solid rgb(30, 211,252, 0.5);
+  }
+
+#form-image {
+  margin-left: 7.9rem;
+  margin-bottom: 0rem;
+  color: #ddd;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+input[type="file"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap; /* 1 */
+  clip-path: inset(50%);
+  border: 0;
+}
+
+
+#form-description {
+  color: #ddd;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+#description-textbox {
+  min-width: 19.75rem;
+  max-width: 19.75rem;
+  flex: 0 0 19.5rem;
+  height: 7rem;
+  background: rgba(255,255,255,0.1);
+  border: 0.05rem solid transparent;
+  border-radius: 0.3rem;
+  padding: 0.3rem 0.3rem;
+  resize: none;
+  caret-color: white;
+  color: #ddd;
+}
+
+#description-textbox:focus {
+  outline: none;
+  border:0.05rem solid rgb(30, 211,252, 0.5);
+}
+
+#the-count {
+  display: flex;
+  justify-content: flex-start;
+
+  padding: 0.1rem 0 0 7rem;
+  font-size: 0.875rem;
+}
+
+#current {
+  color: #fff;
+}
+
+#maximum {
+  color: #fff;
+}
+
+#form-submit {
+    margin: 1.5rem auto 0rem auto;
+    width: 8.5rem;
+    height: 3rem;
+
+    border-radius: 0.3rem;
+    border-color: transparent;
+    outline: none;
+
+    transition: 0.5s;
+    background-size: 200% auto;
+    /* text-shadow: 0px 0px 10px rgba(0,0,0,0.2);*/
+    /* box-shadow: 0 0 20px #eee; */
+    background-color: transparent;
+    background-image: linear-gradient(to right, rgba(30, 211,252, 0.5)  0%, rgba(64, 137, 221, 1) 51%, rgba(30, 211,252, 0.5) 100%);
+
+    color: white;
+    font-size: 1.3rem;
+    font-weight: 500;
+}
+
+#form-submit:hover {
+  background-position: right center;
+  cursor: pointer;
+}
+
+#custom-file-upload {
+  width: 7rem;
+  height: 1rem;
+  border-radius: 0.3rem;
+  margin-left: 2.2rem;
+  background-color: rgba(255,255,255,0.1);
+  display: inline-block;
+  padding: 0.2rem 0.4rem;
+  border: 0.05rem solid transparent;
+  cursor: pointer;
+  font-size: 0.8rem;
+  color: #ddd;
+  text-align: left;
+}
+
+#custom-file-upload:focus {
+  outline: none;
+  border: 0.05rem solid rgb(30, 211,252, 0.5);
+}
+
+#custom-file-upload:focus-within {
+  border:0.05rem solid rgb(30, 211,252, 0.5);
+}
+
+/*---------- Styling Errors ----------*/
+
+#errors-container {
+  display: flex;
+  background-color: rgb(255,100,100,1);
+  position: absolute;
+  margin-left: 5rem;
+  margin-top: 2rem;
+  flex: 0 1 auto;
+}
+
+#error-list {
+  list-style: none;
+  flex: 0 1 auto;
+}
+
+.error-response {
+  color: #fff;
+  text-align
+
 }
 
 #wanglogo {
