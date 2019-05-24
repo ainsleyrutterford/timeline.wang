@@ -359,14 +359,14 @@ a:hover {
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
   background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.5); /* Black w/ opacity */
+  background-color: rgba(0,0,0,0.25); /* Black w/ opacity */
   padding-top: 60px;
   border: none;
 }
 
 /* Modal form */
 #form {
-  width: 40rem;
+  width: 34rem;
   height: 40rem;
   margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
   border-radius: 0.3rem;
@@ -374,11 +374,11 @@ a:hover {
   background:
     /* top, transparent blue, faked with gradient */
     linear-gradient(
-      rgba(0, 0, 0, 0.6),
-      rgba(0, 0, 0, 0.8)
+      rgba(0, 0, 0, 0.4),
+      rgba(0, 0, 0, 0.4)
     ),
     /* bottom, image */
-    url("images/earthrise.jpg");
+    url("images/earthrise-4-right.png");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 50% 50%;
@@ -446,7 +446,9 @@ a:hover {
 }
 
 #form-title {
-  color: white;
+  color: #ddd;
+  font-size: 1rem;
+  font-weight: 500;
 }
 
 #title-textbox {
@@ -456,22 +458,24 @@ a:hover {
 
 #title-textbox:focus {
     outline: none;
-    border:0.05rem solid rgb(30, 211,252, 0.5);
+    border: 0.05rem solid rgb(30, 211,252, 0.5);
   }
 
 #form-date {
   width: 4rem;
-  color: white;
-  margin-left: 10rem;
+  margin-left: 7rem;
   text-align: left;
   font-size: 0.9rem;
   font-family: 'Open Sans';
   margin-bottom: 0.2rem;
+  color: #ddd;
+  font-size: 1rem;
+  font-weight: 500;
 }
 
 #date-textbox {
   width: 7.4rem;
-  margin-left: 9.87rem;
+  margin-left: 6.87rem;
   margin-bottom: 1.5rem;
 	padding: 0.2rem 0.2rem;
 	border-radius:0.3rem;
@@ -488,9 +492,11 @@ a:hover {
   }
 
 #form-image {
-  margin-left: 6rem;
+  margin-left: 8.2rem;
   margin-bottom: 0rem;
-  color: white;
+  color: #ddd;
+  font-size: 1rem;
+  font-weight: 500;
 }
 
 input[type="file"] {
@@ -498,13 +504,15 @@ input[type="file"] {
 }
 
 #form-description {
-  color: white;
+  color: #ddd;
+  font-size: 1rem;
+  font-weight: 500;
 }
 
 #description-textbox {
   margin-left: auto;
   margin-right: auto;
-  flex: 0 0 20rem;
+  flex: 0 0 19.5rem;
   height: 7rem;
   background: rgba(0,0,0,0.3);
   border: 0.1rem solid transparent;
@@ -517,7 +525,7 @@ input[type="file"] {
 
 #description-textbox:focus {
     outline: none;
-    border:0.1rem solid rgb(30, 211,252, 0.5);
+    border:0.05rem solid rgb(30, 211,252, 0.5);
   }
 
 #form-submit {
@@ -538,13 +546,13 @@ input[type="file"] {
   background-color: rgba(0,0,0,0.3);
   display: inline-block;
   padding: 0.2rem 0.4rem;
-  border: 0.1rem solid transparent;
+  border: 0.05rem solid transparent;
   cursor: pointer;
   font-size: 0.8rem;
   color: white;
+  text-align: center;
 }
-
-#title-textbox:focus {
-    outline: none;
-    border:0.1rem solid rgb(30, 211,252, 0.5);
-  }
+#custom-file-upload:focus {
+  outline: none;
+  border: 0.05rem solid rgb(30, 211,252, 0.5);
+}
