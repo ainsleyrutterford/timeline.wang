@@ -48,10 +48,23 @@ a:hover {
   background-color: #333;
   list-style-type: none;
   overflow: hidden;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+#left-navbar {
+  display: flex;
+}
+
+#right-navbar {
+  display: flex;
 }
 
 .navbar li {
   float: left;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 .navbar-right {
@@ -624,4 +637,16 @@ input[type="file"] {
   color: #fff;
   text-align
 
+}
+
+#wanglogo {
+  background-image: url("icons/timelinewang.svg");
+  width: 10rem;
+  height: 2rem;
+  z-index: 1;
+}
+
+#wanglogo:hover {
+  background-image: url("icons/timelinewang.svg");
+  opacity: 0.6;
 }

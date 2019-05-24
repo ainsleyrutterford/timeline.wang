@@ -1,5 +1,21 @@
 "use strict";
 
+fetch('/all_contributions', { method: 'GET', credentials: 'include' } ).then(handle);
+let contributions = []
+
+async function handle(response) {
+  const json_response = await response.json();
+  for (var i = 0; i < json_response.length; i++) {
+    var r = json_response[i];
+    contributions.push(new Contribution(r.title,
+                                        r.historical_date,
+                                        r.serialised_hist_date,
+                                        r.description,
+                                        r.image_source,
+                                        r.contributor_username));
+  }
+}
+
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext('2d');
 let dpi = window.devicePixelRatio;
@@ -38,14 +54,16 @@ function scale_canvas() {
 // Scale the canvas first.
 scale_canvas();
 
-function Entry(x_3D, y_3D, z_3D, text, source) {
-  this.x_3D   = x_3D;
-  this.y_3D   = y_3D;
-  this.z_3D   = z_3D;
-  this.text   = text;
+function Contribution(title, historical_date, serial_date, description, image_source, contributor_username) {
+  this.x_3D   = -1; // randomize
+  this.y_3D   = -1;
+  this.z_3D   = serial_date/1000;
+  this.title  = title;
+  this.date   = historical_date;
+  this.user   = contributor_username;
 
   const image = new Image();
-  image.src   = source;
+  image.src   = image_source;
 
   this.draw = function() {
     var relative_x = this.x_3D - camera_x;
@@ -60,7 +78,7 @@ function Entry(x_3D, y_3D, z_3D, text, source) {
       ctx.globalAlpha = (alpha < 0) ? 0 : alpha;
       var size = 200 / relative_z;
       ctx.drawImage(image, x - size, y - size, size, size);
-      ctx.fillText(text, x, y);
+      ctx.fillText(title, x, y);
     }
   }
 }
@@ -73,15 +91,10 @@ function draw_positions() {
   ctx.fillText('camera z: ' + camera_z.toFixed(2), 9, 52);
 }
 
-let entries = [new Entry(-1, -1, 130, "apple", "images/apple.png"),
-               new Entry( 0,  1, 120, "amazon", "images/amazon.png"),
-               new Entry( 1,  0, 110, "twitter", "images/twitter.png"),
-               new Entry( 1,  1, 100, "wang", "images/amazon.png")]
-
 // The draw() function. Calls itself repeatedly.
 function draw() {
   ctx.clearRect(0,0, canvas.width, canvas.height);
-  entries.forEach(entry => entry.draw());
+  contributions.forEach(contribution => contribution.draw());
   if (!paused) {
     camera_z += 0.1;
   }

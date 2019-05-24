@@ -20,8 +20,10 @@ async function create() {
     await db.run("create table if not exists contributions \
                     (id INTEGER PRIMARY KEY AUTOINCREMENT, \
                      contributor_id INT NOT NULL,          \
+                     contributor_username TEXT NOT NULL,   \
                      contribution_date TEXT NOT NULL,      \
                      historical_date TEXT NOT NULL,        \
+                     serialised_hist_date INT NOT NULL,    \
                      title VARCHAR(80) NOT NULL,           \
                      image_source VARCHAR(255),            \
                      description VARCHAR(255),             \
