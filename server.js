@@ -119,24 +119,20 @@ app.post('/signup',
   async function(req, res) {
     var errors = validationResult(req);
     if (!errors.isEmpty()) {
-      // res.render('signup', { errors: errors.array() });
-      res.sendFile(__dirname + '/public/signup.html');
-      return;
-    }
-    const body = req.body;
-    var success = await register_user(body.username, body.password, body.firstname, body.surname);
-    if (success) {
-      req.flash('error', 'You can now log in!');
-      res.redirect('/login');
+      res.json({ errors: errors.array() });
     } else {
-      const user_error = [{ location: 'body',
-                            param:    'username',
-                            value:    '',
-                            msg:      'Username already exists' }];
-      // res.render('signup', { errors: user_error });
-      res.sendFile(__dirname + '/public/signup.html');
+      const body = req.body;
+      var success = await register_user(body.username, body.password, body.firstname, body.surname);
+      if (success) {
+        res.json({ success: 'yes' });
+      } else {
+        const user_error = [{ location: 'body',
+                              param:    'username',
+                              value:    '',
+                              msg:      'Username already exists' }];
+        res.json({ errors: user_error });
+      }
     }
-    res.end();
   });
 
 app.post('/contribute',

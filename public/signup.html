@@ -6,19 +6,12 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans"/>
     <title>Sign up</title>
     <link rel="icon" href="icons/tl.svg" type="image/x-icon" />
+    <script async="false" defer="defer" src="signup.js"></script>
   </head>
   <body>
-    <form action="/signup" method="post">
+    <form id="form">
       <div class="form-container">
-        <!-- This image is just a placeholder for our own logo. -->
-        <img class="wang-logo" src="images/apple.png">
-        </br>
-          <div class="login-error">
-            <ul>
-                <li>errors here</li>
-            </ul>
-          </div>
-          </br>
+        <div class="login-error"></div>
         <input class="input" type="text" name="firstname" placeholder="First name"/>
         <br/>
         <input class="input" type="text" name="surname" placeholder="Surname"/>
