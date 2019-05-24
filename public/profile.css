@@ -372,7 +372,7 @@ a:hover {
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
   background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.3); /* Black w/ opacity */
+  background-color: rgba(255,255,255,0.1); /* Black w/ opacity */
   padding-top: 60px;
   border: none;
 }
@@ -384,18 +384,8 @@ a:hover {
   margin: 2% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
   border-radius: 0.3rem;
 
-  background:
-    /* top, transparent blue, faked with gradient */
-    linear-gradient(
-      rgba(0, 0, 0, 0.4),
-      rgba(0, 0, 0, 0.4)
-    ),
-    /* bottom, image */
-    url("images/earthrise-4-right.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: 50% 50%;
-    border: none; */
+  /* top, transparent blue, faked with gradient */
+  background: rgba(10, 10, 10, 0.9);
 }
 
 .flex-outer {
@@ -434,7 +424,7 @@ a:hover {
   border:none;
 	padding: 0.2rem 0.2rem;
 	border-radius: 0.3rem;
-	background:rgba(0,0,0,0.3);
+	background:rgba(255,255,255,0.1);
   caret-color: white;
   color: white;
   font-size: 0.9rem;
@@ -455,7 +445,8 @@ a:hover {
   margin-bottom: 3rem;
   margin-left: auto;
   margin-right: auto;
-  color: white;
+  font-size: 0.8rem;
+  color: #bbb;
 }
 
 #form-title {
@@ -493,7 +484,7 @@ a:hover {
   margin-bottom: 1.5rem;
 	padding: 0.2rem 0.2rem;
 	border-radius:0.3rem;
-	background:rgba(0,0,0,0.3);
+	background:rgba(255,255,255,0.1);
   caret-color: white;
   color: #ddd;
   font-size: 0.9em;
@@ -533,11 +524,11 @@ input[type="file"] {
 }
 
 #description-textbox {
-  margin-left: auto;
-  margin-right: auto;
+  min-width: 19.75rem;
+  max-width: 19.75rem;
   flex: 0 0 19.5rem;
   height: 7rem;
-  background: rgba(0,0,0,0.3);
+  background: rgba(255,255,255,0.1);
   border: 0.05rem solid transparent;
   border-radius: 0.3rem;
   padding: 0.3rem 0.3rem;
@@ -581,7 +572,7 @@ input[type="file"] {
     /* text-shadow: 0px 0px 10px rgba(0,0,0,0.2);*/
     /* box-shadow: 0 0 20px #eee; */
     background-color: transparent;
-    background-image: linear-gradient(to right, rgba(0,0,0,0.3)  0%, rgba(100,100,100,0.3) 51%, rgba(0,0,0,0.3) 100%);
+    background-image: linear-gradient(to right, rgba(255,255,255,0.1)  0%, rgba(100,100,100,0.3) 51%, rgba(255,255,255,0.1) 100%);
 
     color: white;
     font-size: 1.3rem;
@@ -595,10 +586,10 @@ input[type="file"] {
 
 #custom-file-upload {
   width: 7rem;
-  height: 1.1rem;
+  height: 1rem;
   border-radius: 0.3rem;
   margin-left: 2.2rem;
-  background-color: rgba(0,0,0,0.3);
+  background-color: rgba(255,255,255,0.1);
   display: inline-block;
   padding: 0.2rem 0.4rem;
   border: 0.05rem solid transparent;
