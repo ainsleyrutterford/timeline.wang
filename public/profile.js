@@ -55,16 +55,35 @@ async function handle_form(response) {
   if (!json_response.errors) {
     window.location.href = '/profile';
   } else {
-    // var form = document.getElementById("form");
-    // var html = "<div id=\"errors-container\"><ul id=\"error-list\">";
-    // for (var i = 0; i < json_response.errors.length; i++) {
-    //   html += "<li class=\"error-response\">" + json_response.errors[i].msg + "</li>";
-    // }
-    // html += "</ul></div>";
-    // form.innerHTML = html + form.innerHTML;
+    var title_error = document.getElementById("title-error");
+    var date_error = document.getElementById("date-error");
+    var description_error = document.getElementById("description-error");
 
-    // All of the text above will be changed so removed it for now.
-    alert("errors!");
+    title_error.innerHTML = "";
+    date_error.innerHTML = "";
+    description_error.innerHTML = "";
+
+    for (var i = 0; i < json_response.errors.length; i++) {
+      switch (json_response.errors[i].msg) {
+        case ("title_min"):
+          title_error.innerHTML = "Please enter a title";
+          break;
+        case ("title_max"):
+          title_error.innerHTML = "Titles must be less than 40 characters";
+          break;
+        case ("description_min"):
+          description_error.innerHTML = "Please enter a description";
+          break;
+        case ("description_max"):
+          description_error.innerHTML = "Maximum 300 characters";
+          break;
+        case ("date"):
+          date_error.innerHTML = "Please enter a date";
+          break;
+        default:
+          break;
+      }
+    }
   }
 }
 
@@ -78,8 +97,8 @@ window.onclick = function(event) {
   } else if (event.target.id == button.id || event.target.parentNode.id == button.id) {
     // had to use id as it wasn't working otherwise.
     modal.style.display = "block";
-    var errors = document.getElementById("errors-container");
-    errors.parentNode.removeChild(errors);
+    var title_input = document.getElementById("title-textbox");
+    title_input.focus();
   }
 }
 
@@ -88,12 +107,20 @@ var form = document.getElementById("form");
 form.addEventListener("submit", function (event) {
   event.preventDefault();
 
+  var image_error = document.getElementById("image-error");
+  image_error.innerHTML = "";
+
   var file   = document.querySelector('input[type=file]').files[0];
   var reader = new FileReader();
 
   reader.addEventListener("load", function () {
     var image = reader.result;
     image = image.split(","); // removing the "data:image/png;base64,"
+
+    if ((image[0] !== "data:image/png;base64") && (image[0] !== "data:image/jpeg;base64")) {
+      var error = document.getElementById("image-error");
+      error.innerHTML = "Should be .png .jpg .jpeg";
+    }
 
     var form_data = new FormData(form);
     form_data.append('image', image[1]);
@@ -111,5 +138,42 @@ form.addEventListener("submit", function (event) {
 
   if (file) {
     reader.readAsDataURL(file);
+  } else {
+    var error = document.getElementById("image-error");
+    error.innerHTML = "Please select an image";
+  }
+});
+
+var file_upload = document.getElementById("custom-file-upload");
+var image_text = document.getElementById("image-text");
+
+file_upload.addEventListener("change", function () {
+  var file_name= document.querySelector('input[type=file]').files[0].name;
+  image_text.innerHTML = file_name;
+});
+
+var text_box = document.getElementById("description-textbox");
+
+text_box.addEventListener('input', function () {
+  var length = this.value.length;
+
+  var current = document.getElementById("current");
+  var maximum = document.getElementById("maximum");
+  current.innerHTML = length;
+
+  if (length > 300) {
+    current.style.color = "#ff4f4f";
+    maximum.style.color = "#ff4f4f";
+  } else {
+    current.style.color = "white";
+    maximum.style.color = "white";
+  }
+});
+
+text_box.addEventListener('keydown', function (event) {
+  if (event.keyCode == 13) {
+    event.preventDefault();
+    var submit = document.getElementById("form-submit");
+    submit.click();
   }
 });

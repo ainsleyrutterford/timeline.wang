@@ -146,17 +146,17 @@ app.post('/contribute',
   [
     check('title')
     .isLength({ min: 1 })
-    .withMessage('You must enter a title')
-    .isLength({ max: 30 })
-    .withMessage('Titles must be less than 30 characters'),
+    .withMessage('title_min')
+    .isLength({ max: 40 })
+    .withMessage('title_max'),
     check('description')
     .isLength({ min: 1 })
-    .withMessage('You must enter a description')
-    .isLength({ max: 120 })
-    .withMessage('Descriptions must be less than 120 characters'),
+    .withMessage('description_min')
+    .isLength({ max: 300 })
+    .withMessage('description_max'),
     check('date')
     .isLength({ min: 1 })
-    .withMessage('You must enter a date'),
+    .withMessage('date'),
   ],
   function (req, res) {
     var errors = validationResult(req);
