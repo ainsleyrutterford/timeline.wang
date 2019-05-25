@@ -86,29 +86,34 @@ a:hover {
 }
 
 .name {                   /* First and last name */
-  display: flex;
-  flex: 0 1 auto;          /* div will shrink to text */
-
-  height: 0.7rem;
-  margin-bottom: 0.5rem;
+  height: 1.6rem;
+  margin-bottom: 0rem;
+  max-width: 14rem;
 
   font-weight: 570;
   font-size: 1.5rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  overflow-wrap: break-word !important;
+
 }
 
 .username {               /* simple username in a lighter color */
-  display: flex;
-
   height: 0.8rem;
-  max-width: 15.2rem;
+  max-width: 14rem;
   margin-bottom: 1rem;
   padding-bottom: 1.9rem;
-  padding-top: 0.7rem;
+  padding-top: 0rem;
 
   color: #878481;
   border-bottom: 0.05rem solid #ededed;
 
   font-size: 1.1rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  overflow-wrap: break-word !important;
 }
 
 .number-contributions {      /* number of contributions made by the user */
@@ -364,13 +369,18 @@ a:hover {
 
   font-size: 1rem;
   font-weight: 580;
+
+  white-space: nowrap;
 }
 
 .contribution-title {
-  flex: 0 1 auto;
-
+  max-width: 25rem;
   font-size: 1rem;
   font-weight: 400;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  overflow-wrap: break-word !important;
 }
 
 .description {
@@ -665,8 +675,8 @@ input[type="file"] {
 }
 
 #custom-file-upload {
-  width: 7rem;
-  height: 1rem;
+  width: 7.4rem;
+  height: 1.1rem;
   border-radius: 0.3rem;
   margin-left: 2.2rem;
   background-color: rgba(255,255,255,0.1);
@@ -677,6 +687,9 @@ input[type="file"] {
   font-size: 0.8rem;
   color: #ddd;
   text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  overflow-wrap: break-word !important;
 }
 
 #custom-file-upload:focus {
