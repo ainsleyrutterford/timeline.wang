@@ -2,6 +2,10 @@
 
 fetch('/user', { method: 'GET', credentials: 'include' } ).then(handle_user);
 
+var avatar = document.querySelector(".avatar");
+var number = Math.floor(Math.random()*4)+1;
+avatar.src = "avatars/avatar-" + number + ".png";
+
 async function handle_contributions(response) {
   const json_response = await response.json();
   var contributions_container = document.querySelector(".contributions");
@@ -29,14 +33,12 @@ async function handle_user(response) {
     const user = await response.json();
 
     var title = document.querySelector("title");
-    var navbar = document.getElementById("right-navbar");
     var name = document.querySelector(".name");
     var username = document.querySelector(".username");
     var contributions = document.querySelector(".number-contributions");
     var date = document.querySelector(".date-joined");
 
     title.innerHTML = user.username;
-    navbar.innerHTML += "<li class=\"navbar-right\"><a href=\"/logout\">Log out</a></li>";
     name.innerHTML = user.firstname + " " + user.surname;
     username.innerHTML = user.username;
     contributions.innerHTML += user.contributions + " contributions";
@@ -53,13 +55,16 @@ async function handle_form(response) {
   if (!json_response.errors) {
     window.location.href = '/profile';
   } else {
-    var form = document.getElementById("form");
-    var html = "<div id=\"errors-container\"><ul id=\"error-list\">";
-    for (var i = 0; i < json_response.errors.length; i++) {
-      html += "<li class=\"error-response\">" + json_response.errors[i].msg + "</li>";
-    }
-    html += "</ul></div>";
-    form.innerHTML = html + form.innerHTML;
+    // var form = document.getElementById("form");
+    // var html = "<div id=\"errors-container\"><ul id=\"error-list\">";
+    // for (var i = 0; i < json_response.errors.length; i++) {
+    //   html += "<li class=\"error-response\">" + json_response.errors[i].msg + "</li>";
+    // }
+    // html += "</ul></div>";
+    // form.innerHTML = html + form.innerHTML;
+
+    // All of the text above will be changed so removed it for now.
+    alert("errors!");
   }
 }
 

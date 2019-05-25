@@ -48,10 +48,6 @@ passport.deserializeUser(function(id, cb) {
   });
 });
 
-// Configure view engine to render EJS templates.
-app.set('views', __dirname + '/public');
-app.set('view engine', 'ejs');
-
 // Use application-level middleware for common functionality, including
 // logging, parsing, and session handling.
 app.use(require('cookie-parser')());
@@ -65,37 +61,51 @@ app.use(require('connect-flash')());
 app.use(passport.initialize());
 app.use(passport.session());
 
+// Serve static files in the 'public' directory.
+app.use(express.static('public'));
+
 // Define routes.
 app.get('/',
   function(req, res) {
-    res.render('index', { user: req.user });
+    res.sendFile(__dirname + '/public/index.html');
   });
 
 app.get('/timeline',
   function(req, res) {
-    res.render('timeline', { user: req.user });
+    // res.render('timeline', { user: req.user });
+    res.sendFile(__dirname + '/public/timeline.html');
   });
 
 app.get('/about',
   function(req, res) {
-    res.render('about', { user: req.user });
+    // res.render('about', { user: req.user });
+    res.sendFile(__dirname + '/public/about.html');
   });
 
 app.get('/login',
   function(req, res) {
-    res.render('login', { message: req.flash('error') });
+    // res.render('login', { message: req.flash('error') });
+    res.sendFile(__dirname + '/public/login.html');
   });
 
-app.post('/login',
-  passport.authenticate('local', { failureRedirect: '/login',
-                                   failureFlash: true }),
-  function(req, res) {
-    res.redirect('/');
-  });
+app.post('/login', function (req, res, next) {
+  passport.authenticate('local', function (err, user, info) {
+    if (err) { return next(err); }
+    if (!user) {
+      res.json(info);
+    } else {
+      req.login(user, function (err) {
+        if (err) { return next(err); }
+        res.json({ message: '' });
+      });
+    }
+  }) (req, res, next);
+});
 
 app.get('/signup',
   function(req, res) {
-    res.render('signup', { errors: req.errors });
+    // res.render('signup', { errors: req.errors });
+    res.sendFile(__dirname + '/public/signup.html');
   });
 
 app.post('/signup',
@@ -116,22 +126,20 @@ app.post('/signup',
   async function(req, res) {
     var errors = validationResult(req);
     if (!errors.isEmpty()) {
-      res.render('signup', { errors: errors.array() });
-      return;
-    }
-    const body = req.body;
-    var success = await register_user(body.username, body.password, body.firstname, body.surname);
-    if (success) {
-      req.flash('error', 'You can now log in!');
-      res.redirect('/login');
+      res.json({ errors: errors.array() });
     } else {
-      const user_error = [{ location: 'body',
-                            param:    'username',
-                            value:    '',
-                            msg:      'Username already exists' }];
-      res.render('signup', { errors: user_error });
+      const body = req.body;
+      var success = await register_user(body.username, body.password, body.firstname, body.surname);
+      if (success) {
+        res.json({ success: 'yes' });
+      } else {
+        const user_error = [{ location: 'body',
+                              param:    'username',
+                              value:    '',
+                              msg:      'Username already exists' }];
+        res.json({ errors: user_error });
+      }
     }
-    res.end();
   });
 
 app.post('/contribute',
@@ -202,11 +210,9 @@ app.get('/logout',
 app.get('/profile',
   require('connect-ensure-login').ensureLoggedIn(),
   function(req, res) {
-    res.render('profile', { user: req.user });
+    // res.render('profile', { user: req.user });
+    res.sendFile(__dirname + '/public/profile.html');
   });
-
-// Serve static files in the 'public' directory.
-app.use(express.static('public'));
 
 if (process.argv[2] === 'local') {
   app.listen(process.env.PORT || 8080, function() {
