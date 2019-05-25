@@ -24,6 +24,19 @@ The ordering is as follows:
   box-sizing: border-box;
 }
 
+::-webkit-input-placeholder { /* Edge */
+  color: #c6c6c6;
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #c6c6c6;
+}
+
+::placeholder {
+  color: #c6c6c6;
+}
+
+
 body {
   font-family: 'Open Sans', sans-serif;
 }
@@ -96,6 +109,16 @@ body {
 }
 
 /* Sign up form */
+.logo {
+  height: 10rem;
+}
+
+.logo-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
 .login-item {
 }
 
@@ -103,7 +126,7 @@ body {
   width: 25rem;
   margin-right: auto;
   margin-left: auto;
-  margin-top: 10%;
+  margin-top: 5%;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
@@ -121,9 +144,12 @@ body {
 }
 
 .error-message {
-  width: 15rem;
-  margin-bottom: 1rem;
+  width: 18rem;
+  margin-bottom: 0.5rem;
   text-align: left;
+  margin-left: 0.9rem;
+  font-size: 0.8rem;
+  color: #ff4c4c;
 }
 
 .hidden {
@@ -131,15 +157,22 @@ body {
 }
 
 .form-input {
-  width: 15rem;
+  width: 18rem;
+  height: 2rem;
   border: none;
   padding: 0rem 0.5rem 0rem 0.5rem;
   border-radius: 0.5rem;
-  background-color: blue;
+  background-color: rgba(0, 0, 0, 0.03);
 
   font-size: 1.1rem;
   margin-bottom: 0;
+  outline: none;
+  color: #383838;
+}
 
+.form-input:focus {
+  outline: none;
+  border:0.05rem solid rgb(30, 211,252, 0.5);
 }
 
 #firstname-label {
@@ -175,5 +208,32 @@ body {
 }
 
 #login-submit {
+  margin: 0.6rem auto 0rem auto;
+  width: 8.5rem;
+  height: 3rem;
 
+  border-radius: 0.3rem;
+  border-color: transparent;
+  outline: none;
+
+  transition: 0.5s;
+  background-size: 200% auto;
+  /* text-shadow: 0px 0px 10px rgba(0,0,0,0.2);*/
+  /* box-shadow: 0 0 20px #eee; */
+  background-color: transparent;
+
+  color: #515151;
+  font-size: 1.3rem;
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 1.6rem;
+  font-weight: 500;
+  transition: all .5s ease-in-out;
+}
+
+#login-submit:hover {
+  background-position: right center;
+  cursor: pointer;
+  transform: scale(1.1);
+  color: #878787;
 }
