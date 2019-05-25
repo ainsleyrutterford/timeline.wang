@@ -374,15 +374,15 @@ a:hover {
 }
 
 .description {
-  display: flex;
-
   height: 6.5rem;
+  max-width: 36.5rem;
   padding-top: 0.3rem;
 
   border-top: 0.1rem solid #ddd;
   color: #424242;
 
   font-size: 0.8rem;
+  overflow-wrap: break-word !important;
 }
 
 /* The Modal (background) */
