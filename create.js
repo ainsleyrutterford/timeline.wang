@@ -22,6 +22,7 @@ async function create() {
                      contributor_id INT NOT NULL,          \
                      contributor_username TEXT NOT NULL,   \
                      contribution_date TEXT NOT NULL,      \
+                     serialised_cont_date INT NOT NULL,    \
                      historical_date TEXT NOT NULL,        \
                      serialised_hist_date INT NOT NULL,    \
                      title VARCHAR(80) NOT NULL,           \

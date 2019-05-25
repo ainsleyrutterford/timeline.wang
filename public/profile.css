@@ -171,6 +171,7 @@ a:hover {
   background-color: #fff;
   position: sticky;              /* Sticking the container to the top of the screen */
   top: 0rem;
+  z-index: 2;
 
   height: 4rem;
   margin-bottom: 1rem;
@@ -277,7 +278,7 @@ a:hover {
   position: absolute;
   background-color: #ffffff;
   min-width: 160px;
-  z-index: 1;
+  z-index: 2;
   border: 0.05rem solid;
   border-color: #fff #ddd #ddd #ddd;
   border-radius: 0rem 0rem 0.3rem 0.3rem;
@@ -298,6 +299,7 @@ a:hover {
 
 .dropdown-content a:hover {
   color: #000;
+  cursor: pointer;
 }
 /*------- contribution card -------*/
 
@@ -401,14 +403,14 @@ a:hover {
   flex-direction: column;
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  z-index: 10; /* Sit on top */
   left: 0;
   top: 0;
   width: 100%; /* Full width */
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
   background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(255,255,255,0.1); /* Black w/ opacity */
+  background-color: rgba(0,0,0,0.3); /* Black w/ opacity */
   padding-top: 60px;
   border: none;
 }

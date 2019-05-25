@@ -1,31 +1,37 @@
 "use strict";
 
+var contributions = [];
+
 fetch('/user', { method: 'GET', credentials: 'include' } ).then(handle_user);
 
 var avatar = document.querySelector(".avatar");
 var number = Math.floor(Math.random()*4)+1;
 avatar.src = "avatars/avatar-" + number + ".png";
 
-async function handle_contributions(response) {
-  const json_response = await response.json();
-  var contributions_container = document.querySelector(".contributions");
+function render_contributions() {
+  var contributions_container = document.getElementById("container-for-javascript");
   var html = "";
-  for (var i = 0; i < json_response.length; i++) {
+  for (var i = 0; i < contributions.length; i++) {
     html += "<div class=\"contribution\">\
                <div class=\"image-and-description\"> \
-                 <img class=\"contribution-image\" src=\"" + json_response[i].image_source + "\"/> \
+                 <img class=\"contribution-image\" src=\"" + contributions[i].image_source + "\"/> \
                  <div class=\"date-title-text\"> \
                    <div class=\"date-title\">\
-                     <div class=\"historical-date\">" + json_response[i].historical_date + "</div> \
-                     <div class=\"contribution-title\">" + json_response[i].title + "</div> \
+                     <div class=\"historical-date\">" + contributions[i].historical_date + "</div> \
+                     <div class=\"contribution-title\">" + contributions[i].title + "</div> \
                    </div>\
-                   <div class=\"description\">"+ json_response[i].description +"</div> \
+                   <div class=\"description\">"+ contributions[i].description +"</div> \
                  </div>\
                </div>\
-               <div class=\"contribution-date\">"+ json_response[i].contribution_date +"</div> \
+               <div class=\"contribution-date\">"+ contributions[i].contribution_date +"</div> \
              </div>";
   }
-  contributions_container.innerHTML += html;
+  contributions_container.innerHTML = html;
+}
+
+async function handle_contributions(response) {
+  contributions = await response.json();
+  render_contributions();
 }
 
 async function handle_user(response) {
@@ -177,3 +183,29 @@ text_box.addEventListener('keydown', function (event) {
     submit.click();
   }
 });
+
+var sort_by_historical = document.getElementById("hist-date-button");
+
+sort_by_historical.addEventListener('click', function (event) {
+  sort_contributions('historical');
+  render_contributions();
+});
+
+var sort_by_contribution = document.getElementById("cont-date-button");
+
+sort_by_contribution.addEventListener('click', function (event) {
+  sort_contributions('contribution');
+  render_contributions();
+});
+
+function sort_contributions(sort_by) {
+  if (sort_by == 'historical') {
+    contributions.sort(function(a, b) {
+      return a.serialised_hist_date > b.serialised_hist_date;
+    });
+  } else if (sort_by == 'contribution') {
+    contributions.sort(function(a, b) {
+      return a.serialised_cont_date > b.serialised_cont_date;
+    });
+  }
+}
