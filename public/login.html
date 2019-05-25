@@ -2,18 +2,65 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-GB" lang="en-GB">
   <head>
     <meta charset="UTF-8"/>
-    <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="login.css"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans"/>
     <title>Log in</title>
-    <link rel="icon" href="icons/tl.svg" type="image/x-icon"/>
+    <link rel="icon" href="icons/tl.png" type="image/x-icon"/>
     <script async="false" defer="defer" src="login.js"></script>
   </head>
   <body>
-    <form id="form">
-      <div class="login-error"></div></br>
-      <input class="input" type="text" name="username" placeholder="Username"/></br>
-      <input class="input" type="password" name="password" placeholder="Password"/></br>
-      <input type="submit" value="Log in" class="submit-button"/>
-    </form>
+
+    <!-- Making the navigation bar -->
+    <nav class="navbar">
+        <a href="/"><div id="wanglogo"></div></a>
+      <div class="sub-navbar">
+        <ul class="main-nav" id="js-menu">
+          <li>
+              <a href="#" class="nav-links">Profile</a>
+          </li>
+          <li>
+              <a href="#" class="nav-links">About</a>
+          </li>
+        </ul>
+        <ul class="main-nav" id="js-menu">
+          <li>
+              <a href="#" class="nav-links">Log in</a>
+          </li>
+          <li>
+              <a href="#" class="nav-links">Sign up</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div id="form-container">
+      <div class="logo-container">
+        <img  src="icons/tl.svg" class="logo"/>
+      </div>
+      <div class="login-item">
+        <form id="form-login">
+          <div class="form-field">
+            <label id="username-label" for="login-username">
+              <span class="hidden"></span>
+            </label>
+            <input id="login-username" class="form-input" type="text" name="username" placeholder="Username" required/>
+          </div>
+          <div class="error-message">error</div>
+          <div class="form-field">
+            <label id="password-label" for="login-password">
+              <span class="hidden"></span>
+            </label>
+            <input id="login-password" class="form-input" type="password" name="password" placeholder="Password" required/>
+          </div>
+          <div class="error-message">error</div>
+          <div class="form-field">
+            <input id="submit-button" type="submit" value="Log in" required/>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="login-error"></div>
+
   </body>
 </html>

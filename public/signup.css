@@ -119,9 +119,6 @@ body {
   margin-bottom: 2rem;
 }
 
-.login-item {
-}
-
 #form-container {
   width: 25rem;
   margin-right: auto;
@@ -132,15 +129,11 @@ body {
   flex-direction: column;
 }
 
-#form-login {
+#form-signup {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-}
-
-.form-field {
-
 }
 
 .error-message {
@@ -175,39 +168,7 @@ body {
   border:0.05rem solid rgb(30, 211,252, 0.5);
 }
 
-#firstname-label {
-
-}
-
-#login-firstname {
-
-}
-
-#surname-label {
-
-}
-
-#login-surname {
-
-}
-
-#username-label {
-
-}
-
-#login-username {
-
-}
-
-#password-label {
-
-}
-
-#login-password {
-
-}
-
-#login-submit {
+#signup-submit {
   margin: 0.6rem auto 0rem auto;
   width: 8.5rem;
   height: 3rem;
@@ -223,17 +184,15 @@ body {
   background-color: transparent;
 
   color: #515151;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   font-weight: 500;
   cursor: pointer;
-  font-size: 1.6rem;
   font-weight: 500;
-  transition: all .5s ease-in-out;
 }
 
-#login-submit:hover {
+#signup-submit:hover {
   background-position: right center;
   cursor: pointer;
-  transform: scale(1.1);
+  /* transform: scale(1.03); */
   color: #878787;
 }
