@@ -55,15 +55,6 @@ async function handle_form(response) {
   if (!json_response.errors) {
     window.location.href = '/profile';
   } else {
-    // var form = document.getElementById("form");
-    // var html = "<div id=\"errors-container\"><ul id=\"error-list\">";
-    // for (var i = 0; i < json_response.errors.length; i++) {
-    //   html += "<li class=\"error-response\">" + json_response.errors[i].msg + "</li>";
-    // }
-    // html += "</ul></div>";
-    // form.innerHTML = html + form.innerHTML;
-
-    // All of the text above will be changed so removed it for now.
     var title_error = document.getElementById("title-error");
     var date_error = document.getElementById("date-error");
     var description_error = document.getElementById("description-error");
@@ -106,6 +97,8 @@ window.onclick = function(event) {
   } else if (event.target.id == button.id || event.target.parentNode.id == button.id) {
     // had to use id as it wasn't working otherwise.
     modal.style.display = "block";
+    var title_input = document.getElementById("title-textbox");
+    title_input.focus();
   }
 }
 
@@ -118,7 +111,6 @@ form.addEventListener("submit", function (event) {
   image_error.innerHTML = "";
 
   var file   = document.querySelector('input[type=file]').files[0];
-  console.log(document.querySelector('input[type=file]').files);
   var reader = new FileReader();
 
   reader.addEventListener("load", function () {
@@ -145,10 +137,8 @@ form.addEventListener("submit", function (event) {
   }, false);
 
   if (file) {
-    console.log("form1");
     reader.readAsDataURL(file);
   } else {
-    console.log("form2");
     var error = document.getElementById("image-error");
     error.innerHTML = "Please select an image";
   }
@@ -177,5 +167,13 @@ text_box.addEventListener('input', function () {
   } else {
     current.style.color = "white";
     maximum.style.color = "white";
+  }
+});
+
+text_box.addEventListener('keydown', function (event) {
+  if (event.keyCode == 13) {
+    event.preventDefault();
+    var submit = document.getElementById("form-submit");
+    submit.click();
   }
 });
