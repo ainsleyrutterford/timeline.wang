@@ -64,7 +64,35 @@ async function handle_form(response) {
     // form.innerHTML = html + form.innerHTML;
 
     // All of the text above will be changed so removed it for now.
-    alert("errors!");
+    var title_error = document.getElementById("title-error");
+    var date_error = document.getElementById("date-error");
+    var description_error = document.getElementById("description-error");
+
+    title_error.innerHTML = "";
+    date_error.innerHTML = "";
+    description_error.innerHTML = "";
+
+    for (var i = 0; i < json_response.errors.length; i++) {
+      switch (json_response.errors[i].msg) {
+        case ("title_min"):
+          title_error.innerHTML = "Please enter a title";
+          break;
+        case ("title_max"):
+          title_error.innerHTML = "Titles must be less than 40 characters";
+          break;
+        case ("description_min"):
+          description_error.innerHTML = "Please enter a description";
+          break;
+        case ("description_max"):
+          description_error.innerHTML = "Maximum 300 characters";
+          break;
+        case ("date"):
+          date_error.innerHTML = "Please enter a date";
+          break;
+        default:
+          break;
+      }
+    }
   }
 }
 
@@ -78,8 +106,6 @@ window.onclick = function(event) {
   } else if (event.target.id == button.id || event.target.parentNode.id == button.id) {
     // had to use id as it wasn't working otherwise.
     modal.style.display = "block";
-    var errors = document.getElementById("errors-container");
-    errors.parentNode.removeChild(errors);
   }
 }
 
@@ -88,12 +114,20 @@ var form = document.getElementById("form");
 form.addEventListener("submit", function (event) {
   event.preventDefault();
 
+  var image_error = document.getElementById("image-error");
+  image_error.innerHTML = "";
+
   var file   = document.querySelector('input[type=file]').files[0];
   var reader = new FileReader();
 
   reader.addEventListener("load", function () {
     var image = reader.result;
     image = image.split(","); // removing the "data:image/png;base64,"
+
+    if ((image[0] !== "data:image/png;base64") && (image[0] !== "data:image/jpeg;base64")) {
+      var error = document.getElementById("image-error");
+      error.innerHTML = "Should be .png .jpg .jpeg";
+    }
 
     var form_data = new FormData(form);
     form_data.append('image', image[1]);
@@ -111,5 +145,8 @@ form.addEventListener("submit", function (event) {
 
   if (file) {
     reader.readAsDataURL(file);
+  } else {
+    var error = document.getElementById("image-error");
+    error.innerHTML = "Please select an image";
   }
 });
