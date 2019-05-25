@@ -2,22 +2,79 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-GB" lang="en-GB">
   <head>
     <meta charset="UTF-8"/>
-    <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="signup.css"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans"/>
     <title>Sign up</title>
-    <link rel="icon" href="icons/tl.svg" type="image/x-icon"/>
+    <link rel="icon" href="icons/tl.png" type="image/x-icon"/>
     <script async="false" defer="defer" src="signup.js"></script>
   </head>
   <body>
-    <div class="form-container">
-      <form id="form">
-        <div class="login-error"></div>
-        <input class="input" type="text" name="firstname" placeholder="First name"/>
-        <input class="input" type="text" name="surname" placeholder="Surname"/>
-        <input class="input" type="text" name="username" placeholder="Username"/>
-        <input class="input" type="password" name="password" placeholder="Password"/>
-        <input type="submit" value="Sign up" class="submit-button"/>
-      </form>
+
+    <!-- Making the navigation bar -->
+    <nav class="navbar">
+        <a href="/"><div id="wanglogo"></div></a>
+      <div class="sub-navbar">
+        <ul class="main-nav" id="js-menu">
+          <li>
+              <a href="#" class="nav-links">Profile</a>
+          </li>
+          <li>
+              <a href="#" class="nav-links">About</a>
+          </li>
+        </ul>
+        <ul class="main-nav" id="js-menu">
+          <li>
+              <a href="/login" class="nav-links">Log in</a>
+          </li>
+          <li>
+              <a href="/signup" class="nav-links">Sign up</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div id="form-container">
+      <div class="logo-container">
+        <img  src="icons/tl.svg" class="logo"/>
+      </div>
+      <div class="signup-item">
+        <form id="form-signup">
+          <div class="form-field">
+            <label id="firstname-label" for="signup-firstname">
+              <span class="hidden"></span>
+            </label>
+            <input id="signup-firstname" class="form-input" type="text" name="firstname" placeholder="First name"/>
+          </div>
+          <div class="error-message">error</div>
+          <div class="form-field">
+            <label id="surname-label" for="signup-surname">
+              <span class="hidden"></span>
+            </label>
+            <input id="signup-surname" class="form-input" type="text" name="surname" placeholder="Surname"/>
+          </div>
+          <div class="error-message">error</div>
+          <div class="form-field">
+            <label id="username-label" for="signup-username">
+              <span class="hidden"></span>
+            </label>
+            <input id="signup-username" class="form-input" type="text" name="username" placeholder="Username"/>
+          </div>
+          <div class="error-message">error</div>
+          <div class="form-field">
+            <label id="password-label" for="signup-password">
+              <span class="hidden"></span>
+            </label>
+            <input id="signup-password" class="form-input" type="password" name="password" placeholder="Password"/>
+          </div>
+          <div class="error-message">error</div>
+          <div class="form-field">
+            <input id="signup-submit" type="submit" value="Sign up"/>
+          </div>
+        </form>
+      </div>
     </div>
+
+    <div class="signup-error"></div>
+
   </body>
 </html>
