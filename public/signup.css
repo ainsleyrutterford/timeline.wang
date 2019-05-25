@@ -1,0 +1,32 @@
+/*
+This file contatins the styling for the sign up
+page on timeline.
+/*
+
+/*
+This styling file follows the "outside in" convention.
+CSS properties in this file are ordered by how much they
+impact the selected elements or other elements aroud them.
+*/
+
+/*
+The ordering is as follows:
+  - Layout Properties
+  - Box Model Properties
+  - Visual Properties
+  - Typography Properties
+  - Miscellaneous properties
+*/
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+
+#form-container {
+
+}
