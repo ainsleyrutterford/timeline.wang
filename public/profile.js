@@ -150,3 +150,10 @@ form.addEventListener("submit", function (event) {
     error.innerHTML = "Please select an image";
   }
 });
+
+var file_upload = document.getElementById("custom-file-upload");
+
+file_upload.addEventListener("change", function () {
+  var file_name= document.querySelector('input[type=file]').files[0].name;
+  file_upload.innerHTML = "<input type=\"file\" name=\"image\">" + file_name;
+});
