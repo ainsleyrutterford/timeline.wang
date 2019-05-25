@@ -446,7 +446,7 @@ a:hover {
   flex: 0 0 20rem;
   height: 1.2rem;
 
-  border:none;
+  border: none;
 	padding: 0.2rem 0.2rem;
 	border-radius: 0.3rem;
 	background:rgba(255,255,255,0.1);
@@ -487,7 +487,7 @@ a:hover {
 }
 
 #title-textbox {
-  margin-bottom: 1.4rem;
+  margin-bottom: 0rem;
   border: 0.05rem solid transparent;
   color: #ddd;
 }
@@ -496,6 +496,17 @@ a:hover {
     outline: none;
     border: 0.05rem solid rgb(30, 211,252, 0.5);
   }
+
+#title-error {
+  font-size: 0.7rem;
+  margin-bottom: 0.5em;
+  color: #ff4f4f;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+  flex: 0 0 20rem;
+  height: 0.7rem;
+}
 
 #form-date {
   width: 4rem;
@@ -512,7 +523,7 @@ a:hover {
 #date-textbox {
   width: 7.4rem;
   margin-left: 6.87rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 0rem;
 	padding: 0.2rem 0.2rem;
 	border-radius:0.3rem;
 	background:rgba(255,255,255,0.1);
@@ -526,6 +537,29 @@ a:hover {
     outline: none;
     border:0.05rem solid rgb(30, 211,252, 0.5);
   }
+
+#date-image-error {
+  display: flex;
+  justify-content: flex-start;
+  flex: 0 0 20rem;
+  margin-bottom: 0.3em;
+  margin-left: auto;
+  margin-right: auto;
+  height: 0.7rem;
+}
+
+#date-error {
+  font-size: 0.7rem;
+  width: 14.4em;
+  text-align: left;
+  color: #ff4f4f;
+}
+
+#image-error {
+  font-size: 0.7rem;
+  text-align: left;
+  color: #ff4f4f;
+}
 
 #form-image {
   margin-left: 7.9rem;
@@ -546,7 +580,6 @@ input[type="file"] {
   clip-path: inset(50%);
   border: 0;
 }
-
 
 #form-description {
   color: #ddd;
@@ -571,6 +604,22 @@ input[type="file"] {
 #description-textbox:focus {
   outline: none;
   border:0.05rem solid rgb(30, 211,252, 0.5);
+}
+
+#description-error-counter-container {
+  display: flex;
+  justify-content: space-between;
+  flex: 0 0 20rem;
+  margin-bottom: 0.3em;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#description-error {
+  font-size: 0.7rem;
+  text-align: left;
+  color: #ff4f4f;
+  height: 0.7rem
 }
 
 #the-count {

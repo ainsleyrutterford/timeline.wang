@@ -55,13 +55,16 @@ async function handle_form(response) {
   if (!json_response.errors) {
     window.location.href = '/profile';
   } else {
-    var form = document.getElementById("form");
-    var html = "<div id=\"errors-container\"><ul id=\"error-list\">";
-    for (var i = 0; i < json_response.errors.length; i++) {
-      html += "<li class=\"error-response\">" + json_response.errors[i].msg + "</li>";
-    }
-    html += "</ul></div>";
-    form.innerHTML = html + form.innerHTML;
+    // var form = document.getElementById("form");
+    // var html = "<div id=\"errors-container\"><ul id=\"error-list\">";
+    // for (var i = 0; i < json_response.errors.length; i++) {
+    //   html += "<li class=\"error-response\">" + json_response.errors[i].msg + "</li>";
+    // }
+    // html += "</ul></div>";
+    // form.innerHTML = html + form.innerHTML;
+
+    // All of the text above will be changed so removed it for now.
+    alert("errors!");
   }
 }
 
