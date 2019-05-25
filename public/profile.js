@@ -118,6 +118,7 @@ form.addEventListener("submit", function (event) {
   image_error.innerHTML = "";
 
   var file   = document.querySelector('input[type=file]').files[0];
+  console.log(document.querySelector('input[type=file]').files);
   var reader = new FileReader();
 
   reader.addEventListener("load", function () {
@@ -144,16 +145,37 @@ form.addEventListener("submit", function (event) {
   }, false);
 
   if (file) {
+    console.log("form1");
     reader.readAsDataURL(file);
   } else {
+    console.log("form2");
     var error = document.getElementById("image-error");
     error.innerHTML = "Please select an image";
   }
 });
 
 var file_upload = document.getElementById("custom-file-upload");
+var image_text = document.getElementById("image-text");
 
 file_upload.addEventListener("change", function () {
   var file_name= document.querySelector('input[type=file]').files[0].name;
-  file_upload.innerHTML = "<input type=\"file\" name=\"image\">" + file_name;
+  image_text.innerHTML = file_name;
+});
+
+var text_box = document.getElementById("description-textbox");
+
+text_box.addEventListener('input', function () {
+  var length = this.value.length;
+
+  var current = document.getElementById("current");
+  var maximum = document.getElementById("maximum");
+  current.innerHTML = length;
+
+  if (length > 300) {
+    current.style.color = "#ff4f4f";
+    maximum.style.color = "#ff4f4f";
+  } else {
+    current.style.color = "white";
+    maximum.style.color = "white";
+  }
 });
