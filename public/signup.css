@@ -21,12 +21,159 @@ The ordering is as follows:
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 body {
   font-family: 'Open Sans', sans-serif;
 }
 
+/* Styling for the navigation bar */
+.navbar {
+  font-size: 1.1rem;
+  background-image: linear-gradient(310deg, #181919 0%, #393a3a  100%);
+  display: flex;
+  justify-content: space-between;
+  height: 4rem;
+  align-items: center;
+}
+
+.sub-navbar {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+#wanglogo {
+  margin-left: 1.5rem;
+  background-image: url("icons/timelinewang.svg");
+  width: 10rem;
+  height: 2rem;
+  z-index: 1;
+}
+
+#wanglogo:hover {
+  background-image: url("icons/timelinewang.svg");
+  opacity: 0.6;
+}
+
+.main-nav {
+    list-style-type: none;
+    display: flex;
+    margin-right: 30px;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.active {
+  display: block;
+}
+
+.main-nav li {
+    text-align: center;
+    margin: 0;
+    margin-left: 2em;
+    min-width: 3rem;
+    white-space: nowrap;
+}
+
+.nav-links {
+    text-decoration: none;
+    color: white;
+}
+
+.navbar-logo {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.7);
+  display: inline-block;
+  font-size: 22px;
+  margin-left: 20px;
+  margin-top: 0;
+}
+
+.nav-links:hover {
+  color: #ccc;
+}
+
+/* Sign up form */
+.login-item {
+}
+
 #form-container {
+  width: 25rem;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 10%;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+}
+
+#form-login {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.form-field {
+
+}
+
+.error-message {
+  width: 15rem;
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.hidden {
+
+}
+
+.form-input {
+  width: 15rem;
+  border: none;
+  padding: 0rem 0.5rem 0rem 0.5rem;
+  border-radius: 0.5rem;
+  background-color: blue;
+
+  font-size: 1.1rem;
+  margin-bottom: 0;
+
+}
+
+#firstname-label {
+
+}
+
+#login-firstname {
+
+}
+
+#surname-label {
+
+}
+
+#login-surname {
+
+}
+
+#username-label {
+
+}
+
+#login-username {
+
+}
+
+#password-label {
+
+}
+
+#login-password {
+
+}
+
+#login-submit {
 
 }
