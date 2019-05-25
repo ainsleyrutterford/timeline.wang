@@ -295,12 +295,17 @@ async function add_contribution(title, historical_date, description, image, user
     await ps.finalize();
 
     var historical = moment(historical_date, "YYYY-MM-DD");
-    var beginning = moment("0000-01-01", "YYYY-MM-DD");
+    var cont_date  = moment(contribution_date, "HH:mm:ss-YYYY-MM-DD")
+    var beginning  = moment("0000-01-01", "YYYY-MM-DD");
     var serialised_hist_date = historical.diff(moment(beginning), 'days');
+    var serialised_cont_date = cont_date.diff(moment(beginning), 'seconds');
 
-    ps = await db.prepare("insert into contributions (contributor_id, contributor_username, contribution_date, historical_date, serialised_hist_date, title, image_source, description, likes) \
-                               values (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    await ps.run(user_id, user.username, contribution_date, historical_date, serialised_hist_date, title, image, description, 0);
+    ps = await db.prepare("insert into contributions (contributor_id, contributor_username, \
+                           contribution_date, serialised_cont_date, historical_date,        \
+                           serialised_hist_date, title, image_source, description, likes)   \
+                           values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    await ps.run(user_id, user.username, contribution_date, serialised_cont_date,
+                 historical_date, serialised_hist_date, title, image, description, 0);
     await ps.finalize();
 
     ps = await db.prepare("select * from contributions where contributor_id=?");
