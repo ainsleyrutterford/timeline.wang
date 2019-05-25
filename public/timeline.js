@@ -64,6 +64,25 @@ function scale_canvas() {
 // Scale the canvas first.
 scale_canvas();
 
+function get_lines(ctx, text, max_width) {
+  var words = text.split(" ");
+  var lines = [];
+  var currentLine = words[0];
+
+  for (var i = 1; i < words.length; i++) {
+    var word = words[i];
+    var width = ctx.measureText(currentLine + " " + word).width;
+    if (width < maxWidth) {
+      currentLine += " " + word;
+    } else {
+      lines.push(currentLine);
+      currentLine = word;
+    }
+  }
+  lines.push(currentLine);
+  return lines;
+}
+
 function Contribution(title, historical_date, serial_date, description, image_source, contributor_username) {
   console.log(title);
   this.x_3D   = (Math.random() * 2) - 1;
@@ -91,6 +110,8 @@ function Contribution(title, historical_date, serial_date, description, image_so
       ctx.drawImage(image, x - size, y, size, size);
       ctx.fillText(historical_date, x + (250 / relative_z), y + (250 / relative_z));
       ctx.fillText(title, x + ctx.measureText(historical_date).width + 2*(250 / relative_z), y + (250 / relative_z));
+      ctx.font = 'bold ' + 14 / relative_z + 'em sans-serif';
+      ctx.fillText(description, x + (250 / relative_z), y + (580 / relative_z))
     }
   }
 }
@@ -113,7 +134,12 @@ function draw_year() {
 
 // The draw() function. Calls itself repeatedly.
 function draw() {
-  ctx.clearRect(0,0, canvas.width, canvas.height);
+  var gradient = ctx.createRadialGradient(x_center, y_center, 0, x_center, y_center, 500);
+  gradient.addColorStop(0, "white");
+  gradient.addColorStop(1, "#eff");
+  ctx.fillStyle = gradient;
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = 'black';
   contributions.forEach(contribution => contribution.draw());
   if (!paused) {
     camera_z += 0.1;
