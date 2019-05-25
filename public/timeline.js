@@ -8,7 +8,7 @@ async function handle(response) {
   const json_response = await response.json();
 
   var sorted = json_response.sort(function(a, b) {
-    return a.serialised_hist_date > b.serialised_hist_date;
+    return a.serialised_hist_date - b.serialised_hist_date;
   });
   earliest = sorted[0].serialised_hist_date;
   latest = sorted[json_response.length - 1].serialised_hist_date;
@@ -103,6 +103,14 @@ function draw_positions() {
   ctx.fillText('camera z: ' + camera_z.toFixed(2), 9, 52);
 }
 
+function draw_year() {
+  var serial_date = (((camera_z - 40)/100) * (latest - earliest)) + earliest;
+  var new_date = moment("0000-01-01", "YYYY-MM-DD").add(Math.floor(serial_date), 'days');
+  ctx.font = 'bold 2em sans-serif';
+  ctx.globalAlpha = 1;
+  ctx.fillText(new_date.format("MMMM YYYY"), 9, 35);
+}
+
 // The draw() function. Calls itself repeatedly.
 function draw() {
   ctx.clearRect(0,0, canvas.width, canvas.height);
@@ -110,7 +118,8 @@ function draw() {
   if (!paused) {
     camera_z += 0.1;
   }
-  draw_positions();
+  // draw_positions();
+  draw_year();
   window.requestAnimationFrame(draw);
 }
 
