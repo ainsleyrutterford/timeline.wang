@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+echo "Installing jshint..."
+npm install jshint --global
+echo "Installing csslint..."
+npm i -g csslint
+
+echo ""
 echo "Running vnu html5 validation check on public/*.html"
 java -Dnu.validator.client.content-type=application/xhtml+xml -Dnu.validator.client.port=80   \
     -Dnu.validator.client.host=html5.validator.nu -cp node_modules/vnu-jar/build/dist/vnu.jar \

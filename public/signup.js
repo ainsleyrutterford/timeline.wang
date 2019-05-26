@@ -23,19 +23,19 @@ async function handle_form(response) {
     json_response.errors.forEach((res) => {
       switch (res.msg) {
         case 'firstname':
-          firstname.innerHTML = "Please enter a first name"
+          firstname.innerHTML = "Please enter a first name";
           break;
         case 'surname':
-          surname.innerHTML = "Please enter a surname"
+          surname.innerHTML = "Please enter a surname";
           break;
         case 'username':
-          username.innerHTML = "Please enter a username"
+          username.innerHTML = "Please enter a username";
           break;
         case 'password':
-          password.innerHTML = "Password must be 5 or more characters"
+          password.innerHTML = "Password must be 5 or more characters";
           break;
         case 'alreadyexists':
-          username.innerHTML = "Username already exists"
+          username.innerHTML = "Username already exists";
           break;
         default:
           break;
