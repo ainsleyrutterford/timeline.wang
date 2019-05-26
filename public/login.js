@@ -1,5 +1,8 @@
 "use strict";
 
+var username_input = document.getElementById("login-username");
+username_input.focus();
+
 var form = document.getElementById("form-structure");
 
 async function handle_form(response) {
@@ -7,8 +10,30 @@ async function handle_form(response) {
   if (!json_response.message) {
     window.location.href = '/';
   } else {
-    var errors = document.querySelector(".login-error");
-    errors.innerHTML = json_response.message;
+    var username = document.getElementById('username-error');
+    var password = document.getElementById('password-error');
+    var username_input = document.getElementById('login-username');
+
+    username.innerHTML = "";
+    password.innerHTML = "";
+
+    switch (json_response.message) {
+      case 'Missing credentials':
+        if (username_input.value === '') {
+          username.innerHTML = "Please enter a username";
+        } else {
+          password.innerHTML = "Please enter a password";
+        }
+        break;
+      case 'username':
+        username.innerHTML = "Username does not exist";
+        break;
+      case 'password':
+        password.innerHTML = "Incorrect password";
+        break;
+      default:
+        break;
+    }
   }
 }
 

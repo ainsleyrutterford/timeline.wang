@@ -30,9 +30,9 @@ passport.use(new Strategy(
   async function(username, password, cb) {
     find_by_username(username, async function(err, user) {
       if (err) { return cb(err); }
-      if (!user) { return cb(null, false, { message: 'Username does not exist' }); }
+      if (!user) { return cb(null, false, { message: 'username' }); }
       const match = await bcrypt.compare(password, user.password);
-      if (!match) { return cb(null, false, { message: 'Incorrect password' }); }
+      if (!match) { return cb(null, false, { message: 'password' }); }
       return cb(null, user);
     });
   }));
@@ -112,16 +112,16 @@ app.post('/signup',
   [
     check('firstname')
     .isLength({ min: 1 })
-    .withMessage('You must enter a first name'),
+    .withMessage('firstname'),
     check('surname')
     .isLength({ min: 1 })
-    .withMessage('You must enter a surname'),
+    .withMessage('surname'),
     check('username')
     .isLength({ min: 1 })
-    .withMessage('You must enter a username'),
+    .withMessage('username'),
     check('password')
     .isLength({ min: 5 })
-    .withMessage('Your password must be at least 5 characters long')
+    .withMessage('password')
   ],
   async function(req, res) {
     var errors = validationResult(req);
@@ -136,7 +136,7 @@ app.post('/signup',
         const user_error = [{ location: 'body',
                               param:    'username',
                               value:    '',
-                              msg:      'Username already exists' }];
+                              msg:      'alreadyexists' }];
         res.json({ errors: user_error });
       }
     }

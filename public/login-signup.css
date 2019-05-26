@@ -30,10 +30,6 @@ The ordering is as follows:
   margin-bottom: 2rem;
 }
 
-.logo {
-  height: 10rem;
-}
-
 #form-container {
   display: flex;
   flex-direction: column;
@@ -55,8 +51,9 @@ The ordering is as follows:
 
 .error-message {      /* Styling the error messages */
   width: 18rem;
+  height: 1rem;
   margin-bottom: 0.5rem;
-  margin-left: 0.9rem;
+  margin-left: 0.1rem;
 
   color: #ff4c4c;
 
@@ -100,13 +97,16 @@ The ordering is as follows:
   font-weight: 500;
 
   cursor: pointer;
-  transition: 0.5s;
-  transition: all .5s ease-in-out;
 }
 
-#submit-button {
+#submit-button:hover {
   background-position: right center;
   cursor: pointer;
-  /* transform: scale(1.1); */
   color: #878787;
+}
+
+/* Animating and styling the svg logo */
+#tl-svg {
+  height: 10rem;
+  z-index: 0;
 }

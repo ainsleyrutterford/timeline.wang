@@ -1,0 +1,96 @@
+/*
+This file contatins the styling for the sign up
+page on timeline.
+/*
+
+/*
+This styling file follows the "outside in" convention.
+CSS properties in this file are ordered by how much they
+impact the selected elements or other elements aroud them.
+*/
+
+/*
+The ordering is as follows:
+  - Layout Properties
+  - Box Model Properties
+  - Visual Properties
+  - Typography Properties
+  - Miscellaneous properties
+*/
+
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  background-color: transparent;
+}
+
+#seethrough-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  /* background-image: linear-gradient(310deg, #181919 0%, #393a3a  100%); */
+  background-color: rgba(0,0,0, 0.1);
+  height: 4rem;
+  font-size: 1.1rem;
+}
+
+#background-container {
+  background-image:
+   linear-gradient( rgba(0,0,0,.6), rgba(0,0,0,.6) ),
+   url("images/frontpage.png");
+  height: 100%;
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#quote-container {
+  position: absolute;
+  top: 38%;
+  left: 50%;
+  width: 60%;
+  transform: translate(-50%, -50%);
+}
+
+#frontpage-quote {
+  color: #d6d6d6;
+  font-size: 1.5rem;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+}
+
+#quote-author {
+  margin-top: 2rem;
+  color: #bfbfbf;
+  font-size: 1.1rem;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+}
+
+#explore {
+  position: absolute;
+  top: 85%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  color: #cccccc;
+  font-size: 1.6rem;
+  text-align: center;
+}
+
+#image-description {
+  position: absolute;
+  width: 18rem;
+  bottom: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
+
+  color: #686868;
+  font-size: 0.7rem;
+  text-align: left;
+  font-family: 'Roboto', sans-serif;
+}
