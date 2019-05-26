@@ -18,12 +18,7 @@ The ordering is as follows:
   - Miscellaneous properties
 */
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
+/* Styling placeholders for different browsers */
 ::-webkit-input-placeholder { /* Edge */
   color: #c6c6c6;
 }
@@ -36,66 +31,60 @@ The ordering is as follows:
   color: #c6c6c6;
 }
 
-/* Sign up form */
+/* Styling the sign up form */
+.logo-container {
+  display: flex;
+  justify-content: center;
+
+  margin-bottom: 2rem;
+}
+
 .logo {
   height: 10rem;
 }
 
-.logo-container {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 2rem;
-}
-
-.login-item {
-}
-
 #form-container {
+  display: flex;
+  flex-direction: column;
+
   width: 25rem;
   margin-right: auto;
   margin-left: auto;
   margin-top: 5%;
+
   border-radius: 5px;
-  display: flex;
-  flex-direction: column;
 }
 
-#form-login {
+#form-structure {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
 }
 
-.form-field {
-
-}
-
-.error-message {
+.error-message {      /* Styling the error messages */
   width: 18rem;
   margin-bottom: 0.5rem;
-  text-align: left;
   margin-left: 0.9rem;
-  font-size: 0.8rem;
+
   color: #ff4c4c;
+
+  font-size: 0.8rem;
+  text-align: left;
 }
 
-.hidden {
-
-}
-
-.form-input {
+.form-input {         /* Styling the input fields for the form */
   width: 18rem;
   height: 2rem;
-  border: none;
   padding: 0rem 0.5rem 0rem 0.5rem;
+
+  border: none;
   border-radius: 0.5rem;
+  color: #383838;
   background-color: rgba(0, 0, 0, 0.03);
+  outline: none;
 
   font-size: 1.1rem;
-  margin-bottom: 0;
-  outline: none;
-  color: #383838;
 }
 
 .form-input:focus {
@@ -103,7 +92,7 @@ The ordering is as follows:
   border:0.05rem solid rgb(30, 211,252, 0.5);
 }
 
-#submit-button {
+#submit-button {      /* Styling the log in button */
   margin: 0.6rem auto 0rem auto;
   width: 8.5rem;
   height: 3rem;
@@ -112,21 +101,19 @@ The ordering is as follows:
   border-color: transparent;
   outline: none;
 
-  transition: 0.5s;
-  background-size: 200% auto;
-  /* text-shadow: 0px 0px 10px rgba(0,0,0,0.2);*/
-  /* box-shadow: 0 0 20px #eee; */
-  background-color: transparent;
-
   color: #515151;
+  background-color: transparent;
+  background-size: 200% auto;
+
   font-size: 1.1rem;
   font-weight: 500;
+
   cursor: pointer;
-  font-weight: 500;
+  transition: 0.5s;
   transition: all .5s ease-in-out;
 }
 
-#submit-button:hover {
+#submit-button {
   background-position: right center;
   cursor: pointer;
   /* transform: scale(1.1); */

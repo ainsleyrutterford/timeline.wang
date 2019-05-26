@@ -26,8 +26,12 @@ The ordering is as follows:
   min-width: 70rem;
 }
 
-/*----------- Profile ------------*/
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: white;
+  opacity: 1; /* Firefox */
+}
 
+/* Styling the profile*/
 .profile {                /* Profile sizing and margins */
   display: flex;
   justify-content: flex-start;
@@ -45,7 +49,7 @@ The ordering is as follows:
 
 .avatar-container {
   display: flex;
-}
+}      /* container for avatar png image */
 
 .avatar {                 /* Avatar photo */
   display: flex;
@@ -63,7 +67,7 @@ The ordering is as follows:
   justify-content: flex-start;
   flex-direction: column;
   margin-left: 3%;
-}
+}        /* Container for profile information */
 
 .name {                   /* First and last name */
   height: 2.1rem;
@@ -76,7 +80,6 @@ The ordering is as follows:
   overflow: hidden;
   text-overflow: ellipsis;
   overflow-wrap: break-word !important;
-
 }
 
 .username {               /* simple username in a lighter color */
@@ -135,8 +138,8 @@ The ordering is as follows:
   padding-bottom: 0.1rem;
 }
 
-/*--------- Contributions ----------*/
 
+/* Contributions container and navigation bar */
 .contributions {         /* Contribution sizing and margins. Using flex to vertically align contributions */
   display: flex;
   justify-content: center, space-between;
@@ -220,7 +223,8 @@ The ordering is as follows:
   padding-right: 0.8rem;
 }
 
-/* TESTING */
+
+/* Styling for dropdown button in navbar */
 .dropdown .dropbtn {
   font-size: 1.05rem;
   outline: none;
@@ -256,7 +260,6 @@ The ordering is as follows:
 
 .dropdown-content {
   display: none;
-  /* right: 0; */
   position: absolute;
   background-color: #ffffff;
   min-width: 160px;
@@ -283,8 +286,9 @@ The ordering is as follows:
   color: #000;
   cursor: pointer;
 }
-/*------- contribution card -------*/
 
+
+/* Styling for the contribution cards */
 .contribution {           /* Styling for each contribution */
   display: flex;
   justify-content: flex-start;
@@ -302,6 +306,7 @@ The ordering is as follows:
 .image-and-description {    /* styling for contribution desription */
   display: flex;
   justify-content: flex-start;
+
   height: 8rem;
 }
 
@@ -357,14 +362,16 @@ The ordering is as follows:
   white-space: nowrap;
 }
 
-.contribution-title {
+.contribution-title {     /* styling for the title of contributions */
   max-width: 25rem;
+
   font-size: 1rem;
   font-weight: 400;
-  white-space: nowrap;
-  overflow: hidden;
   text-overflow: ellipsis;
+
   overflow-wrap: break-word !important;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .description {
@@ -377,38 +384,40 @@ The ordering is as follows:
 
   font-size: 0.8rem;
   overflow-wrap: break-word !important;
-}
+}           /* styling for the desecription */
 
-/* The Modal (background) */
+
+/* Styling the modal contribution form */
 .modal {
   display: flex;
   flex-direction: column;
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
-  z-index: 10; /* Sit on top */
   left: 0;
   top: 0;
+
   width: 100%; /* Full width */
   height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
+  padding-top: 3rem;
+
   background-color: rgb(0,0,0); /* Fallback color */
   background-color: rgba(0,0,0,0.3); /* Black w/ opacity */
-  padding-top: 60px;
   border: none;
+
+  z-index: 10; /* Sit on top */
+  overflow: auto; /* Enable scroll if needed */
 }
 
-/* Modal form */
-#form {
+#form {                   /* Styling the form */
   width: 34rem;
   height: 36rem;
-  margin: 2% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-  border-radius: 0.3rem;
+  margin: 2% auto 15% auto;
 
-  /* top, transparent blue, faked with gradient */
+  border-radius: 0.3rem;
   background: rgba(10, 10, 10, 0.95);
 }
 
-.flex-outer {
+.flex-outer {             /* flex container */
   display: flex;
   flex-direction: column;
   align-items: left;
@@ -418,70 +427,70 @@ The ordering is as follows:
   display: flex;
 }
 
-.contribution-label {
-  color: #white;
-  margin-left: auto;
+.contribution-label {      /* styling labels on form */
+  flex: 0 0 20rem;
+
   margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 0.2rem;
+
+  color: #white;
+
   text-align: left;
   font-size: 0.9rem;
-  flex: 0 0 20rem;
   font-family: 'Open Sans';
-  margin-bottom: 0.2rem;
 }
 
-::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: white;
-  opacity: 1; /* Firefox */
-}
-
-.contribution-input {
-  margin-left: auto;
-  margin-right: auto;
+.contribution-input {      /* styling input fields on form */
   flex: 0 0 20rem;
+
   height: 1.2rem;
 
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0.2rem 0.2rem;
+
   border: none;
-	padding: 0.2rem 0.2rem;
 	border-radius: 0.3rem;
-	background:rgba(255,255,255,0.1);
-  caret-color: white;
   color: white;
+  background:rgba(255,255,255,0.1);
+
+  caret-color: white;
   font-size: 0.9rem;
 }
 
-#contribution-quote {
+#contribution-quote {      /* styling quote on contribution form */
   display: flex;
   justify-content: center;
   flex-direction: column;
-  text-align: center;
-  margin-top: 3rem;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 0.4rem;
+
   width: 24rem;
+  margin: 3rem auto 0.4rem auto;
   color: #eee;
-  /* font-style: italic; */
+
+  font-size: 1.1rem;
   font-weight: 300;
   font-family: 'Roboto', sans-serif;
-  font-size: 1.1rem;
+  text-align: center;
 }
 
-#quote-author {
-  margin-bottom: 3rem;
-  margin-left: auto;
-  margin-right: auto;
-  font-size: 0.8rem;
+#quote-author {            /* styling author text */
+  margin: 0 auto 3rem auto;
+
   color: #bbb;
+  font-size: 0.8rem;
 }
 
 #form-title {
   color: #ddd;
+
   font-size: 1rem;
   font-weight: 500;
 }
 
 #title-textbox {
   margin-bottom: 0rem;
+
   border: 0.05rem solid transparent;
   color: #ddd;
 }
@@ -492,26 +501,28 @@ The ordering is as follows:
   }
 
 #title-error {
-  font-size: 0.7rem;
-  margin-bottom: 0.5em;
-  color: #ff4f4f;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: left;
   flex: 0 0 20rem;
+
+  margin: 0 auto 0.5rem auto;
   height: 0.7rem;
+
+  color: #ff4f4f;
+
+  font-size: 0.7rem;
+  text-align: left;
 }
 
 #form-date {
   width: 4rem;
   margin-left: 7rem;
-  text-align: left;
-  font-size: 0.9rem;
-  font-family: 'Open Sans';
   margin-bottom: 0.2rem;
+
   color: #ddd;
+
   font-size: 1rem;
   font-weight: 500;
+  font-family: 'Open Sans';
+  text-align: left;
 }
 
 #date-textbox {
@@ -519,12 +530,14 @@ The ordering is as follows:
   margin-left: 6.87rem;
   margin-bottom: 0rem;
 	padding: 0.2rem 0.2rem;
-	border-radius:0.3rem;
-	background:rgba(255,255,255,0.1);
-  caret-color: white;
+
   color: #ddd;
-  font-size: 0.9em;
+  background:rgba(255,255,255,0.1);
   border: 0.05em solid transparent;
+  border-radius:0.3rem;
+
+  font-size: 0.9em;
+  caret-color: white;
 }
 
 #date-textbox:focus {
@@ -536,64 +549,78 @@ The ordering is as follows:
   display: flex;
   justify-content: flex-start;
   flex: 0 0 20rem;
+
+  height: 0.7rem;
   margin-bottom: 0.3em;
   margin-left: auto;
   margin-right: auto;
-  height: 0.7rem;
 }
 
 #date-error {
-  font-size: 0.7rem;
-  width: 14.4em;
-  text-align: left;
+  width: 10.1rem;
+
   color: #ff4f4f;
+
+  font-size: 0.7rem;
+  text-align: left;
 }
 
 #image-error {
-  font-size: 0.7rem;
-  text-align: left;
   color: #ff4f4f;
+
+  text-align: left;
+  font-size: 0.7rem;
 }
 
 #form-image {
   margin-left: 7.9rem;
   margin-bottom: 0rem;
+
   color: #ddd;
+
   font-size: 1rem;
   font-weight: 500;
 }
 
-input[type="file"] {
+input[type="file"] {   /* changing defaults for type=file input */
   position: absolute;
   width: 1px;
   height: 1px;
   padding: 0;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap; /* 1 */
-  clip-path: inset(50%);
+
   border: 0;
+
+  overflow: hidden;
+  white-space: nowrap; /* 1 */
+
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
 }
 
 #form-description {
   color: #ddd;
+
   font-size: 1rem;
   font-weight: 500;
 }
 
 #description-textbox {
+  flex: 0 0 19.5rem;
+
+  height: 7rem;
   min-width: 19.75rem;
   max-width: 19.75rem;
-  flex: 0 0 19.5rem;
-  height: 7rem;
-  background: rgba(255,255,255,0.1);
+  padding: 0.3rem 0.3rem;
+
   border: 0.05rem solid transparent;
   border-radius: 0.3rem;
-  padding: 0.3rem 0.3rem;
-  resize: none;
-  caret-color: white;
   color: #ddd;
+  background: rgba(255,255,255,0.1);
+
+  caret-color: white;
   font-family: 'Open Sans';
+
+  resize: none;
 }
 
 #description-textbox:focus {
@@ -605,23 +632,26 @@ input[type="file"] {
   display: flex;
   justify-content: space-between;
   flex: 0 0 20rem;
-  margin-bottom: 0.3em;
-  margin-left: auto;
-  margin-right: auto;
+
+  margin: 0 auto 0.3rem auto;
 }
 
 #description-error {
+  height: 0.7rem
+
+  color: #ff4f4f;
+
   font-size: 0.7rem;
   text-align: left;
-  color: #ff4f4f;
-  height: 0.7rem
 }
 
+/* Styling the character count function */
 #the-count {
   display: flex;
   justify-content: flex-start;
 
   padding: 0.1rem 0 0 7rem;
+
   font-size: 0.875rem;
 }
 
@@ -633,6 +663,7 @@ input[type="file"] {
   color: #fff;
 }
 
+/* Styling the submit button */
 #form-submit {
     margin: 1.5rem auto 0rem auto;
     width: 8.5rem;
@@ -642,39 +673,44 @@ input[type="file"] {
     border-color: transparent;
     outline: none;
 
-    transition: 0.5s;
     background-size: 200% auto;
-    /* text-shadow: 0px 0px 10px rgba(0,0,0,0.2);*/
-    /* box-shadow: 0 0 20px #eee; */
+    color: white;
     background-color: transparent;
     background-image: linear-gradient(to right, rgba(30, 211,252, 0.5)  0%, rgba(64, 137, 221, 1) 51%, rgba(30, 211,252, 0.5) 100%);
 
-    color: white;
     font-size: 1.3rem;
     font-weight: 500;
+
+    transition: 0.5s;
 }
 
 #form-submit:hover {
   background-position: right center;
+
   cursor: pointer;
 }
 
+/* Styling a custom file upload button */
 #custom-file-upload {
+  display: inline-block;
+
   width: 7.4rem;
   height: 1.1rem;
-  border-radius: 0.3rem;
   margin-left: 2.2rem;
-  background-color: rgba(255,255,255,0.1);
-  display: inline-block;
   padding: 0.2rem 0.4rem;
+
   border: 0.05rem solid transparent;
-  cursor: pointer;
-  font-size: 0.8rem;
+  border-radius: 0.3rem;
   color: #ddd;
+  background-color: rgba(255,255,255,0.1);
+
+  font-size: 0.8rem;
   text-align: left;
+
   white-space: nowrap;
   overflow: hidden;
   overflow-wrap: break-word !important;
+  cursor: pointer;
 }
 
 #custom-file-upload:focus {
@@ -684,24 +720,4 @@ input[type="file"] {
 
 #custom-file-upload:focus-within {
   border:0.05rem solid rgb(30, 211,252, 0.5);
-}
-
-/*---------- Styling Errors ----------*/
-
-#errors-container {
-  display: flex;
-  background-color: rgb(255,100,100,1);
-  position: absolute;
-  margin-left: 5rem;
-  margin-top: 2rem;
-  flex: 0 1 auto;
-}
-
-#error-list {
-  list-style: none;
-  flex: 0 1 auto;
-}
-
-.error-response {
-  color: #fff;
 }
