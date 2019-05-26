@@ -7,7 +7,7 @@ async function handle_user(response) {
   if (response.ok) {
     const user = await response.json();
     navbar.innerHTML = "<li>"                                                  +
-                         "<a href=\"/logout\" class=\"nav-links\">Log out</a>"       +
+                         "<a href=\"/logout\" class=\"nav-links\">Log out</a>" +
                        "</li>";
   } else {
     navbar.innerHTML = "<li>"                                                  +
