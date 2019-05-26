@@ -65,6 +65,8 @@ function scale_canvas() {
 // Scale the canvas first.
 scale_canvas();
 
+// function taken from an answer from:
+// https://stackoverflow.com/questions/2936112/text-wrap-in-a-canvas-element
 function get_lines(ctx, text, max_width) {
   var words = text.split(" ");
   var lines = [];
@@ -112,7 +114,7 @@ function Contribution(title, historical_date, serial_date, descriptions, image_s
       var size = 2000 / relative_z;
       ctx.drawImage(image, x - size, y, size, size);
       ctx.fillText(historical_date, x + (250 / relative_z), y + (250 / relative_z));
-      ctx.fillText(title, x + ctx.measureText(historical_date).width + 2*(250 / relative_z), y + (250 / relative_z));
+      ctx.fillText(title, x + ctx.measureText(historical_date).width + 2 * (250 / relative_z), y + (250 / relative_z));
       ctx.font = 'bold ' + 14 / relative_z + 'em sans-serif';
       this.descriptions.forEach((description, index) => {
         ctx.fillText(description, x + (250 / relative_z), y + ((630 + (index) * 370) / relative_z));
