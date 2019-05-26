@@ -53,6 +53,17 @@ code {
     margin-left: 2em;
     min-width: 3rem;
     white-space: nowrap;
+    outline: none;
+}
+
+.main-nav li a {
+    outline: none;
+    border: 0.05rem solid transparent;
+}
+
+.main-nav li a:focus {
+  border: 0.05rem solid rgb(30, 211,252, 0.5);
+  outline: none;
 }
 
 .nav-links {
@@ -80,11 +91,22 @@ code {
   height: 2rem;
   z-index: 1;
   margin-left: 1rem;
+  outline: none;
 }
 
 #wanglogo:hover {
   background-image: url("icons/timelinewang.svg");
   opacity: 0.6;
+}
+
+#wanglogo-container {
+  outline: none;  
+  border: 0.05rem solid transparent;
+}
+
+#wanglogo-container:focus {
+  outline: none;
+  border: 0.05rem solid rgb(30, 211,252, 0.5);
 }
 
 .timeline-heading {

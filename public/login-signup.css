@@ -39,10 +39,6 @@ The ordering is as follows:
   margin-bottom: 2rem;
 }
 
-.logo {
-  height: 10rem;
-}
-
 #form-container {
   display: flex;
   flex-direction: column;
@@ -118,4 +114,10 @@ The ordering is as follows:
   cursor: pointer;
   /* transform: scale(1.1); */
   color: #878787;
+}
+
+/* Animating and styling the svg logo */
+#tl-svg {
+  height: 10rem;
+  z-index: 0;
 }
