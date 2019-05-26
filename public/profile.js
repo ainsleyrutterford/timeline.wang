@@ -114,10 +114,19 @@ form.addEventListener("submit", function (event) {
   event.preventDefault();
 
   var image_error = document.getElementById("image-error");
+  var date_error = document.getElementById("date-error");
   image_error.innerHTML = "";
+  date_error.innerHTML = "";
 
   var file   = document.querySelector('input[type=file]').files[0];
   var reader = new FileReader();
+
+  var date = document.getElementById('date-textbox');
+  if (moment(date.value).diff(moment("1825-12-31", "YYYY-MM-DD"), 'days') < 1) {
+    var date_error = document.getElementById("date-error");
+    date_error.innerHTML = "Earliest 01/01/1826";
+    return;
+  }
 
   reader.addEventListener("load", function () {
     var image = reader.result;
@@ -126,6 +135,7 @@ form.addEventListener("submit", function (event) {
     if ((image[0] !== "data:image/png;base64") && (image[0] !== "data:image/jpeg;base64")) {
       var error = document.getElementById("image-error");
       error.innerHTML = "Should be .png .jpg .jpeg";
+      return;
     }
 
     var form_data = new FormData(form);
