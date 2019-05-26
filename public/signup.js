@@ -1,6 +1,6 @@
 "use strict";
 
-var form = document.getElementById("form-login");
+var form = document.getElementById("form-structure");
 
 async function handle_form(response) {
   const json_response = await response.json();

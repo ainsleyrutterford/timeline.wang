@@ -5,10 +5,11 @@
     <link rel="stylesheet" href="style.css"/>
     <link rel="stylesheet" href="profile.css"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans"/>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&display=swap"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&amp;display=swap"/>
     <title>title</title>
-    <link rel="icon" href="icons/tl.svg" type="image/x-icon" />
-    <script async="false" defer="defer" src="profile.js"></script>
+    <link rel="icon" href="icons/tl.svg" type="image/x-icon"/>
+    <script defer="defer" src="navbar.js"></script>
+    <script defer="defer" src="profile.js"></script>
   </head>
   <body>
 
@@ -16,7 +17,7 @@
     <nav class="navbar">
         <a href="/" id="wanglogo-container"><div id="wanglogo"></div></a>
       <div class="sub-navbar">
-        <ul class="main-nav" id="js-menu">
+        <ul class="main-nav">
           <li>
               <a href="/profile" class="nav-links">Profile</a>
           </li>
@@ -24,13 +25,7 @@
               <a href="/about" class="nav-links">About</a>
           </li>
         </ul>
-        <ul class="main-nav" id="js-menu">
-          <li>
-              <a href="/signup" class="nav-links">Sign up</a>
-          </li>
-          <li>
-              <a href="/login" class="nav-links">Log in</a>
-          </li>
+        <ul class="main-nav" id="right-navbar">
         </ul>
       </div>
     </nav>
@@ -83,12 +78,12 @@
       <form id="form" enctype="multipart/form-data">
         <ul class="flex-outer">
           <li id="contribution-quote">
-            "We are not makers of history.</br>We are made by history."
+            "We are not makers of history.<br/>We are made by history."
           </li>
           <li id="quote-author"> Martin Luther King Jr.
           </li>
           <li>
-            <label for="title" class="contribution-label" id="form-title">Title</label>
+            <label for="title-textbox" class="contribution-label" id="form-title">Title</label>
           </li>
           <li>
             <input type="text" name="title" placeholder="" class="contribution-input" id="title-textbox"/>
@@ -97,14 +92,14 @@
             <div id="title-error"></div>
           </li>
           <li>
-            <label for="date" id="form-date">Date</label>
-            <label for="date" class="contribution-label" id="form-image">Image</label>
+            <label for="date-textbox" id="form-date">Date</label>
+            <label class="contribution-label" id="form-image">Image</label>
           </li>
           <li>
             <input type="date" name="date" id="date-textbox"/>
             <label id="custom-file-upload">
-              <input type="file" name="image">
-              <div id="image-text">Choose Image</div>
+              <input type="file" name="image"/>
+              <span id="image-text">Choose Image</span>
             </label>
           </li>
           <li>
@@ -114,7 +109,7 @@
             </div>
           </li>
           <li>
-            <label for="description" class="contribution-label" id="form-description">Description</label>
+            <label for="description-textbox" class="contribution-label" id="form-description">Description</label>
           </li>
           <li>
             <textarea rows="4" cols="50" name="description"  id="description-textbox" form="form" placeholder="" class="contribution-input"></textarea>
@@ -123,11 +118,12 @@
             <div id="description-error-counter-container">
               <div id="description-error"></div>
               <div id="the-count">
-              <span id="current">0</span>
-              <span id="maximum">/300</span>
+                <span id="current">0</span>
+                <span id="maximum">/300</span>
               </div>
             </div>
           </li>
+          <li>
             <button type="submit" id="form-submit">Submit</button>
           </li>
         </ul>

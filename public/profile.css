@@ -1,4 +1,4 @@
-/*
+ /*
 This file contains the styling for the profile/contributions
 page on timeline.wang.
 */
@@ -43,7 +43,7 @@ The ordering is as follows:
   min-width: 19rem;
   height: 30rem;
 
-  margin: 2.5rem 0rem 0rem 1rem;
+  margin: 2.5rem 0 0 1rem;
   border-radius: 0.3rem;
 }
 
@@ -56,7 +56,7 @@ The ordering is as follows:
 
   width: 16rem;
   height: 16rem;
-  margin: 1.2rem 2rem 1.5rem 0rem;
+  margin: 1.2rem 2rem 1.5rem 0;
 
   border-radius: 0.3rem;
   border: 1px solid #ededed;
@@ -71,15 +71,15 @@ The ordering is as follows:
 
 .name {                   /* First and last name */
   height: 2.1rem;
-  margin-bottom: 0rem;
+  margin-bottom: 0;
   max-width: 14rem;
 
-  font-weight: 570;
+  font-weight: 500;
   font-size: 1.5rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  overflow-wrap: break-word !important;
+  overflow-wrap: break-word;
 }
 
 .username {               /* simple username in a lighter color */
@@ -87,7 +87,7 @@ The ordering is as follows:
   max-width: 14rem;
   margin-bottom: 1rem;
   padding-bottom: 1.9rem;
-  padding-top: 0rem;
+  padding-top: 0;
 
   color: #878481;
   border-bottom: 0.05rem solid #ededed;
@@ -96,7 +96,7 @@ The ordering is as follows:
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  overflow-wrap: break-word !important;
+  overflow-wrap: break-word;
 }
 
 .number-contributions {      /* number of contributions made by the user */
@@ -126,7 +126,7 @@ The ordering is as follows:
 
   height: 0.6rem;
   padding-bottom: 1.4rem;
-  padding-top: 0rem;
+  padding-top: 0;
 
   font-size: 0.9rem;
 }
@@ -142,20 +142,20 @@ The ordering is as follows:
 /* Contributions container and navigation bar */
 .contributions {         /* Contribution sizing and margins. Using flex to vertically align contributions */
   display: flex;
-  justify-content: center, space-between;
+  justify-content: space-between;
   flex-direction: column;
 
   width: 100%;
   height: 100%;
 
-  margin: 1.5rem 1rem 0rem 1rem;
+  margin: 1.5rem 1rem 0 1rem;
 }
 
 .contributions-navbar-container {           /* stickied container for contributions navbar */
   display: flex;
   background-color: #fff;
   position: sticky;              /* Sticking the container to the top of the screen */
-  top: 0rem;
+  top: 0;
   z-index: 2;
 
   height: 4rem;
@@ -179,10 +179,10 @@ The ordering is as follows:
 .contributions-navbar-items {        /* styling for the items in contributions navigation bar */
     display: block;
 
-    padding: 0rem 1rem;
+    padding: 0 1rem;
 
     border: 0.15rem solid transparent;
-    border-width: 0rem 0rem 0.15rem 0rem;
+    border-width: 0 0 0.15rem 0;
     outline: none;
     color: #666666;
     background-color: #ffffff;
@@ -196,7 +196,7 @@ The ordering is as follows:
 }
 
 .contributions-navbar-items:hover {          /* hover events for contributions navbar */
-  border-width: 0rem 0rem 0.15rem 0rem;
+  border-width: 0 0 0.15rem 0;
   border-color: #fff #fff #00c3ff #fff;
   color: #2d2d2d;
 }
@@ -236,9 +236,9 @@ The ordering is as follows:
 .dropbtn {
   display:block;
   border: 0.15rem solid transparent;
-  border-width: 0rem 0rem 0.15rem 0rem;
-  padding: 0rem 0.1rem;
-  margin-bottom: 0rem;
+  border-width: 0 0 0.15rem 0;
+  padding: 0 0.1rem;
+  margin-bottom: 0;
 
   outline: none;
   color: #666666;
@@ -253,7 +253,7 @@ The ordering is as follows:
 }
 
 .dropbtn:hover {
-  border-width: 0rem 0rem 0.15rem 0rem;
+  border-width: 0 0 0.15rem 0;
   border-color: #fff #fff #00c3ff #fff;
   color: #2d2d2d;
 }
@@ -266,7 +266,7 @@ The ordering is as follows:
   z-index: 2;
   border: 0.05rem solid;
   border-color: #fff #ddd #ddd #ddd;
-  border-radius: 0rem 0rem 0.3rem 0.3rem;
+  border-radius: 0 0 0.3rem 0.3rem;
 }
 
 .dropdown:hover .dropdown-content {
@@ -296,7 +296,7 @@ The ordering is as follows:
 
   height: 8.9em;
   margin-bottom: 1em;
-  padding: 0.65em 1.65em 0em 0.65em;
+  padding: 0.65em 1.65em 0 0.65em;
 
   border: 1px solid #ddd;
   border-radius: 0.3em;
@@ -357,7 +357,7 @@ The ordering is as follows:
   margin-right: 1.5rem;
 
   font-size: 1rem;
-  font-weight: 580;
+  font-weight: 600;
 
   white-space: nowrap;
 }
@@ -369,7 +369,7 @@ The ordering is as follows:
   font-weight: 400;
   text-overflow: ellipsis;
 
-  overflow-wrap: break-word !important;
+  overflow-wrap: break-word;
   overflow: hidden;
   white-space: nowrap;
 }
@@ -383,13 +383,12 @@ The ordering is as follows:
   color: #424242;
 
   font-size: 0.8rem;
-  overflow-wrap: break-word !important;
+  overflow-wrap: break-word;
 }           /* styling for the desecription */
 
 
 /* Styling the modal contribution form */
 .modal {
-  display: flex;
   flex-direction: column;
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
@@ -420,7 +419,6 @@ The ordering is as follows:
 .flex-outer {             /* flex container */
   display: flex;
   flex-direction: column;
-  align-items: left;
 }
 
 .flex-outer > li {
@@ -434,7 +432,7 @@ The ordering is as follows:
   margin-left: auto;
   margin-bottom: 0.2rem;
 
-  color: #white;
+  color: white;
 
   text-align: left;
   font-size: 0.9rem;
@@ -489,7 +487,7 @@ The ordering is as follows:
 }
 
 #title-textbox {
-  margin-bottom: 0rem;
+  margin-bottom: 0;
 
   border: 0.05rem solid transparent;
   color: #ddd;
@@ -497,7 +495,7 @@ The ordering is as follows:
 
 #title-textbox:focus {
     outline: none;
-    border: 0.05rem solid rgb(30, 211,252, 0.5);
+    border: 0.05rem solid rgba(30, 211,252, 0.5);
   }
 
 #title-error {
@@ -528,7 +526,7 @@ The ordering is as follows:
 #date-textbox {
   width: 7.4rem;
   margin-left: 6.87rem;
-  margin-bottom: 0rem;
+  margin-bottom: 0;
 	padding: 0.2rem 0.2rem;
 
   color: #ddd;
@@ -542,7 +540,7 @@ The ordering is as follows:
 
 #date-textbox:focus {
     outline: none;
-    border:0.05rem solid rgb(30, 211,252, 0.5);
+    border:0.05rem solid rgba(30, 211,252, 0.5);
   }
 
 #date-image-error {
@@ -574,7 +572,7 @@ The ordering is as follows:
 
 #form-image {
   margin-left: 7.9rem;
-  margin-bottom: 0rem;
+  margin-bottom: 0;
 
   color: #ddd;
 
@@ -594,7 +592,6 @@ input[type="file"] {   /* changing defaults for type=file input */
   white-space: nowrap; /* 1 */
 
   clip: rect(0, 0, 0, 0);
-  clip-path: inset(50%);
 }
 
 #form-description {
@@ -625,7 +622,7 @@ input[type="file"] {   /* changing defaults for type=file input */
 
 #description-textbox:focus {
   outline: none;
-  border:0.05rem solid rgb(30, 211,252, 0.5);
+  border:0.05rem solid rgba(30, 211,252, 0.5);
 }
 
 #description-error-counter-container {
@@ -637,7 +634,7 @@ input[type="file"] {   /* changing defaults for type=file input */
 }
 
 #description-error {
-  height: 0.7rem
+  height: 0.7rem;
 
   color: #ff4f4f;
 
@@ -665,7 +662,7 @@ input[type="file"] {   /* changing defaults for type=file input */
 
 /* Styling the submit button */
 #form-submit {
-    margin: 1.5rem auto 0rem auto;
+    margin: 1.5rem auto 0 auto;
     width: 8.5rem;
     height: 3rem;
 
@@ -709,15 +706,15 @@ input[type="file"] {   /* changing defaults for type=file input */
 
   white-space: nowrap;
   overflow: hidden;
-  overflow-wrap: break-word !important;
+  overflow-wrap: break-word;
   cursor: pointer;
 }
 
 #custom-file-upload:focus {
   outline: none;
-  border: 0.05rem solid rgb(30, 211,252, 0.5);
+  border: 0.05rem solid rgba(30, 211,252, 0.5);
 }
 
 #custom-file-upload:focus-within {
-  border:0.05rem solid rgb(30, 211,252, 0.5);
+  border:0.05rem solid rgba(30, 211,252, 0.5);
 }

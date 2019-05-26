@@ -12,19 +12,19 @@ function render_contributions() {
   var contributions_container = document.getElementById("container-for-javascript");
   var html = "";
   for (var i = 0; i < contributions.length; i++) {
-    html += "<div class=\"contribution\">\
-               <div class=\"image-and-description\"> \
-                 <img class=\"contribution-image\" src=\"" + contributions[i].image_source + "\"/> \
-                 <div class=\"date-title-text\"> \
-                   <div class=\"date-title\">\
-                     <div class=\"historical-date\">" + contributions[i].historical_date + "</div> \
-                     <div class=\"contribution-title\">" + contributions[i].title + "</div> \
-                   </div>\
-                   <div class=\"description\">"+ contributions[i].description +"</div> \
-                 </div>\
-               </div>\
-               <div class=\"contribution-date\">"+ contributions[i].contribution_date +"</div> \
-             </div>";
+    html += "<div class=\"contribution\">"                                                           +
+               "<div class=\"image-and-description\">"                                               +
+                 "<img class=\"contribution-image\" src=\"" + contributions[i].image_source + "\"/>" +
+                 "<div class=\"date-title-text\">"                                                   +
+                   "<div class=\"date-title\">"                                                      +
+                     "<div class=\"historical-date\">" + contributions[i].historical_date + "</div>" +
+                     "<div class=\"contribution-title\">" + contributions[i].title + "</div>"        +
+                   "</div>"                                                                          +
+                   "<div class=\"description\">"+ contributions[i].description +"</div>"             +
+                 "</div>"                                                                            +
+               "</div>"                                                                              +
+               "<div class=\"contribution-date\">"+ contributions[i].contribution_date +"</div>"     +
+             "</div>";
   }
   contributions_container.innerHTML = html;
 }
@@ -106,7 +106,7 @@ window.onclick = function(event) {
     var title_input = document.getElementById("title-textbox");
     title_input.focus();
   }
-}
+};
 
 var form = document.getElementById("form");
 
@@ -201,11 +201,11 @@ sort_by_contribution.addEventListener('click', function (event) {
 function sort_contributions(sort_by) {
   if (sort_by == 'historical') {
     contributions.sort(function(a, b) {
-      return a.serialised_hist_date > b.serialised_hist_date;
+      return a.serialised_hist_date - b.serialised_hist_date;
     });
   } else if (sort_by == 'contribution') {
     contributions.sort(function(a, b) {
-      return a.serialised_cont_date > b.serialised_cont_date;
+      return a.serialised_cont_date - b.serialised_cont_date;
     });
   }
 }
