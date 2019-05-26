@@ -51,8 +51,9 @@ The ordering is as follows:
 
 .error-message {      /* Styling the error messages */
   width: 18rem;
+  height: 1rem;
   margin-bottom: 0.5rem;
-  margin-left: 0.9rem;
+  margin-left: 0.1rem;
 
   color: #ff4c4c;
 

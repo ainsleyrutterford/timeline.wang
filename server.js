@@ -112,16 +112,16 @@ app.post('/signup',
   [
     check('firstname')
     .isLength({ min: 1 })
-    .withMessage('You must enter a first name'),
+    .withMessage('firstname'),
     check('surname')
     .isLength({ min: 1 })
-    .withMessage('You must enter a surname'),
+    .withMessage('surname'),
     check('username')
     .isLength({ min: 1 })
-    .withMessage('You must enter a username'),
+    .withMessage('username'),
     check('password')
     .isLength({ min: 5 })
-    .withMessage('Your password must be at least 5 characters long')
+    .withMessage('password')
   ],
   async function(req, res) {
     var errors = validationResult(req);
