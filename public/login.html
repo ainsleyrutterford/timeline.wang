@@ -2,10 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-GB" lang="en-GB">
   <head>
     <meta charset="UTF-8"/>
-    <link rel="stylesheet" href="login.css"/>
+    <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="login-signup.css"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans"/>
     <title>Log in</title>
     <link rel="icon" href="icons/tl.png" type="image/x-icon"/>
+    <script async="false" defer="defer" src="navbar.js"></script>
     <script async="false" defer="defer" src="login.js"></script>
   </head>
   <body>
@@ -14,31 +16,26 @@
     <nav class="navbar">
         <a href="/"><div id="wanglogo"></div></a>
       <div class="sub-navbar">
-        <ul class="main-nav" id="js-menu">
+        <ul class="main-nav">
           <li>
-              <a href="#" class="nav-links">Profile</a>
+              <a href="/profile" class="nav-links">Profile</a>
           </li>
           <li>
-              <a href="#" class="nav-links">About</a>
+              <a href="/about" class="nav-links">About</a>
           </li>
         </ul>
-        <ul class="main-nav" id="js-menu">
-          <li>
-              <a href="/login" class="nav-links">Log in</a>
-          </li>
-          <li>
-              <a href="/signup" class="nav-links">Sign up</a>
-          </li>
+        <ul class="main-nav" id="right-navbar">
         </ul>
       </div>
     </nav>
 
+    <!-- Log in form -->
     <div id="form-container">
       <div class="logo-container">
         <img  src="icons/tl.svg" class="logo"/>
       </div>
       <div class="login-item">
-        <form id="form-login">
+        <form id="form-structure">
           <div class="form-field">
             <label id="username-label" for="login-username">
               <span class="hidden"></span>

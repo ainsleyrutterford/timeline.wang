@@ -7,23 +7,32 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&display=swap"/>
     <title>title</title>
-    <link rel="icon" href="icons/tl.svg" type="image/x-icon" />
+    <link rel="icon" href="icons/tl.svg" type="image/x-icon"/>
+    <script async="false" defer="defer" src="navbar.js"></script>
     <script async="false" defer="defer" src="profile.js"></script>
   </head>
   <body>
 
-    <ul class="navbar">
-      <div id="left-navbar">
-        <li><a href="/"><div id="wanglogo"></div></a></li>
-        <li><a href="/profile">Profile</a></li>
-        <li><a href="/about">About</a></li>
+    <!-- Making the navigation bar -->
+    <nav class="navbar">
+        <a href="/"><div id="wanglogo"></div></a>
+      <div class="sub-navbar">
+        <ul class="main-nav">
+          <li>
+              <a href="/profile" class="nav-links">Profile</a>
+          </li>
+          <li>
+              <a href="/about" class="nav-links">About</a>
+          </li>
+        </ul>
+        <ul class="main-nav" id="right-navbar">
+        </ul>
       </div>
-      <div id="right-navbar">
-        <li class="navbar-right"><a href="/logout">Log out</a></li>
-      </div>
-    </ul>
+    </nav>
 
     <div class="container">
+
+      <!-- Making the profile elements -->
       <div class="profile">
         <div class="avatar-container">
           <img alt="" class="avatar" src="avatars/avatar-4.png"/>
@@ -40,6 +49,7 @@
         </div>
       </div>
 
+      <!-- Making the contribution elements -->
       <div class="contributions">
         <div class="contributions-navbar-container">
           <div class="contributions-navbar">
@@ -59,12 +69,11 @@
             </button>
           </div>
         </div>
-        <div id="container-for-javascript">
-
-        </div>
+        <div id="container-for-javascript"></div>
       </div>
     </div>
 
+    <!-- Modal form -->
     <div id="modal-id" class="modal">
       <form id="form" enctype="multipart/form-data">
         <ul class="flex-outer">

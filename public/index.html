@@ -6,20 +6,26 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans"/>
     <title>timeline.wang</title>
     <link rel="icon" href="icons/tl.svg" type="image/x-icon"/>
-    <script async="false" defer="defer" src="index.js"></script>
+    <script async="false" defer="defer" src="navbar.js"></script>
   </head>
   <body>
 
-    <ul class="navbar">
-      <div id="left-navbar">
-        <li><a href="/"><div id="wanglogo"></div></a></li>
-        <li><a href="/profile">Profile</a></li>
-        <li><a href="/about">About</a></li>
+    <!-- Making the navigation bar -->
+    <nav class="navbar">
+        <a href="/"><div id="wanglogo"></div></a>
+      <div class="sub-navbar">
+        <ul class="main-nav">
+          <li>
+              <a href="/profile" class="nav-links">Profile</a>
+          </li>
+          <li>
+              <a href="/about" class="nav-links">About</a>
+          </li>
+        </ul>
+        <ul class="main-nav" id="right-navbar">
+        </ul>
       </div>
-      <div id="right-navbar"></div>
-    </ul>
-
-    <p>Hello, World!</p>
+    </nav>
 
     <h1 class="timeline-heading"><a href="/timeline">timeline</a></h1>
   </body>

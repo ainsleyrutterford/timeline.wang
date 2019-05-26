@@ -1,0 +1,121 @@
+/*
+This file contatins the styling for the sign up
+page on timeline.
+/*
+
+/*
+This styling file follows the "outside in" convention.
+CSS properties in this file are ordered by how much they
+impact the selected elements or other elements aroud them.
+*/
+
+/*
+The ordering is as follows:
+  - Layout Properties
+  - Box Model Properties
+  - Visual Properties
+  - Typography Properties
+  - Miscellaneous properties
+*/
+
+/* Styling placeholders for different browsers */
+::-webkit-input-placeholder { /* Edge */
+  color: #c6c6c6;
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #c6c6c6;
+}
+
+::placeholder {
+  color: #c6c6c6;
+}
+
+/* Styling the sign up form */
+.logo-container {
+  display: flex;
+  justify-content: center;
+
+  margin-bottom: 2rem;
+}
+
+.logo {
+  height: 10rem;
+}
+
+#form-container {
+  display: flex;
+  flex-direction: column;
+
+  width: 25rem;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 5%;
+
+  border-radius: 5px;
+}
+
+#form-structure {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.error-message {      /* Styling the error messages */
+  width: 18rem;
+  margin-bottom: 0.5rem;
+  margin-left: 0.9rem;
+
+  color: #ff4c4c;
+
+  font-size: 0.8rem;
+  text-align: left;
+}
+
+.form-input {         /* Styling the input fields for the form */
+  width: 18rem;
+  height: 2rem;
+  padding: 0rem 0.5rem 0rem 0.5rem;
+
+  border: 0.05rem solid transparent;
+  border-radius: 0.5rem;
+  color: #383838;
+  background-color: rgba(0, 0, 0, 0.03);
+  outline: none;
+
+  font-size: 1.1rem;
+}
+
+.form-input:focus {
+  outline: none;
+  border:0.05rem solid rgb(30, 211,252, 0.5);
+}
+
+#submit-button {      /* Styling the log in button */
+  margin: 0.6rem auto 0rem auto;
+  width: 8.5rem;
+  height: 3rem;
+
+  border-radius: 0.3rem;
+  border-color: transparent;
+  outline: none;
+
+  color: #515151;
+  background-color: transparent;
+  background-size: 200% auto;
+
+  font-size: 1.1rem;
+  font-weight: 500;
+
+  cursor: pointer;
+  transition: 0.5s;
+  transition: all .5s ease-in-out;
+}
+
+#submit-button {
+  background-position: right center;
+  cursor: pointer;
+  /* transform: scale(1.1); */
+  color: #878787;
+}
