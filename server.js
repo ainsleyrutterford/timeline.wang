@@ -136,7 +136,7 @@ app.post('/signup',
         const user_error = [{ location: 'body',
                               param:    'username',
                               value:    '',
-                              msg:      'Username already exists' }];
+                              msg:      'alreadyexists' }];
         res.json({ errors: user_error });
       }
     }

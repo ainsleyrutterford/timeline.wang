@@ -20,6 +20,8 @@ async function handle_form(response) {
     username.innerHTML = "";
     password.innerHTML = "";
 
+    console.log(json_response);
+
     json_response.errors.forEach((res) => {
       switch (res.msg) {
         case 'firstname':
@@ -33,6 +35,11 @@ async function handle_form(response) {
           break;
         case 'password':
           password.innerHTML = "Password must be 5 or more characters"
+          break;
+        case 'alreadyexists':
+          username.innerHTML = "Username already exists"
+          break;
+        default:
           break;
       }
     });
