@@ -97,14 +97,11 @@ The ordering is as follows:
   font-weight: 500;
 
   cursor: pointer;
-  transition: 0.5s;
-  transition: all .5s ease-in-out;
 }
 
-#submit-button {
+#submit-button:hover {
   background-position: right center;
   cursor: pointer;
-  /* transform: scale(1.1); */
   color: #878787;
 }
 
