@@ -20,8 +20,6 @@ async function handle_form(response) {
     username.innerHTML = "";
     password.innerHTML = "";
 
-    console.log(json_response);
-
     json_response.errors.forEach((res) => {
       switch (res.msg) {
         case 'firstname':

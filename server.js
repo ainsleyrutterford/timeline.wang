@@ -30,9 +30,9 @@ passport.use(new Strategy(
   async function(username, password, cb) {
     find_by_username(username, async function(err, user) {
       if (err) { return cb(err); }
-      if (!user) { return cb(null, false, { message: 'Username does not exist' }); }
+      if (!user) { return cb(null, false, { message: 'username' }); }
       const match = await bcrypt.compare(password, user.password);
-      if (!match) { return cb(null, false, { message: 'Incorrect password' }); }
+      if (!match) { return cb(null, false, { message: 'password' }); }
       return cb(null, user);
     });
   }));
