@@ -33,7 +33,7 @@ body {
   align-items: center;
 
   /* background-image: linear-gradient(310deg, #181919 0%, #393a3a  100%); */
-  background-color: transparent;
+  background-color: rgba(0,0,0, 0.1);
   height: 4rem;
   font-size: 1.1rem;
 }

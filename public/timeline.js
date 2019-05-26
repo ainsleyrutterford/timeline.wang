@@ -88,8 +88,8 @@ function get_lines(ctx, text, max_width) {
 
 function Contribution(title, historical_date, serial_date, descriptions, image_source, contributor_username) {
   console.log(title);
-  this.x_3D   = (Math.random() * 2) - 1;
-  this.y_3D   = (Math.random() * 2) - 1;
+  this.x_3D   = (Math.random() * 4) - 2;
+  this.y_3D   = (Math.random() * 4) - 2;
   this.z_3D   = (((serial_date - earliest) / (latest - earliest)) * 100) + 70;
   this.title  = title;
   this.date   = historical_date;
