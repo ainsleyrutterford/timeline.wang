@@ -152,7 +152,7 @@ app.post('/contribute',
     check('description')
     .isLength({ min: 1 })
     .withMessage('description_min')
-    .isLength({ max: 300 })
+    .isLength({ max: 450 })
     .withMessage('description_max'),
     check('date')
     .isLength({ min: 1 })

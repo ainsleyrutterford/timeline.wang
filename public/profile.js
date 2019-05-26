@@ -81,7 +81,7 @@ async function handle_form(response) {
           description_error.innerHTML = "Please enter a description";
           break;
         case ("description_max"):
-          description_error.innerHTML = "Maximum 300 characters";
+          description_error.innerHTML = "Maximum 450 characters";
           break;
         case ("date"):
           date_error.innerHTML = "Please enter a date";
