@@ -78,7 +78,7 @@ The ordering is as follows:
   height: 2rem;
   padding: 0rem 0.5rem 0rem 0.5rem;
 
-  border: none;
+  border: 0.05rem solid transparent;
   border-radius: 0.5rem;
   color: #383838;
   background-color: rgba(0, 0, 0, 0.03);
