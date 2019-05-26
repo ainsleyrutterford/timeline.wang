@@ -1,5 +1,9 @@
 {
     "esversion": 8,
-    "node": true
+    "node": true,
+    "browser" : true,
+    "globals": {
+      "moment": true
+    }
 }
 

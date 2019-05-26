@@ -2,7 +2,7 @@
 
 fetch('/all_contributions', { method: 'GET', credentials: 'include' } ).then(handle);
 
-let contributions = []
+let contributions = [];
 let earliest, latest;
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext('2d');
@@ -95,7 +95,7 @@ function Contribution(title, historical_date, serial_date, descriptions, image_s
   this.date   = historical_date;
   this.user   = contributor_username;
 
-  this.descriptions = descriptions
+  this.descriptions = descriptions;
 
   const image = new Image();
   image.src   = image_source;
@@ -120,7 +120,7 @@ function Contribution(title, historical_date, serial_date, descriptions, image_s
         ctx.fillText(description, x + (250 / relative_z), y + ((630 + (index) * 370) / relative_z));
       });
     }
-  }
+  };
 }
 
 function draw_positions() {

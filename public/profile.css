@@ -637,7 +637,7 @@ input[type="file"] {   /* changing defaults for type=file input */
 }
 
 #description-error {
-  height: 0.7rem
+  height: 0.7rem;
 
   color: #ff4f4f;
 
