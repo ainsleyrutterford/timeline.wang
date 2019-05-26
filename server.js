@@ -271,8 +271,8 @@ async function register_user(username, password, firstname, surname) {
     await ps.finalize();
     if (!user) {
       await bcrypt.hash(password, saltRounds, async function(err, hash) {
-        var ps = await db.prepare("insert into users (username, password, firstname, surname, contributions, joindate) \
-                                   values ( ?, ?, ?, ?, ?, ? )");
+        var ps = await db.prepare("insert into users (username, password, firstname, surname, contributions, joindate)" +
+                                   "values ( ?, ?, ?, ?, ?, ? )");
 
         var date_string = moment().format('YYYY-MM-DD');
         await ps.run(username, hash, firstname, surname, 0, date_string);
@@ -295,15 +295,15 @@ async function add_contribution(title, historical_date, description, image, user
     await ps.finalize();
 
     var historical = moment(historical_date, "YYYY-MM-DD");
-    var cont_date  = moment(contribution_date, "HH:mm:ss-YYYY-MM-DD")
+    var cont_date  = moment(contribution_date, "HH:mm:ss-YYYY-MM-DD");
     var beginning  = moment("0000-01-01", "YYYY-MM-DD");
     var serialised_hist_date = historical.diff(moment(beginning), 'days');
     var serialised_cont_date = cont_date.diff(moment(beginning), 'seconds');
 
-    ps = await db.prepare("insert into contributions (contributor_id, contributor_username, \
-                           contribution_date, serialised_cont_date, historical_date,        \
-                           serialised_hist_date, title, image_source, description, likes)   \
-                           values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    ps = await db.prepare("insert into contributions (contributor_id, contributor_username," +
+                          "contribution_date, serialised_cont_date, historical_date,"        +
+                          "serialised_hist_date, title, image_source, description, likes)"   +
+                          "values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
     await ps.run(user_id, user.username, contribution_date, serialised_cont_date,
                  historical_date, serialised_hist_date, title, image, description, 0);
     await ps.finalize();
