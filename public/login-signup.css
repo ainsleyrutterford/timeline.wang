@@ -26,6 +26,7 @@ The ordering is as follows:
 .logo-container {
   display: flex;
   justify-content: center;
+  height: 10rem;
 
   margin-bottom: 2rem;
 }
@@ -105,8 +106,28 @@ The ordering is as follows:
   color: #878787;
 }
 
-/* Animating and styling the svg logo */
-#tl-svg {
-  height: 10rem;
-  z-index: 0;
+.tl-logo {
+  fill: red;
+  animation-name: fade;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes fade {
+  0%   {fill: black;}
+  50%  {fill: #aaf;}
+  100% {fill: black;}
+}
+
+.tl-logo-signup {
+  fill: red;
+  animation-name: fade-signup;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes fade-signup {
+  0%   {fill: black;}
+  50%  {fill: #faf;}
+  100% {fill: black;}
 }
