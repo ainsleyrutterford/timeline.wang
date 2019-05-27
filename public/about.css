@@ -21,7 +21,7 @@ The ordering is as follows:
 .about-container {
   max-width: 55rem; /* Allows the column to be resizable */
   margin: 0 auto;
-  padding-top: 6.5rem;
+  padding-top: 5rem;
 }
 
 .about-h4 {
@@ -96,6 +96,52 @@ p a:hover {
   margin-left: 0.8rem;
 }
 
-.progress-caption {
+.logo-container {
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
 
+.timelinewang {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: dash 5s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes dash {
+  0% {
+    stroke-dashoffset: 1000;
+    fill: white;
+  }
+  50% {
+    stroke-dashoffset: 420;
+    fill: white;
+  }
+  100% {
+    stroke-dashoffset: 420;
+    fill: black;
+  }
+}
+
+.timelinewang-dot {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: dash-dot 5s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes dash-dot {
+  0% {
+    stroke-dashoffset: 1000;
+    fill: white;
+  }
+  50% {
+    stroke-dashoffset: 420;
+    fill: white;
+  }
+  100% {
+    stroke-dashoffset: 420;
+    fill: #00CDFF;
+  }
 }

@@ -107,7 +107,6 @@ The ordering is as follows:
 }
 
 .tl-logo {
-  fill: red;
   animation-name: fade;
   animation-duration: 10s;
   animation-iteration-count: infinite;
@@ -120,7 +119,6 @@ The ordering is as follows:
 }
 
 .tl-logo-signup {
-  fill: red;
   animation-name: fade-signup;
   animation-duration: 10s;
   animation-iteration-count: infinite;
