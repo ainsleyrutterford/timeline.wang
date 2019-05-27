@@ -14,6 +14,7 @@ let paused = false;
 let speed = 0.1;
 let space = 1;
 let multiplier = 1;
+let serial_date;
 
 async function handle(response) {
   const json_response = await response.json();
@@ -114,7 +115,7 @@ function Contribution(title, historical_date, serial_date, descriptions, image_s
       var alpha = (100 - relative_z) / 100;
       ctx.globalAlpha = (alpha < 0) ? 0 : alpha;
       var size = 2600 / relative_z;
-      ctx.fillStyle = '#eee';
+      ctx.fillStyle = '#bbb';
       ctx.fillRect(x - size*1.05, y - size*0.05, size*5.5, size*1.1);
       ctx.fillStyle = 'black';
       ctx.drawImage(image, x - size, y, size, size);
@@ -129,7 +130,7 @@ function Contribution(title, historical_date, serial_date, descriptions, image_s
 }
 
 function draw_year() {
-  var serial_date = ((((camera_z / multiplier) - 70)/600) * (latest - earliest)) + earliest;
+  serial_date = ((((camera_z / multiplier) - 70)/600) * (latest - earliest)) + earliest;
   var new_date = moment("0000-01-01", "YYYY-MM-DD").add(Math.floor(serial_date), 'days');
   ctx.font = 'bold 2em sans-serif';
   ctx.globalAlpha = 0.7;
@@ -145,8 +146,17 @@ function draw_help() {
   ctx.fillText('left/right arrows change spread', canvas.width/dpi - 13, 60);
   ctx.fillText('mouse to move camera', canvas.width/dpi - 13, 80);
   ctx.fillText('space to pause', canvas.width/dpi - 13, 100);
-  ctx.globalAlpha = 1;
   ctx.textAlign = "left";
+}
+
+function draw_timeline() {
+  var size = canvas.width/dpi * 0.75;
+  var start = x_center - size/2;
+  var finish = x_center - size/2 + size;
+  ctx.fillRect(0, canvas.height/dpi - 30, canvas.width/dpi, 6);
+  ctx.globalAlpha = 1;
+  var position = start + (((serial_date - earliest) / (latest - earliest)) * size);
+  ctx.fillRect(position - 3, canvas.height/dpi - 30, 6, 6);
 }
 
 // The draw() function. Calls itself repeatedly.
@@ -164,6 +174,7 @@ function draw() {
   ctx.fillStyle = 'white';
   draw_year();
   draw_help();
+  draw_timeline();
   window.requestAnimationFrame(draw);
 }
 
