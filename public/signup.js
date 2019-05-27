@@ -8,6 +8,8 @@ var form = document.getElementById("form-structure");
 async function handle_form(response) {
   const json_response = await response.json();
   if (!json_response.errors) {
+    // If there are no errors, send the user to the login page so they can
+    // now login
     window.location.href = '/login';
   } else {
     var firstname = document.getElementById('firstname-error');
@@ -20,6 +22,8 @@ async function handle_form(response) {
     username.innerHTML = "";
     password.innerHTML = "";
 
+    // For each error, place the appropriate error message in the correct
+    // place
     json_response.errors.forEach((res) => {
       switch (res.msg) {
         case 'firstname':
@@ -44,6 +48,7 @@ async function handle_form(response) {
   }
 }
 
+// When the form submit button is pressed
 form.addEventListener("submit", function (event) {
   event.preventDefault();
 
@@ -52,7 +57,9 @@ form.addEventListener("submit", function (event) {
   var object = {};
   form_data.forEach((value, key) => { object[key] = value; });
 
+  // stringify the json
   var json = JSON.stringify(object);
+  // Send a POST request to the server containing the form data as json
   fetch('/signup', { method: 'POST',
                      body: json,
                      headers: { 'Content-Type': 'application/json' },
