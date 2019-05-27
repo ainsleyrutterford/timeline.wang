@@ -126,7 +126,6 @@ form.addEventListener("submit", function (event) {
 
   var date = document.getElementById('date-textbox');
   if (moment(date.value).diff(moment("1825-12-31", "YYYY-MM-DD"), 'days') < 1) {
-    var date_error = document.getElementById("date-error");
     date_error.innerHTML = "Earliest 01/01/1826";
     return;
   }
