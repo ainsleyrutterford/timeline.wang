@@ -75,7 +75,7 @@ async function handle_form(response) {
           title_error.innerHTML = "Please enter a title";
           break;
         case ("title_max"):
-          title_error.innerHTML = "Titles must be less than 40 characters";
+          title_error.innerHTML = "Titles must be less than 50 characters";
           break;
         case ("description_min"):
           description_error.innerHTML = "Please enter a description";

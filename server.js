@@ -147,7 +147,7 @@ app.post('/contribute',
     check('title')
     .isLength({ min: 1 })
     .withMessage('title_min')
-    .isLength({ max: 40 })
+    .isLength({ max: 50 })
     .withMessage('title_max'),
     check('description')
     .isLength({ min: 1 })
