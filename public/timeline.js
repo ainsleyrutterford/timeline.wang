@@ -45,12 +45,12 @@ function scale_canvas() {
   // which is 1 for 1080p screens and 2 for retina screens. Do the same for
   // the height.
   canvas.width = window.innerWidth * dpi;
-  canvas.height = (window.innerHeight - 5) * dpi;
+  canvas.height = (window.innerHeight - 6) * dpi;
 
   // Set the canvas style width and height to the same as the window width
   // and height.
   canvas.style.width = window.innerWidth + "px";
-  canvas.style.height = (window.innerHeight - 5) + "px";
+  canvas.style.height = (window.innerHeight - 6) + "px";
 
   // Recenter the y_center.
   y_center = (canvas.height / 2) / dpi;
@@ -151,9 +151,9 @@ function draw_help() {
 
 // The draw() function. Calls itself repeatedly.
 function draw() {
-  var gradient = ctx.createRadialGradient(x_center, y_center, 0, x_center, y_center, 500);
-  gradient.addColorStop(0, "#eee");
-  gradient.addColorStop(1, "#edd");
+  var gradient = ctx.createRadialGradient(x_center, y_center, 0, x_center, y_center, 1000);
+  gradient.addColorStop(0, "#555");
+  gradient.addColorStop(1, "#111");
   ctx.fillStyle = gradient;
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   ctx.fillStyle = 'black';
@@ -161,6 +161,7 @@ function draw() {
   if (!paused) {
     camera_z += speed;
   }
+  ctx.fillStyle = 'white';
   draw_year();
   draw_help();
   window.requestAnimationFrame(draw);
