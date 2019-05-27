@@ -287,6 +287,12 @@ The ordering is as follows:
   cursor: pointer;
 }
 
+#no-contributions {
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 1.3rem;
+  color: #999;
+}
 
 /* Styling for the contribution cards */
 .contribution {           /* Styling for each contribution */
