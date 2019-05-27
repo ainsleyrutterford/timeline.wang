@@ -4,7 +4,7 @@ fetch('/user', { method: 'GET', credentials: 'include' } ).then(handle_user);
 
 async function handle_user(response) {
   var navbar = document.getElementById("right-navbar");
-  if (response.ok) {
+  if (response.status === 200) {
     const user = await response.json();
     navbar.innerHTML = "<li>"                                                  +
                          "<a href=\"/logout\" class=\"nav-links\">Log out</a>" +

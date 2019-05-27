@@ -184,7 +184,7 @@ app.get('/user',
       user.joindate = moment(join_date).format('MMMM Do YYYY');
       res.json(user);
     } else {
-      res.status(500).send('No user');
+      res.status(204).send('No user');
     }
   });
 
