@@ -190,7 +190,72 @@
         and \(Y\) values are assigned at random. These 3D coordinates are
         Homogenisation \(f \times \frac{x_{3D}} {z_{3D}} + x_{center}\)
       </p>
-    </div>
 
+      <p>For the timeline page, we wanted to create the illusion of moving through time. To achieve this,
+        each point in time can be given a position in three dimensional space, and the computer screen
+        effectively displays the view of a pinhole camera which is moving through this space. Each contribution
+        is then placed at a point in three dimensional space based on its historical date. The user should be
+        able to control the speed and direction with which they move through this space, and therefore the speed
+        and direction with which they move through time.
+      <p>
+      <h5>
+        Preliminaries
+      </h5>
+      <p>
+        Pinhole Camera Model: The pinhole camera model describes the mathematical relationship between the
+        coordinates of a point in three-dimensional space and its projection onto the image plane of an
+        ideal pinhole camera, where the camera aperture is described as a point and no lenses are used
+        to focus light.
+
+        Serialising Dates: In order to easily compare different points in time, the historical dates were serialised
+        according to the number of days that had passed since the beginning of the Roman calendar. When the user
+        submits a contribution, the historical date is first serialised before the contribution is added to the database.
+        Therefore all calculations and comparisons regarding dates can be done using positive integers. In the
+        calculations that follow, each date is an integer value. Serialising was performed using the moment.js
+        JavaScript library.
+      </p>
+      <h5>
+        Defining a three-dimensional coordinate system
+      </h5>
+      <p>
+        The \(x\) and \(y\)-axes of the three dimensional space are the usual \(x\) and \(y\)-axes as expected. It is important
+         to note that these axes are not the same as the \(x\) and \(y\)-axes of the computer screen, although they
+         are related. Time is then defined along the \(z\)-axis. Originally, the \(z\)-axis was defined with the
+         earliest contribution at \(z = 0\) and the latest contribution at \(z = 100\). However, as the camera is initially positioned at \(z = 0\),
+         the user would not be able to see the first contribution. To account for this, the \(z\)-position of each
+         contribution was offset by a value \(Z_{offset}\). The \(z\)-axis therefore begins at \(z = 0\), with earliest contribution at
+         \(z = Z_{offset}\) and the latest contribution at \(100 + Z_{offset}\).
+      </p>
+      <h5>
+        Caclulating the \(x\), \(y\), and \(z\)-position of each conribution
+      </h5>
+      <p>
+        Now that the coordinate space has been defined, the position of each contribution in that coordinate space
+        can be calculated using the serialised historical date. Let \(S_{earliest}\) be the serialised date of
+        the earliest contribution, let \(S_{latest}\) be the serialised date of the latest contribution, and let
+        \(S_{current}\) be the serialised date of the current contribution whose \(z\)-position we are calculating.
+        The \(z\)-position is then calculated as follows:
+
+        $$ Z_{current} = {\frac{S_{current} - S_{earliest}}{S_{latest} - S_{earliest}}}\cdot{100} + Z_{offset}$$
+
+        which gives
+
+        $$ Z_{offset} \leq Z_{current} \leq Z_{offset} + 100 $$
+
+        We now have the \(z\)-position of each contribution. However, as the camera moves through this space,
+        each contribution will be exactly in front of the next contribution as they share the same \(x\) and \(y\)-positions.
+        This also means that the contributions would pass by the camera in the center of the screen. To add to the experience,
+        the contributions should pass the camera at different \(x\) and \(y\)-positions. Each contribution was therefore
+        randomly assigned an \(x\) and \(y\)-position between \(10\) and \(10\).
+      </p>
+      <h5>
+        Three-Dimensional Projection
+      </h5>
+        <p>
+          The exact position of each contribution in the 3-D space is now known. Next we must define how this
+          3-D position relates to the position of the contribution on the 2-D screen. 3-D projection is a method
+          of mapping three-dimensional points to a two-dimensional plane.
+        </p>
+    </div>
   </body>
 </html>
