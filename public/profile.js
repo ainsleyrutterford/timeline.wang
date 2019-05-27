@@ -35,7 +35,7 @@ async function handle_contributions(response) {
 }
 
 async function handle_user(response) {
-  if (response.ok) {
+  if (response.status === 200) {
     const user = await response.json();
 
     var title = document.querySelector("title");
