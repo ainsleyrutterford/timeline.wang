@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans"/>
     <title>About timeline.wang</title>
     <link rel="icon" href="icons/tl.png" type="image/x-icon"/>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
     <script defer="defer" src="navbar.js"></script>
   </head>
   <body>
@@ -177,8 +178,17 @@
       <div id="caption">
         The different avatars used for the profile page.
       </div>
+      <h4 class="about-h4">
+        Timeline
+      </h4>
       <p>
-        Ainsley's markdown maths explaining the maths behind the timeline and how it was implemented.
+        The timeline is written in pure JavaScript, making use of the HTML5
+        <code>&lt;canvas&gt;</code> element. The only extrenal library used is
+        <a href="https://momentjs.com/">momentjs</a>. Each contribution is
+        assigned a 3D coordinate. The \(Z\) value of the coordinate is
+        determined by the the contribution's historical date, whilst the \(X\)
+        and \(Y\) values are assigned at random. These 3D coordinates are
+        Homogenisation \(f \times \frac{x_{3D}} {z_{3D}} + x_{center}\)
       </p>
     </div>
 

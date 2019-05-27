@@ -22,6 +22,7 @@ The ordering is as follows:
   max-width: 55rem; /* Allows the column to be resizable */
   margin: 0 auto;
   padding-top: 5rem;
+  padding-bottom: 12rem;
 }
 
 .about-h4 {
