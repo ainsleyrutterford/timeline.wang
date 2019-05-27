@@ -177,7 +177,7 @@ text_box.addEventListener('input', function () {
   var maximum = document.getElementById("maximum");
   current.innerHTML = length;
 
-  if (length > 300) {
+  if (length > 450) {
     current.style.color = "#ff4f4f";
     maximum.style.color = "#ff4f4f";
   } else {
