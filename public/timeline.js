@@ -1,5 +1,6 @@
 "use strict";
 
+// Send a GET request requesting all contributions in the database
 fetch('/all_contributions', { method: 'GET', credentials: 'include' } ).then(handle);
 
 let contributions = [];
@@ -16,17 +17,23 @@ let space = 1;
 let multiplier = 1;
 let serial_date;
 
+// Handle the request response
 async function handle(response) {
   const json_response = await response.json();
 
+  // Sort the contributions returned in the response
   var sorted = json_response.sort(function(a, b) {
     return b.serialised_hist_date - a.serialised_hist_date;
   });
+  // Find the earliest and latest contribution (by historical date)
   earliest = sorted[json_response.length - 1].serialised_hist_date;
   latest = sorted[0].serialised_hist_date;
 
+  // Create a Contribution object for each contribution received
   for (var i = 0; i < json_response.length; i++) {
     var r = json_response[i];
+    // Split the description into multiple lines, each short enough to
+    // fit in one contribution card
     var descriptions = get_lines(ctx, r.description, 7600);
     contributions.push(new Contribution(r.title,
                                         r.historical_date,
@@ -71,6 +78,9 @@ scale_canvas();
 
 // function taken from an answer from:
 // https://stackoverflow.com/questions/2936112/text-wrap-in-a-canvas-element
+// This function will split a string into multiple strings, with each string
+// being shorter than the max_width specified. It is used to 'wrap' text
+// as there is no function provided by javascript to do so.
 function get_lines(ctx, text, max_width) {
   var words = text.split(" ");
   var lines = [];
@@ -90,9 +100,13 @@ function get_lines(ctx, text, max_width) {
   return lines;
 }
 
+// The Contribution object constructor
 function Contribution(title, historical_date, serial_date, descriptions, image_source, contributor_username) {
+  // Create random x and y coordinates.
   this.x_3D   = (Math.random() * 14) - 7;
   this.y_3D   = (Math.random() * 14) - 9;
+  // Calculate the z coordinates from the serial date of the contribution.
+  // This also relies on what the earliest and latest contributions are.
   this.z_3D   = (((serial_date - earliest) / (latest - earliest)) * 600) + 70;
   this.title  = title;
   this.date   = historical_date;
@@ -100,28 +114,44 @@ function Contribution(title, historical_date, serial_date, descriptions, image_s
 
   this.descriptions = descriptions;
 
+  // Create an image from the source url in the database.
   const image = new Image();
   image.src   = image_source;
 
+  // This is the draw function called every frame for each contribution
   this.draw = function() {
+    // Calculate the relative x, y, and z coordinates compared to the camera
     var relative_x = this.x_3D - camera_x;
     var relative_y = this.y_3D - camera_y;
     var relative_z = this.z_3D - camera_z;
+    // Calculating the x and y coordinates on the 2D screen given the 3D
+    // coordinates
     var x = focal_length * (relative_x / relative_z) + x_center;
     var y = focal_length * (relative_y / relative_z) + y_center;
 
+    // If the contribution isn't too close or behing you
     if (relative_z > 0.1) {
+      // The font size is inversely proportional to the relative_z
       ctx.font = 'bold ' + 20 / relative_z + 'em sans-serif';
+      // So is the alpha. Scale it between 1 and 0. If it is negative,
+      // it is just 0
       var alpha = (100 - relative_z) / 100;
       ctx.globalAlpha = (alpha < 0) ? 0 : alpha;
+      // The size of the different componenets of the contribution card are
+      // inversely proportional to the relative_z
       var size = 2600 / relative_z;
       ctx.fillStyle = '#bbb';
-      ctx.fillRect(x - size*1.05, y - size*0.05, size*5.5, size*1.1);
+      // Draw the card behind the contribution
+      ctx.fillRect(x - size * 1.05, y - size * 0.05, size * 5.5, size * 1.1);
       ctx.fillStyle = 'black';
+      // Draw the image
       ctx.drawImage(image, x - size, y, size, size);
+      // Draw the historical date
       ctx.fillText(historical_date, x + (250 / relative_z), y + (250 / relative_z));
+      // Draw the title
       ctx.fillText(title, x + ctx.measureText(historical_date).width + 2 * (250 / relative_z), y + (250 / relative_z));
       ctx.font = 'bold ' + 14 / relative_z + 'em sans-serif';
+      // Draw the description lines
       this.descriptions.forEach((description, index) => {
         ctx.fillText(description, x + (250 / relative_z), y + ((630 + (index) * 370) / relative_z));
       });
@@ -129,15 +159,20 @@ function Contribution(title, historical_date, serial_date, descriptions, image_s
   };
 }
 
+// Draw the year in the top left corner
 function draw_year() {
+  // Calculate the serial date that the camera's z position corresponds to
   serial_date = ((((camera_z / multiplier) - 70)/600) * (latest - earliest)) + earliest;
+  // Convert the date from the serialised format back to a nice format "May 2019".
   var new_date = moment("0000-01-01", "YYYY-MM-DD").add(Math.floor(serial_date), 'days');
   ctx.font = 'bold 2em sans-serif';
   ctx.globalAlpha = 0.7;
   ctx.textAlign = "right";
+  // Draw the date
   ctx.fillText(new_date.format("MMMM YYYY"), 250, 35);
 }
 
+// Draw the help alerts in the top right corner
 function draw_help() {
   ctx.font = 'bold 1em sans-serif';
   ctx.globalAlpha = 0.5;
@@ -150,32 +185,38 @@ function draw_help() {
   ctx.textAlign = "left";
 }
 
+// Draw the timeline at the bottom of the screen
 function draw_timeline() {
   var size = canvas.width/dpi * 0.75;
   var start = x_center - size/2;
   var finish = x_center - size/2 + size;
   ctx.fillRect(0, canvas.height/dpi - 30, canvas.width/dpi, 6);
   ctx.globalAlpha = 1;
+  // Calculate where the position marker should be on the screen
   var position = start + (((serial_date - earliest) / (latest - earliest)) * size);
   ctx.fillRect(position - 3, canvas.height/dpi - 30, 6, 6);
 }
 
 // The draw() function. Calls itself repeatedly.
 function draw() {
+  // Draw the radial gradient
   var gradient = ctx.createRadialGradient(x_center, y_center, 0, x_center, y_center, 1000);
   gradient.addColorStop(0, "#555");
   gradient.addColorStop(1, "#111");
   ctx.fillStyle = gradient;
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   ctx.fillStyle = 'black';
+  // Draw each contribution
   contributions.forEach(contribution => contribution.draw());
   if (!paused) {
+    // If not paused, move the camera forward
     camera_z += speed;
   }
   ctx.fillStyle = 'white';
   draw_year();
   draw_help();
   draw_timeline();
+  // Call draw again
   window.requestAnimationFrame(draw);
 }
 
@@ -185,11 +226,15 @@ window.addEventListener('resize', function(e) {
   scale_canvas();
 });
 
+// An EventListener for scrolling
 window.addEventListener('wheel', function(e) {
+  // Increase or decrease the camera_z
   camera_z += e.deltaY / 50;
 });
 
+// An EventListener for mouse movement
 window.addEventListener('mousemove', function (e) {
+  // Move the camera_x and camera_y positions between -10 and 10
   var rect = canvas.getBoundingClientRect();
   var mouse_x = e.clientX - rect.left;
   var mouse_y = e.clientY - rect.top ;
@@ -205,9 +250,11 @@ window.addEventListener('keydown', function(e) {
   // later on.
   switch (e.keyCode) {
     case 32: // Spacebar
+      // toggle pause
       paused = !paused;
       break;
     case 37: // Left arrow
+      // increase spread
       camera_z *= 1.015;
       contributions.forEach(contribution => {
         contribution.z_3D *= 1.015;
@@ -215,9 +262,11 @@ window.addEventListener('keydown', function(e) {
       multiplier *= 1.015;
       break;
     case 38: // Up arrow
+      // increase speed
       speed += 0.02;
       break;
     case 39: // Right arrow
+      // decrease spread
       camera_z *= 0.985;
       contributions.forEach(contribution => {
         contribution.z_3D *= 0.985;
@@ -225,6 +274,7 @@ window.addEventListener('keydown', function(e) {
       multiplier *= 0.985;
       break;
     case 40: // Down arrow
+      // decrease speed
       speed -= 0.02;
       break;
     default:
