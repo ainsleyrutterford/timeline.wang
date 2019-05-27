@@ -21,13 +21,19 @@ The ordering is as follows:
 .about-container {
   max-width: 55rem; /* Allows the column to be resizable */
   margin: 0 auto;
-  padding-top: 5rem;
-  padding-bottom: 12rem;
+  padding-top: 6.5rem;
 }
 
-.about-h4 {
+.about-h3 {
   color: #222; /* Black. */
-  font-size: 1.4rem;
+  font-size: 1.6rem;
+  font-weight: 300;
+  padding: 1rem 1rem 0rem 1rem; /* top, right, bottom, left */
+}
+
+h4 {
+  color: #222; /* Black. */
+  font-size: 1.3rem;
   font-weight: 300;
   padding: 1rem 1rem 0rem 1rem; /* top, right, bottom, left */
 }
@@ -97,52 +103,6 @@ p a:hover {
   margin-left: 0.8rem;
 }
 
-.logo-container {
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
-}
+.progress-caption {
 
-.timelinewang {
-  stroke-dasharray: 1000;
-  stroke-dashoffset: 1000;
-  animation: dash 5s;
-  animation-fill-mode: forwards;
-}
-
-@keyframes dash {
-  0% {
-    stroke-dashoffset: 1000;
-    fill: white;
-  }
-  50% {
-    stroke-dashoffset: 420;
-    fill: white;
-  }
-  100% {
-    stroke-dashoffset: 420;
-    fill: black;
-  }
-}
-
-.timelinewang-dot {
-  stroke-dasharray: 1000;
-  stroke-dashoffset: 1000;
-  animation: dash-dot 5s;
-  animation-fill-mode: forwards;
-}
-
-@keyframes dash-dot {
-  0% {
-    stroke-dashoffset: 1000;
-    fill: white;
-  }
-  50% {
-    stroke-dashoffset: 420;
-    fill: white;
-  }
-  100% {
-    stroke-dashoffset: 420;
-    fill: #00CDFF;
-  }
 }

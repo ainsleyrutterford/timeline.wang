@@ -132,9 +132,9 @@
         The name for the website was inspired by our flatmate and close friend Justin Wang
         (in retrospect, this domain name was perhaps not the most sensible choice).
       </p>
-      <h4 class="about-h4">
+      <h3 class="about-h3">
         Motivation
-      </h4>
+      </h3>
       <p>
         While websites such as Google and Wikipedia provide essential utilities
         to the public, the websites which are most memorable to us are those which
@@ -151,9 +151,9 @@
         not only in general, but within specific fields such as medicine,
         space exploration and computer science.
       </p>
-      <h4 class="about-h4">
+      <h3 class="about-h3">
         Design
-      </h4>
+      </h3>
       <p>
         When designing this website, we decided to avoid using frameworks
         wherever possible. We viewed this as an opportunity to learn and
@@ -178,63 +178,56 @@
       <div id="caption">
         The different avatars used for the profile page.
       </div>
-      <h4 class="about-h4">
+      <h3 class="about-h3">
         Timeline
-      </h4>
-      <p>
-        The timeline is written in pure JavaScript, making use of the HTML5
-        <code>&lt;canvas&gt;</code> element. The only extrenal library used is
-        <a href="https://momentjs.com/">momentjs</a>. Each contribution is
-        assigned a 3D coordinate. The \(Z\) value of the coordinate is
-        determined by the the contribution's historical date, whilst the \(X\)
-        and \(Y\) values are assigned at random. These 3D coordinates are
-        Homogenisation \(f \times \frac{x_{3D}} {z_{3D}} + x_{center}\)
-      </p>
-
+      </h3>
       <p>For the timeline page, we wanted to create the illusion of moving through time. To achieve this,
         each point in time can be given a position in three dimensional space, and the computer screen
         effectively displays the view of a pinhole camera which is moving through this space. Each contribution
         is then placed at a point in three dimensional space based on its historical date. The user should be
         able to control the speed and direction with which they move through this space, and therefore the speed
-        and direction with which they move through time.
+        and direction with which they move through time. The timeline is written in pure JavaScript, making use of the HTML5
+        <code>&lt;canvas&gt;</code> element. The only extrenal library used is
+        <a href="https://momentjs.com/">momentjs</a>.
       <p>
-      <h5>
+      <h4>
         Preliminaries
-      </h5>
+      </h4>
       <p>
-        Pinhole Camera Model: The pinhole camera model describes the mathematical relationship between the
+        <strong>Pinhole Camera Model:</strong> The pinhole camera model describes the mathematical relationship between the
         coordinates of a point in three-dimensional space and its projection onto the image plane of an
         ideal pinhole camera, where the camera aperture is described as a point and no lenses are used
         to focus light.
-
-        Serialising Dates: In order to easily compare different points in time, the historical dates were serialised
+      </p>
+      <p>
+        <strong>Serialising Dates:</strong> In order to easily compare different points in time, the historical dates were serialised
         according to the number of days that had passed since the beginning of the Roman calendar. When the user
         submits a contribution, the historical date is first serialised before the contribution is added to the database.
         Therefore all calculations and comparisons regarding dates can be done using positive integers. In the
         calculations that follow, each date is an integer value. Serialising was performed using the moment.js
         JavaScript library.
       </p>
-      <h5>
+      <h4>
         Defining a three-dimensional coordinate system
-      </h5>
+      </h4>
       <p>
-        The \(x\) and \(y\)-axes of the three dimensional space are the usual \(x\) and \(y\)-axes as expected. It is important
-         to note that these axes are not the same as the \(x\) and \(y\)-axes of the computer screen, although they
-         are related. Time is then defined along the \(z\)-axis. Originally, the \(z\)-axis was defined with the
-         earliest contribution at \(z = 0\) and the latest contribution at \(z = 100\). However, as the camera is initially positioned at \(z = 0\),
-         the user would not be able to see the first contribution. To account for this, the \(z\)-position of each
-         contribution was offset by a value \(Z_{offset}\). The \(z\)-axis therefore begins at \(z = 0\), with earliest contribution at
-         \(z = Z_{offset}\) and the latest contribution at \(100 + Z_{offset}\).
+        The \(X\) and \(Y\)-axes of the three dimensional space are the usual \(X\) and \(X\)-axes as expected. It is important
+         to note that these axes are not the same as the \(X\) and \(X\)-axes of the computer screen, which will be denoted
+         by lower case \(x\) and \(y\), although they are related. Time is then defined along the \(Z\)-axis. Originally, the \(Z\)-axis was defined with the
+         earliest contribution at \(Z = 0\) and the latest contribution at \(z = 100\). However, as the camera is initially positioned at \(Z = 0\),
+         the user would not be able to see the first contribution. To account for this, the \(Z\)-position of each
+         contribution was offset by a value \(Z_{offset}\). The \(Z\)-axis therefore begins at \(Z = 0\), with earliest contribution at
+         \(Z = Z_{offset}\) and the latest contribution at \(100 + Z_{offset}\).
       </p>
-      <h5>
-        Caclulating the \(x\), \(y\), and \(z\)-position of each conribution
-      </h5>
+      <h4>
+        Caclulating the \(X\), \(Y\), and \(Z\)-position of each conribution
+      </h4>
       <p>
         Now that the coordinate space has been defined, the position of each contribution in that coordinate space
         can be calculated using the serialised historical date. Let \(S_{earliest}\) be the serialised date of
         the earliest contribution, let \(S_{latest}\) be the serialised date of the latest contribution, and let
-        \(S_{current}\) be the serialised date of the current contribution whose \(z\)-position we are calculating.
-        The \(z\)-position is then calculated as follows:
+        \(S_{current}\) be the serialised date of the current contribution whose \(Z\)-position we are calculating.
+        The \(Z\)-position is then calculated as follows:
 
         $$ Z_{current} = {\frac{S_{current} - S_{earliest}}{S_{latest} - S_{earliest}}}\cdot{100} + Z_{offset}$$
 
@@ -248,13 +241,63 @@
         the contributions should pass the camera at different \(x\) and \(y\)-positions. Each contribution was therefore
         randomly assigned an \(x\) and \(y\)-position between \(10\) and \(10\).
       </p>
-      <h5>
+      <h4>
         Three-Dimensional Projection
-      </h5>
+      </h4>
         <p>
           The exact position of each contribution in the 3-D space is now known. Next we must define how this
           3-D position relates to the position of the contribution on the 2-D screen. 3-D projection is a method
-          of mapping three-dimensional points to a two-dimensional plane.
+          of mapping three-dimensional points to a two-dimensional plane. Let \(X_{relative}\), \(Y_{relative}\),
+          and \(Z_{relative}\) be the relative position of any point to the camera. Let \(f\) be the focal length,
+          which represents the distance between the camera and the 2-D screen in 3-D space. Let \(x_{screen}\)
+          and \(y_{screen}\) be the position of a given contribution on the two dimensional screen. Note that for the screen
+          the \(xy\)-coordinate system is centered at the top left corner, and to center the camera on the screen,
+          the 2-D position is translated by \((x_{center}, y_{center})\) where
+
+          $$ x_{center} = \frac{ScreenWidth}{2} $$
+
+          and
+
+          $$ y_{center} = \frac{ScreenHeight}{2} $$
+
+          The final 2-D screen position for a contribution is then given by \((x_{screen}, y_{screen})\), where
+
+          $$ x_{screen} = f + \frac{X_{relative}}{Z_{relative}} + x_{center} $$
+
+          and
+
+          $$ y_{screen} = f + \frac{Y_{relative}}{Z_{relative}} + y_{center} $$
+        </p>
+        <h4>
+          Scaling
+        </h4>
+        <p>
+          We now have the position of each contribution on the screen. What remains is to scale these contributions
+          based on their distance from the camera. Naturally, the size of each contribution will be inversely proportional
+          to its relative \(Z\)-position, as elements that are further away in 3-D space (and therefore also in time) should appear
+          smaller on the screen. The size of each contribution is therfore given by
+
+          $$ Size = scale \times \frac{1}{Z_{relative}} $$
+
+          where \(scale\) can be defined arbitrarily based on preference.
+
+          This allows us to scale each element of a contribution, creating the illusion of depth on the screen. The
+          contribution's opacity value is also defined to be inversely proportional to \(Z_{relative}\), so that
+          objects that are further away will fade into the distance. A coloured radial gradient is then applied
+          the the background to enhance the illusion of depth.
+        </p>
+        <h4>
+          Displaying the Current Date
+        </h4>
+        <p>
+          The retrieve the date we must calculate the current serialised date corresponding to the \(Z\)-position
+           of the camera. This is done by rearranging the equation used to calculate the
+            \(Z\)-position of a contribution:
+
+          $$ S_{camera} = (\frac{Z_{camera} - Z_{offset}}{100})\cdot(S_{latest} - S_{earliest}) + S_{earliest}$$
+
+          This serialised date is then converted back to a standard date format and presented to the user.
+          This date will update as the camera moves along the \(Z-axis\).
         </p>
     </div>
   </body>
