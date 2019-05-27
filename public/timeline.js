@@ -129,29 +129,33 @@ function Contribution(title, historical_date, serial_date, descriptions, image_s
   };
 }
 
-function draw_positions() {
-  ctx.font = 'bold 0.8em sans-serif';
-  ctx.globalAlpha = 1;
-  ctx.fillText('camera x: ' + camera_x.toFixed(2), 9, 18);
-  ctx.fillText('camera y: ' + camera_y.toFixed(2), 9, 35);
-  ctx.fillText('camera z: ' + camera_z.toFixed(2), 9, 52);
-}
-
 function draw_year() {
   var serial_date = ((((camera_z / multiplier) - 70)/600) * (latest - earliest)) + earliest;
   var new_date = moment("0000-01-01", "YYYY-MM-DD").add(Math.floor(serial_date), 'days');
   ctx.font = 'bold 2em sans-serif';
-  ctx.globalAlpha = 1;
+  ctx.globalAlpha = 0.7;
   ctx.textAlign = "right";
   ctx.fillText(new_date.format("MMMM YYYY"), 250, 35);
+}
+
+function draw_help() {
+  ctx.font = 'bold 1em sans-serif';
+  console.log(canvas.width/dpi - 200);
+  ctx.globalAlpha = 0.5;
+  ctx.fillText('esc to exit', canvas.width/dpi - 13, 20);
+  ctx.fillText('up/down arrows change speed', canvas.width/dpi - 13, 40);
+  ctx.fillText('left/right arrows change spread', canvas.width/dpi - 13, 60);
+  ctx.fillText('mouse to move camera', canvas.width/dpi - 13, 80);
+  ctx.fillText('space to pause', canvas.width/dpi - 13, 100);
+  ctx.globalAlpha = 1;
   ctx.textAlign = "left";
 }
 
 // The draw() function. Calls itself repeatedly.
 function draw() {
   var gradient = ctx.createRadialGradient(x_center, y_center, 0, x_center, y_center, 500);
-  gradient.addColorStop(0, "white");
-  gradient.addColorStop(1, "#eff");
+  gradient.addColorStop(0, "#eee");
+  gradient.addColorStop(1, "#edd");
   ctx.fillStyle = gradient;
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   ctx.fillStyle = 'black';
@@ -159,8 +163,8 @@ function draw() {
   if (!paused) {
     camera_z += speed;
   }
-  // draw_positions();
   draw_year();
+  draw_help();
   window.requestAnimationFrame(draw);
 }
 
