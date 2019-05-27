@@ -144,8 +144,9 @@ function draw_help() {
   ctx.fillText('esc to exit', canvas.width/dpi - 13, 20);
   ctx.fillText('up/down arrows change speed', canvas.width/dpi - 13, 40);
   ctx.fillText('left/right arrows change spread', canvas.width/dpi - 13, 60);
-  ctx.fillText('mouse to move camera', canvas.width/dpi - 13, 80);
-  ctx.fillText('space to pause', canvas.width/dpi - 13, 100);
+  ctx.fillText('scroll to scrub through time', canvas.width/dpi - 13, 80);
+  ctx.fillText('mouse to move camera', canvas.width/dpi - 13, 100);
+  ctx.fillText('space to pause', canvas.width/dpi - 13, 120);
   ctx.textAlign = "left";
 }
 
