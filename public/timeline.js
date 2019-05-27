@@ -90,7 +90,6 @@ function get_lines(ctx, text, max_width) {
 }
 
 function Contribution(title, historical_date, serial_date, descriptions, image_source, contributor_username) {
-  console.log(title);
   this.x_3D   = (Math.random() * 14) - 7;
   this.y_3D   = (Math.random() * 14) - 9;
   this.z_3D   = (((serial_date - earliest) / (latest - earliest)) * 600) + 70;
@@ -140,7 +139,6 @@ function draw_year() {
 
 function draw_help() {
   ctx.font = 'bold 1em sans-serif';
-  console.log(canvas.width/dpi - 200);
   ctx.globalAlpha = 0.5;
   ctx.fillText('esc to exit', canvas.width/dpi - 13, 20);
   ctx.fillText('up/down arrows change speed', canvas.width/dpi - 13, 40);
