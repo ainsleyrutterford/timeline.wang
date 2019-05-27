@@ -16,5 +16,7 @@ window.onclick = function(event) {
 };
 
 window.addEventListener("keydown", function (event) {
-  window.location.href = '/timeline';
+  if ((event.keyCode >= 65 && event.keyCode <=90) || event.keyCode === 32) {
+    window.location.href = '/timeline';
+  }
 });

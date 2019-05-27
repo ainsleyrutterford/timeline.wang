@@ -1,0 +1,52 @@
+/*
+This file contatins the styling for the sign up
+page on timeline.
+/*
+
+/*
+This styling file follows the "outside in" convention.
+CSS properties in this file are ordered by how much they
+impact the selected elements or other elements aroud them.
+*/
+
+/*
+The ordering is as follows:
+  - Layout Properties
+  - Box Model Properties
+  - Visual Properties
+  - Typography Properties
+  - Miscellaneous properties
+*/
+
+.about-container {
+  max-width: 55rem; /* Allows the column to be resizable */
+  margin: 0 auto;
+  padding-top: 5rem;
+}
+
+.about-h1 {
+  color: #000000; /* Black. */
+  padding: 1rem 1rem 1rem 1rem; /* top, right, bottom, left */
+}
+
+p {
+  color: #3A3A3A; /* A nice dark grey. */
+  padding: 0.5rem 1rem 0.5rem 1rem; /* top, right, bottom, left */
+}
+
+code {
+  background-color: #eee;          /* Light grey */
+  border-radius: 0.2em;            /* Round edges or box */
+  font-family: courier, monospace; /* Change font */
+  padding: 0 0.2em;                /* Add padding between text and box */
+}
+
+p a {
+  color: #1e6bb8; /* A nice blue */
+  text-decoration: none; /* Links are not underlined by default */
+  outline: transparent;
+}
+
+p a:hover {
+  text-decoration: underline; /* Links are underlined when hovered */
+}
