@@ -26,6 +26,9 @@ function render_contributions() {
                "<div class=\"contribution-date\">"+ contributions[i].contribution_date +"</div>"     +
              "</div>";
   }
+  if (contributions.length === 0) {
+    html = "<div id=\"no-contributions\">You have no contributions</div>";
+  }
   contributions_container.innerHTML = html;
 }
 

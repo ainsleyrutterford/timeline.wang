@@ -11,19 +11,23 @@ let focal_length = 500;
 let y_center, x_center;
 let camera_x = 0, camera_y = 0, camera_z = 0;
 let paused = false;
+let speed = 0.1;
+let space = 1;
+let multiplier = 1;
+let serial_date;
 
 async function handle(response) {
   const json_response = await response.json();
 
   var sorted = json_response.sort(function(a, b) {
-    return a.serialised_hist_date - b.serialised_hist_date;
+    return b.serialised_hist_date - a.serialised_hist_date;
   });
-  earliest = sorted[0].serialised_hist_date;
-  latest = sorted[json_response.length - 1].serialised_hist_date;
+  earliest = sorted[json_response.length - 1].serialised_hist_date;
+  latest = sorted[0].serialised_hist_date;
 
   for (var i = 0; i < json_response.length; i++) {
     var r = json_response[i];
-    var descriptions = get_lines(ctx, r.description, 6000);
+    var descriptions = get_lines(ctx, r.description, 7600);
     contributions.push(new Contribution(r.title,
                                         r.historical_date,
                                         r.serialised_hist_date,
@@ -42,12 +46,12 @@ function scale_canvas() {
   // which is 1 for 1080p screens and 2 for retina screens. Do the same for
   // the height.
   canvas.width = window.innerWidth * dpi;
-  canvas.height = (window.innerHeight - 5) * dpi;
+  canvas.height = (window.innerHeight - 6) * dpi;
 
   // Set the canvas style width and height to the same as the window width
   // and height.
   canvas.style.width = window.innerWidth + "px";
-  canvas.style.height = (window.innerHeight - 5) + "px";
+  canvas.style.height = (window.innerHeight - 6) + "px";
 
   // Recenter the y_center.
   y_center = (canvas.height / 2) / dpi;
@@ -87,10 +91,9 @@ function get_lines(ctx, text, max_width) {
 }
 
 function Contribution(title, historical_date, serial_date, descriptions, image_source, contributor_username) {
-  console.log(title);
-  this.x_3D   = (Math.random() * 4) - 2;
-  this.y_3D   = (Math.random() * 4) - 2;
-  this.z_3D   = (((serial_date - earliest) / (latest - earliest)) * 100) + 70;
+  this.x_3D   = (Math.random() * 14) - 7;
+  this.y_3D   = (Math.random() * 14) - 9;
+  this.z_3D   = (((serial_date - earliest) / (latest - earliest)) * 600) + 70;
   this.title  = title;
   this.date   = historical_date;
   this.user   = contributor_username;
@@ -111,7 +114,10 @@ function Contribution(title, historical_date, serial_date, descriptions, image_s
       ctx.font = 'bold ' + 20 / relative_z + 'em sans-serif';
       var alpha = (100 - relative_z) / 100;
       ctx.globalAlpha = (alpha < 0) ? 0 : alpha;
-      var size = 2000 / relative_z;
+      var size = 2600 / relative_z;
+      ctx.fillStyle = '#bbb';
+      ctx.fillRect(x - size*1.05, y - size*0.05, size*5.5, size*1.1);
+      ctx.fillStyle = 'black';
       ctx.drawImage(image, x - size, y, size, size);
       ctx.fillText(historical_date, x + (250 / relative_z), y + (250 / relative_z));
       ctx.fillText(title, x + ctx.measureText(historical_date).width + 2 * (250 / relative_z), y + (250 / relative_z));
@@ -123,38 +129,52 @@ function Contribution(title, historical_date, serial_date, descriptions, image_s
   };
 }
 
-function draw_positions() {
-  ctx.font = 'bold 0.8em sans-serif';
-  ctx.globalAlpha = 1;
-  ctx.fillText('camera x: ' + camera_x.toFixed(2), 9, 18);
-  ctx.fillText('camera y: ' + camera_y.toFixed(2), 9, 35);
-  ctx.fillText('camera z: ' + camera_z.toFixed(2), 9, 52);
-}
-
 function draw_year() {
-  var serial_date = (((camera_z - 40)/100) * (latest - earliest)) + earliest;
+  serial_date = ((((camera_z / multiplier) - 70)/600) * (latest - earliest)) + earliest;
   var new_date = moment("0000-01-01", "YYYY-MM-DD").add(Math.floor(serial_date), 'days');
   ctx.font = 'bold 2em sans-serif';
-  ctx.globalAlpha = 1;
+  ctx.globalAlpha = 0.7;
   ctx.textAlign = "right";
   ctx.fillText(new_date.format("MMMM YYYY"), 250, 35);
+}
+
+function draw_help() {
+  ctx.font = 'bold 1em sans-serif';
+  ctx.globalAlpha = 0.5;
+  ctx.fillText('esc to exit', canvas.width/dpi - 13, 20);
+  ctx.fillText('up/down arrows change speed', canvas.width/dpi - 13, 40);
+  ctx.fillText('left/right arrows change spread', canvas.width/dpi - 13, 60);
+  ctx.fillText('mouse to move camera', canvas.width/dpi - 13, 80);
+  ctx.fillText('space to pause', canvas.width/dpi - 13, 100);
   ctx.textAlign = "left";
+}
+
+function draw_timeline() {
+  var size = canvas.width/dpi * 0.75;
+  var start = x_center - size/2;
+  var finish = x_center - size/2 + size;
+  ctx.fillRect(0, canvas.height/dpi - 30, canvas.width/dpi, 6);
+  ctx.globalAlpha = 1;
+  var position = start + (((serial_date - earliest) / (latest - earliest)) * size);
+  ctx.fillRect(position - 3, canvas.height/dpi - 30, 6, 6);
 }
 
 // The draw() function. Calls itself repeatedly.
 function draw() {
-  var gradient = ctx.createRadialGradient(x_center, y_center, 0, x_center, y_center, 500);
-  gradient.addColorStop(0, "white");
-  gradient.addColorStop(1, "#eff");
+  var gradient = ctx.createRadialGradient(x_center, y_center, 0, x_center, y_center, 1000);
+  gradient.addColorStop(0, "#555");
+  gradient.addColorStop(1, "#111");
   ctx.fillStyle = gradient;
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   ctx.fillStyle = 'black';
   contributions.forEach(contribution => contribution.draw());
   if (!paused) {
-    camera_z += 0.1;
+    camera_z += speed;
   }
-  // draw_positions();
+  ctx.fillStyle = 'white';
   draw_year();
+  draw_help();
+  draw_timeline();
   window.requestAnimationFrame(draw);
 }
 
@@ -174,8 +194,8 @@ window.addEventListener('mousemove', function (e) {
   var mouse_y = e.clientY - rect.top ;
   const width  = canvas.width  / dpi;
   const height = canvas.height / dpi;
-  camera_x = -2 + 4 * (width  - mouse_x) / width ;
-  camera_y = -2 + 4 * (height - mouse_y) / height;
+  camera_x = -10 + 20 * (width  - mouse_x) / width ;
+  camera_y = -10 + 20 * (height - mouse_y) / height;
 });
 
 // Use keydown for pausing as it feels more responsive.
@@ -185,6 +205,26 @@ window.addEventListener('keydown', function(e) {
   switch (e.keyCode) {
     case 32: // Spacebar
       paused = !paused;
+      break;
+    case 37: // Left arrow
+      camera_z *= 1.015;
+      contributions.forEach(contribution => {
+        contribution.z_3D *= 1.015;
+      });
+      multiplier *= 1.015;
+      break;
+    case 38: // Up arrow
+      speed += 0.02;
+      break;
+    case 39: // Right arrow
+      camera_z *= 0.985;
+      contributions.forEach(contribution => {
+        contribution.z_3D *= 0.985;
+      });
+      multiplier *= 0.985;
+      break;
+    case 40: // Down arrow
+      speed -= 0.02;
       break;
     default:
       break;
