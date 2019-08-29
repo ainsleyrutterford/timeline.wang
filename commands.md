@@ -10,17 +10,17 @@
 
 ## Forwarding ports
 
-`sudo iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 8080`
+`sudo iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 8080`</br> 
 `sudo iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 443 -j REDIRECT --to-port 8080`
 
 ## Opening ports
 
-`sudo ufw allow 80`
+`sudo ufw allow 80`</br> 
 `sudo ufw allow 443`
 
 ## Certbot
 
-`sudo certbot certonly --webroot -w ./public/ -d timeline.wang`
+`sudo certbot certonly --webroot -w ./public/ -d timeline.wang`</br> 
 `sudo certbot renew --webroot -w ./public/`
 
 To renew the certificate:
