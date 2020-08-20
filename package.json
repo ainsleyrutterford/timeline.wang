@@ -7,7 +7,7 @@
   "description": "This is the coursework for the third year Computer Science unit 'Web Technologies' at the University of Bristol.",
   "main": "create.js",
   "dependencies": {
-    "bcrypt": "^3.0.6",
+    "bcrypt": "^5.0.0",
     "compression": "^1.7.4",
     "connect-ensure-login": "^0.1.1",
     "connect-flash": "^0.1.1",
